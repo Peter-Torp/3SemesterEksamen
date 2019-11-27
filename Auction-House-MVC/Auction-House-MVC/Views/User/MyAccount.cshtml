@@ -1,0 +1,21 @@
+﻿@model Auction_House_MVC.Models.UserShowModel
+@{
+    ViewBag.Title = "MyAccount";
+}
+
+<h2>MyAccount</h2>
+
+<div class="border">
+    <div class="row">
+        <p><span class="glyphicon glyphicon-user"></span> @Html.Raw(Model.UserName)</p>
+    </div>
+    <div class="row">
+        <p><span class="glyphicon glyphicon-envelope"></span> @Html.Raw(Model.Email)</p>
+    </div>
+    <div class="row">
+        <p><span class="glyphicon glyphicon-phone"></span> @Html.Raw(Model.Phone)</p>
+    </div>
+    <div class="row">
+        <p><span class="glyphicon glyphicon-home"></span> @Html.Raw(Model.Region) - @Html.Raw(Model.ZipCode)</p>
+    </div>
+</div>

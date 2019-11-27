@@ -1,0 +1,74 @@
+﻿@model Auction_House_MVC.Models.UserSignUpModel
+
+@{
+    ViewBag.Title = "Sign Up";
+    ViewBag.Message = "Sign Up";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!--https://www.codeproject.com/Articles/482546/Creating-a-custom-user-login-form-with-NET-Csharp-->
+@using (Html.BeginForm("SaveSignUpDetails", "User"))
+{
+    <div>
+        <fieldset>
+            <!-- User name -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.UserName)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.UserName)</p>
+            </div>
+            <!-- Email -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Email)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Email)
+                <p style="color:red;"> @Html.ValidationMessageFor(u => u.Email)</p>
+</div>
+            <!-- Phone -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Phone)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Phone)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.Phone)</p>
+</div>
+            <!-- Zip Code -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.ZipCode)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.ZipCode)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.ZipCode)</p>
+</div>
+            <!-- Region -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Region)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Region)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.Region)</p>
+</div>
+            <!-- Password -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.Password)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.Password)</p>
+</div>
+            <!-- Verify password -->
+            <div class="editor-label">
+                @Html.LabelFor(u => u.ConfirmPassword)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.ConfirmPassword)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.ConfirmPassword)</p>
+</div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </fieldset>
+    </div>
+}

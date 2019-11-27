@@ -1,0 +1,39 @@
+﻿@model Auction_House_MVC.Models.LogInModel
+
+@{
+    ViewBag.Title = "Log In";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("LogInDetails", "User"))
+{
+    <div>
+        <fieldset>
+            <div class="editor-label">
+                @Html.LabelFor(lM => lM.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(lM => lM.UserName)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.UserName)</p>
+            </div>
+
+            <!-- Password -->
+            <div class="editor-label">
+                @Html.LabelFor(lM => lM.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(lM => lM.Password)
+                <p style="color:red;">@Html.ValidationMessageFor(u => u.Password)</p>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </fieldset>
+    </div>
+}
+
+@if (ViewBag.LoginError != null)
+{
+    <script>
+        $(document).ready(function(){alert('@ViewBag.LoginError');});
+    </script>
+}

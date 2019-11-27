@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="jumbotron">
+        <h1>Online Auction House</h1>
+        <p class="lead">Be your own auctioneer, or get a good deal.</p>
+        <input class="btn btn-primary btn-lg" type="button" value="Learn more" onclick="location.href='@Url.Action("Information", "Home")'" />
+         
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Auctioneering</h2>
+        <p>
+            Just sign up, put on item, and thousands of users will have access to it.
+        </p>
+        <input class="btn btn-success btn-lg" type="button" value="Sign Up" onclick="location.href='@Url.Action("SignUp", "User")'" />
+    </div>
+    <div class="col-md-4">
+        <h2>Get new items</h2>
+        <p>If u want an item, our users got it, use the search field to find the items you desire.</p>
+        <input class="btn btn-info btn-lg" type="button" value="Auctions" onclick="location.href='@Url.Action("Index", "Auction")'" />
+    </div>
+    <div class="col-md-4">
+        <h2>Auction like never before.</h2>
+        <p>Online auctions is more beneficial to both the seller and the buyer. Get the correct price of your items, by users peer bidding to get the correct price.</p>
+        <input class="btn btn-primary btn-lg" type="button" value="More info" onclick="location.href='@Url.Action("Information", "Home")'" />
+    </div>
+</div>

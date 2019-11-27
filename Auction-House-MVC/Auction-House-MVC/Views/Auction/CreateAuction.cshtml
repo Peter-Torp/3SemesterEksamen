@@ -1,0 +1,92 @@
+﻿@model Auction_House_MVC.Models.AuctionSetUp
+
+@{
+    ViewBag.Title = "Create Auction";
+}
+
+<h2>Create an auction</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <div class="thumbnail">
+                    <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
+                    <div class="caption">
+                        <p class="text-center">A computer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-primary center-block">Add picture</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            @using (Html.BeginForm("CreateAuctionDetails", "Auction"))
+            {
+                <div>
+                    <fieldset>
+                        <!-- Description -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.Description)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextAreaFor(aS => aS.Description)
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.Description)</p>
+                        </div>
+
+                        <!-- Start Price -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.StartPrice)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(aS => aS.StartPrice, new { type = "number", min = "0", step = "0.01" })
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.StartPrice)</p>
+                        </div>
+
+                        <!-- Bid Interval -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.BidInterval)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(aS => aS.BidInterval, new { type = "number", min = "0", step = "0.01" })
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.BidInterval)</p>
+                        </div>
+
+                        <!-- Buy Out Price -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.BuyOutPrice)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(aS => aS.BuyOutPrice, new { type = "number", min = "0", step = "0.01" })
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.BuyOutPrice)</p>
+                        </div>
+
+                        <!-- End Date -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.EndDate)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(aS => aS.EndDate, new { type = "date" })
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.EndDate)</p>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="editor-label">
+                            @Html.LabelFor(aS => aS.Category)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(aS => aS.Category, new SelectList(ViewBag.Category))
+                        </div>
+
+
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </fieldset>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
