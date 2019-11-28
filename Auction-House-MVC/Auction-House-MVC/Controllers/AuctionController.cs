@@ -1,4 +1,5 @@
 ﻿using Auction_House_MVC.BusinessLayer;
+using Auction_House_MVC.Models;
 using Auction_House_MVC.Utility;
 using System;
 using System.Collections.Generic;
@@ -52,10 +53,14 @@ namespace Auction_House_MVC.Controllers
             return View("CreateAuction");
         }
 
+        // GET: Auction  
+        
         public ActionResult Auction()
         {
             return View();
         }
+
+        
 
         public FileStreamResult AuctionShowImage()
         {

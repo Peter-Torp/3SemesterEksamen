@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Auctions";
+}
+
+<h2>Auctions</h2>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        //Call AucDetails jsonResult Method
+        $.getJSON("Home/AucDetails",
+            function (json) {
+                var tr;
+
+                //Append each row to html table
+                for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].Category + "</td>");
+                    tr.append("<td>" + json[i].Name + "</td>");
+                    tr.append("<td>" + json[i].BuyOut + "</td>");
+                    tr.append("<td>" + json[i].Bidding + "</td>");
+                    tr.append("<td>" + json[i].CurrentPrice + "</td>");
+                    $('table').append(tr);
+
+                }
+                $('#AucInfo').DataTable();
+            });
+
+    });
+
+</script>
+<hr />
+<div class="form-horizontal">
+    <table id="AucInfo" class="table table-bordered  table-hover">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>BuyOut</th>
+                <th>Bidding</th>
+                <th>CurrentPrice</th>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
