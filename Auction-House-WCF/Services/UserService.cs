@@ -10,7 +10,6 @@ namespace Auction_House_WCF.Services
 {
     public class UserService : IUserService
     {
-
         public UserData GetUserById(int id)
         {
             UserController uCtr = new UserController();

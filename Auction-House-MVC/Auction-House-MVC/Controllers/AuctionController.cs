@@ -61,7 +61,7 @@ namespace Auction_House_MVC.Controllers
         {
             B_AuctionController bActr = new B_AuctionController();
 
-            Stream image = bActr.GetPicture(User.Identity.Name);
+            Stream image = bActr.GetPicture(User.Identity.Name, 1);
 
             var fileStreamResult = new FileStreamResult(image, "image/jpeg");
 

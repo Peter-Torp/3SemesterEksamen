@@ -1,4 +1,5 @@
 ﻿using Auction_House_MVC.ModelLayer;
+using Auction_House_MVC.ModelLayer.Auction;
 using Auction_House_MVC.ServiceLayer;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using System;
@@ -18,20 +19,38 @@ namespace Auction_House_MVC.BusinessLayer
             return aS.InsertAuction(createAuction);
         }
 
-        public Stream GetPicture(string userName)
+        public Stream GetPicture(string userName, int auctionId)
         {
-            AuctionService aS = new AuctionService();
+            //Get user ID to get folder destination.
+            B_UserController bUCtr = new B_UserController();
+            User user = bUCtr.GetUserByUserName(userName);
+
+            //Get Auction ID to get folder destination.
+
 
             //Set up request
             DownloadRequest downloadRequest = new DownloadRequest();
             downloadRequest.FileName = "image_1.jpg";
-            downloadRequest.AuctionNumber = 1;
-            downloadRequest.UserId = 400;
+            downloadRequest.AuctionNumber = auctionId;
+            downloadRequest.UserId = user.Id;
 
             //Get stream from service.
+            AuctionService aS = new AuctionService();
             Stream rFI = aS.GetPicture(downloadRequest).FileByteStream;
 
             return rFI;
         }
+
+        public List<Image> GetAllPictures()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool InsertPictures()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace Auction_House_WCF.Controllers
             RemoteFileInfo rFI = new RemoteFileInfo();
             try
             {
-                string appDirectory = @"C:\Users\Martin\source\repos\Auction-House\Auction-House-WCF\"; // AppDomain.CurrentDomain.BaseDirectory
+                string appDirectory = @"C:\Users\Martin\source\repos\Auction-House-V2\Auction-House-WCF\"; // AppDomain.CurrentDomain.BaseDirectory
                 string baseDirectory = @"Images\Auctions\";
                 string fullDirectory = appDirectory + baseDirectory + request.UserId + @"\" + request.AuctionNumber + @"\" + request.FileName;
                 bool fileExist = File.Exists(fullDirectory);
