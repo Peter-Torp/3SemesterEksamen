@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Auction_House_WPF.Model;
 
-namespace Auction_House_WPF.ViewModel
+namespace Auction_House_WPF.ViewModels
 {
     public class FirstChildViewModel : Screen, INotifyPropertyChanged
     {

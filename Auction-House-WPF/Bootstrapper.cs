@@ -1,4 +1,4 @@
-﻿using Auction_House_WPF.ViewModel;
+﻿using Auction_House_WPF.ViewModels;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;

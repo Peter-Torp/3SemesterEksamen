@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Auction_House_WPF.View
+namespace Auction_House_WPF.Views
 {
     /// <summary>
     /// Interaction logic for FirstChildView.xaml

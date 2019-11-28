@@ -7,7 +7,7 @@
     <ProjectGuid>{80475792-2162-4298-8AC6-4FD00F9601DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Auction_House_WPF</RootNamespace>
-    <AssemblyName>Auction-House-WPF</AssemblyName>
+    <AssemblyName>Auction_House_WPF</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -68,16 +68,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\FirstChildViewModel.cs" />
-    <Compile Include="ViewModel\SecondChildViewModel.cs" />
-    <Compile Include="ViewModel\ShellViewModel.cs" />
-    <Compile Include="View\FirstChildView.xaml.cs">
+    <Compile Include="ViewModels\FirstChildViewModel.cs" />
+    <Compile Include="ViewModels\SecondChildViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\FirstChildView.xaml.cs">
       <DependentUpon>FirstChildView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SecondChildView.xaml.cs">
+    <Compile Include="Views\SecondChildView.xaml.cs">
       <DependentUpon>SecondChildView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ShellView.xaml.cs">
+    <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -85,15 +85,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Page Include="View\FirstChildView.xaml">
+    <Page Include="Views\FirstChildView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SecondChildView.xaml">
+    <Page Include="Views\SecondChildView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ShellView.xaml">
+    <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

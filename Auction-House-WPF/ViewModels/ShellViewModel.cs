@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Auction_House_WPF.Model;
-using Auction_House_WPF.View;
 
-namespace Auction_House_WPF.ViewModel
+
+namespace Auction_House_WPF.ViewModels
 {
     public class ShellViewModel : Conductor<object> //Everything can go into the Conductor
     {
