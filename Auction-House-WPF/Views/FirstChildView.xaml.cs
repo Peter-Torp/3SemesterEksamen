@@ -27,18 +27,21 @@ namespace Auction_House_WPF.Views
 
         private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
         {
+            EmptySearch();
             //FirstChildViewModel firstchildmodelview = new FirstChildViewModel();
             //firstchildmodelview.InsertDummyPerson();
             //firstchildmodelview.Refresh();
 
-            FirstNameTextblock.Text = "Christ";
-            LastNameTextblock.Text = "McDutten";
-            UsernameTextblock.Text = "OkBoomer";
-            AddressTextblock.Text = "ZoomerTown";
-            EmailTextblock.Text = "IAmNotADoomer@NotDoomer.cn";
-            PhoneTextblock.Text = "133769420";
-            ZipcodeTextblock.Text = "6969";
-            DateofBirthTextblock.Text = "420/69/666";
+    
+        }
+
+        public void EmptySearch()
+        {
+            if (String.IsNullOrEmpty(EnterUsernameTextbox.Text))
+            {
+                MessageBox.Show("Cannot be left empty, please input username", "Invalid search",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
