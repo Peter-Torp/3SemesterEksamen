@@ -28,11 +28,7 @@ namespace Auction_House_WPF.Views
         private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
         {
             EmptySearch();
-            //FirstChildViewModel firstchildmodelview = new FirstChildViewModel();
-            //firstchildmodelview.InsertDummyPerson();
-            //firstchildmodelview.Refresh();
 
-    
         }
 
         public void EmptySearch()
@@ -42,6 +38,16 @@ namespace Auction_House_WPF.Views
                 MessageBox.Show("Cannot be left empty, please input username", "Invalid search",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void EnterUsernameTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void FillDataGrid()
+        {
+            
         }
     }
 }

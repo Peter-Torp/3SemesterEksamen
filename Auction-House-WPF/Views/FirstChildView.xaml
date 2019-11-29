@@ -42,8 +42,8 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="1" Grid.Column="1" x:Name="Search" Content="Search User:" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="White"/>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-        <Button Command="{Binding InsertDummyPerson}" Click="ProfileSearchButton_Click" Grid.Row="1" Grid.Column="3" x:Name="ProfileSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="9" Margin="0.4,0,0,0" Height="25" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" TextChanged="EnterUsernameTextbox_TextChanged"/>
+        <Button Command="{Binding Search}" Click="ProfileSearchButton_Click" Grid.Row="1" Grid.Column="3" x:Name="ProfileSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="9" Margin="0.4,0,0,0" Height="25" VerticalAlignment="Top"/>
 
 
         <Label Grid.Row="3" Grid.Column="1" x:Name="FirstNameLabel" Content="FirstName: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
