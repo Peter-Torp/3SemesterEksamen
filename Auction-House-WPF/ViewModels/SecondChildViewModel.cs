@@ -10,4 +10,6 @@ namespace Auction_House_WPF.ViewModels
     public class SecondChildViewModel : Screen
     {
     }
+
+
 }
