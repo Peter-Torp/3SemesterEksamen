@@ -1,5 +1,4 @@
 ﻿@model Auction_House_MVC.Models.AuctionSetUp
-
 @{
     ViewBag.Title = "Create Auction";
 }
@@ -10,20 +9,11 @@
     <div class="row">
         <div class="col-md-3">
             <div class="row">
-                <div class="thumbnail">
-                    <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
-                    <div class="caption">
-                        <p class="text-center">A computer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div>
-                    <button type="button" class="btn btn-primary center-block">Add picture</button>
-                </div>
+
             </div>
         </div>
         <div class="col-md-9">
+
             @using (Html.BeginForm("CreateAuctionDetails", "Auction"))
             {
                 <div>
@@ -74,13 +64,13 @@
                         </div>
 
                         <!-- Category -->
-                        <div class="editor-label">
-                            @Html.LabelFor(aS => aS.Category)
+                        @*<div class="editor-label">
+                            @Html.LabelFor(aS => aS.SelectedCategory)
                         </div>
                         <div class="editor-field">
-                            @Html.DropDownListFor(aS => aS.Category, new SelectList(ViewBag.Category))
-                        </div>
-
+                            @Html.DropDownListFor(aS => aS.SelectedCategory, new SelectList(Model.Categories, "Value", "Text"), Model.SelectedCategory)
+                            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.SelectedCategory)</p>
+                        </div>*@
 
                         <input type="submit" value="Submit" class="btn btn-primary" />
                     </fieldset>

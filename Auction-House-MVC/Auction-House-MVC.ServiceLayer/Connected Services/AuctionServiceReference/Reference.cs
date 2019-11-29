@@ -202,6 +202,147 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImageData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class ImageData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AuctionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.IO.Stream FileStreamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AuctionId {
+            get {
+                return this.AuctionIdField;
+            }
+            set {
+                if ((this.AuctionIdField.Equals(value) != true)) {
+                    this.AuctionIdField = value;
+                    this.RaisePropertyChanged("AuctionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.IO.Stream FileStream {
+            get {
+                return this.FileStreamField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileStreamField, value) != true)) {
+                    this.FileStreamField = value;
+                    this.RaisePropertyChanged("FileStream");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgUrl {
+            get {
+                return this.ImgUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgUrlField, value) != true)) {
+                    this.ImgUrlField = value;
+                    this.RaisePropertyChanged("ImgUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuctionServiceReference.IAuctionService")]
     public interface IAuctionService {
@@ -237,6 +378,12 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetPicture", ReplyAction="http://tempuri.org/IAuctionService/GetPictureResponse")]
         System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo> GetPictureAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.DownloadRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPictures", ReplyAction="http://tempuri.org/IAuctionService/InsertPicturesResponse")]
+        bool InsertPictures(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPictures", ReplyAction="http://tempuri.org/IAuctionService/InsertPicturesResponse")]
+        System.Threading.Tasks.Task<bool> InsertPicturesAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -403,6 +550,14 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
             inValue.FileName = FileName;
             inValue.UserId = UserId;
             return ((Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService)(this)).GetPictureAsync(inValue);
+        }
+        
+        public bool InsertPictures(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images) {
+            return base.Channel.InsertPictures(images);
+        }
+        
+        public System.Threading.Tasks.Task<bool> InsertPicturesAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images) {
+            return base.Channel.InsertPicturesAsync(images);
         }
     }
 }

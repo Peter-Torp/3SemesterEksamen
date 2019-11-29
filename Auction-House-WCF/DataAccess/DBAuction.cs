@@ -65,6 +65,11 @@ namespace Auction_House_WCF.DataAccess
                                     user_Id = Convert.ToInt32(reader["Id"]);
                                 }
                             reader.Close();
+                            if (user_Id == -1)
+                            {
+                                scope.Dispose();
+                                throw new TransactionAbortedException(("Username not found " + user_Id.ToString()));
+                            }
                         }
 
                         int cat_Id = -1;
@@ -77,6 +82,11 @@ namespace Auction_House_WCF.DataAccess
                                 cat_Id = Convert.ToInt32(reader["Cat_Id"]);
                             }
                             reader.Close();
+                            if(cat_Id == -1)
+                            {
+                                scope.Dispose();
+                                throw new TransactionAbortedException(("Username not found " + cat_Id.ToString()));
+                            }
                         }
 
                         using (var cmdIAuction = new SqlCommand(insertAuction, conn))
@@ -136,11 +146,20 @@ namespace Auction_House_WCF.DataAccess
                                 cmdIImage.Parameters.AddWithValue("imgUrl", image.ImgUrl);
                                 cmdIImage.Parameters.AddWithValue("dateAdded", image.DateAdded);
                                 cmdIImage.Parameters.AddWithValue("description", image.Description);
-                                cmdIImage.Parameters.AddWithValue("name", image.Name);
+                                cmdIImage.Parameters.AddWithValue("name", image.FileName);
 
                                 cmdIImage.ExecuteScalar();
                             }
                         }
+
+                        ImageHandler iHandler = new ImageHandler();
+                        bool succsesful = iHandler.InsertPicturesToFolder(images);
+                        if (!succsesful)
+                        {
+                            scope.Dispose();
+                            return;
+                        }
+
 
                         //If everything went well, will commit.
                         scope.Complete();

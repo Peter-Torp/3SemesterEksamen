@@ -171,6 +171,9 @@
     <Content Include="Views\Auction\CreateAuction.cshtml" />
     <Content Include="Views\Auction\Index.cshtml" />
     <Content Include="Views\Auction\Auctions.cshtml" />
+    <Content Include="Views\Auction\AddPicturePartial.cshtml" />
+    <Content Include="Views\Auction\AddAuctionPartial.cshtml" />
+    <Content Include="Views\Auction\AddPictures.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

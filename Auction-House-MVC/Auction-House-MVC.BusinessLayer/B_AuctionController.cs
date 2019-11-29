@@ -46,9 +46,11 @@ namespace Auction_House_MVC.BusinessLayer
             throw new NotImplementedException();
         }
 
-        public bool InsertPictures()
+        public bool InsertPictures(List<Image> images)
         {
-            throw new NotImplementedException();
+            AuctionService aS = new AuctionService();
+            bool successful = aS.InsertPictures(images);
+            return successful;
         }
 
         //public List<CreateAuction> ShowAuctions(string auctionName)

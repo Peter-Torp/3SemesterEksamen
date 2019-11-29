@@ -23,33 +23,6 @@ namespace Auction_House_WCF.Services
 
         public RemoteFileInfo GetPicture(DownloadRequest request)
         {
-            /*
-                        RemoteFileInfo result = new RemoteFileInfo();
-                        try
-                        {
-                            string filePath = System.IO.Path.Combine(@"", request.FileName);
-                            System.IO.FileInfo fileInfo = new System.IO.FileInfo(filePath);
-
-                            // check if exists
-                            if (!fileInfo.Exists)
-                                throw new System.IO.FileNotFoundException("File not found",
-                                                                          request.FileName);
-
-                            // open stream
-                            System.IO.FileStream stream = new System.IO.FileStream(filePath,
-                                      System.IO.FileMode.Open, System.IO.FileAccess.Read);
-
-                            // return result 
-                            result.FileName = request.FileName;
-                            result.Length = fileInfo.Length;
-                            result.FileByteStream = stream;
-                            return result;
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-            */
             AuctionController aCtr = new AuctionController();
             return aCtr.GetPicture(request);
         }
@@ -66,5 +39,9 @@ namespace Auction_House_WCF.Services
             throw new NotImplementedException();
         }
 
+        public bool InsertPictures(List<ImageData> images)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

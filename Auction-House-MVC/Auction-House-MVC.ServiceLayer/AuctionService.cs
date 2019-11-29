@@ -1,4 +1,5 @@
 ﻿using Auction_House_MVC.ModelLayer;
+using Auction_House_MVC.ModelLayer.Auction;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using Auction_House_MVC.ServiceLayer.Utility;
 using System;
@@ -35,6 +36,18 @@ namespace Auction_House_MVC.ServiceLayer
 
             return aSClient.GetPicture(downloadRequest);
 
+        }
+
+        public bool InsertPictures(List<Image> images)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService_Streaming");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            // Convert to old array for sending over WCF.
+            ImageData[] imageData = converter.ConvertFromImagesToImageData(images);
+
+            return aSClient.InsertPictures(imageData);
         }
 
         ////public List<CreateAuction> ShowAuctions(string auctionName)

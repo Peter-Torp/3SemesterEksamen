@@ -22,11 +22,13 @@
     <MetadataSource Address="http://localhost:8080/Auction_House/AuctionService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AuctionService.wsdl" MetadataType="Wsdl" ID="5f800105-2747-4415-8e2c-f328690a1e9e" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?wsdl" />
     <MetadataFile FileName="AuctionService.disco" MetadataType="Disco" ID="94411b01-c900-419c-9348-df8e4a5ce2cd" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?disco" />
     <MetadataFile FileName="AuctionService.xsd" MetadataType="Schema" ID="d1ca9598-3376-4d61-ae7a-3b572254a117" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd2" />
-    <MetadataFile FileName="AuctionService1.xsd" MetadataType="Schema" ID="dc162433-99a2-4b9d-bfe2-8bc14c24fd5a" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd1" />
     <MetadataFile FileName="AuctionService2.xsd" MetadataType="Schema" ID="8a2e1fed-f546-45b7-ab72-686551429a0b" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd3" />
+    <MetadataFile FileName="AuctionService1.xsd" MetadataType="Schema" ID="dc162433-99a2-4b9d-bfe2-8bc14c24fd5a" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd1" />
+    <MetadataFile FileName="AuctionService4.xsd" MetadataType="Schema" ID="c1d6bf03-257c-4644-b6c8-e3103130c6ea" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd5" />
+    <MetadataFile FileName="AuctionService.wsdl" MetadataType="Wsdl" ID="5f800105-2747-4415-8e2c-f328690a1e9e" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?wsdl" />
+    <MetadataFile FileName="AuctionService41.xsd" MetadataType="Schema" ID="093beddd-5c52-47ed-b7b2-ecd7d277494c" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd4" />
     <MetadataFile FileName="AuctionService3.xsd" MetadataType="Schema" ID="5921b5a9-be9e-4279-869b-16131ef241ea" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd0" />
   </Metadata>
   <Extensions>

@@ -1,4 +1,5 @@
 ﻿using Auction_House_MVC.ModelLayer;
+using Auction_House_MVC.ModelLayer.Auction;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using Auction_House_MVC.ServiceLayer.UserServiceReference;
 using System;
@@ -58,6 +59,26 @@ namespace Auction_House_MVC.ServiceLayer.Utility
                 Region = userData.Region
             };
             return user;
+        }
+
+        public ImageData[] ConvertFromImagesToImageData(List<Image> images)
+        {
+            ImageData[] imageData = new ImageData[images.Count];
+            int i = 0;
+            foreach(Image image in images)
+            {
+                ImageData imageD = new ImageData
+                {
+                    AuctionId = image.AuctionId,
+                    UserId = image.UserId,
+                    Description = image.Description,
+                    FileName = image.FileName,
+                    FileStream = image.FileStream
+                };
+                imageData[i] = imageD;
+                i++;
+            }
+            return imageData;
         }
 
     }

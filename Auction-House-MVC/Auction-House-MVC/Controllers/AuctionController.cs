@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Auction_House_MVC.Controllers
 {
+
     public class AuctionController : Controller
     {
         // GET: Auction
@@ -25,9 +26,19 @@ namespace Auction_House_MVC.Controllers
 
         public ActionResult CreateAuction()
         {
-            //GET CATEGORIES FROM DB
-            string[] categories = { "Elektronik", "Biler", "Have" };
-            ViewBag.Category = categories;
+            AuctionSetUp aSU = new AuctionSetUp();
+             aSU.Categories = new SelectList(new List<SelectListItem>
+            {
+                            new SelectListItem {Value= "Elektronik" , Text = "Elektronik"},
+                            new SelectListItem {Value = "Biler" , Text = "Biler"},
+                            new SelectListItem {Value = "Have", Text = "Have"}
+            }, "Value", "Text");
+
+            return View(aSU);
+        }
+
+        public ActionResult AddPictures()
+        {
             return View();
         }
 
@@ -50,24 +61,64 @@ namespace Auction_House_MVC.Controllers
                     //Return message to user here if insertion failed.
                 }
             }
+            else
+            {
+                return View("CreateAuction");
+            }
             return View("CreateAuction");
         }
 
         // GET: Auction  
-        
+
         public ActionResult Auction()
         {
             return View();
         }
 
+        public PartialViewResult AddPicturePartial()
+        {
+            return PartialView("AddPicturePartial");
+        }
+
+        public PartialViewResult AddAuctionPartial()
+        {
+            //var vm = new AuctionSetUp();
+
+            //vm.Categories = new SelectList ( new List<SelectListItem>
+            //{
+            //                new SelectListItem {Value= vm.SelectedCategory , Text = "Elektronik"},
+            //                new SelectListItem {Value = vm.SelectedCategory , Text = "Biler"},
+            //                new SelectListItem {Value = vm.SelectedCategory, Text = "Have"}
+            //}, "Value", "Text");
+
+            return PartialView("AddAuctionPartial"/*, vm*/);
+        }
+
+        public ActionResult InsertPictureDetail(AuctionPicture pictureDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                B_AuctionController bACtr = new B_AuctionController();
+
+                ConvertViewModel converter = new ConvertViewModel();
+
+                
+            }
+            else
+            {
+                return View("AddPictures");
+            }
+            return View("AddPictures");
+        }
+
         //public ActionResult ShowAuctions()
         //{
         //    B_AuctionController bActr = new B_AuctionController();
-            
+
         //    return View();
         //}
 
-        
+
 
         public FileStreamResult AuctionShowImage()
         {

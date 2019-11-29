@@ -9,8 +9,10 @@ namespace Auction_House_MVC.ModelLayer.Auction
 {
     public class Image
     {
-        public string FileName { get; set; }
+        public int AuctionId { get; set; }
+        public int UserId { get; set; }
         public string Description { get; set; }
-        public Stream stream { get; set; }
+        public string FileName { get; set; }
+        public Stream FileStream { get; set; }
     }
 }

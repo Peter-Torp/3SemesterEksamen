@@ -1,0 +1,36 @@
+﻿@model Auction_House_MVC.Models.AuctionPicture
+@{
+    ViewBag.Title = "AddPicturePartial";
+}
+
+<div class="thumbnail">
+    <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
+    <div class="caption">
+        <p class="text-center">A computer</p>
+    </div>
+    @using (Html.BeginForm("InsertPictureDetail", "Auction"))
+    {
+<fieldset>
+    <legend> Upload Image </legend>
+
+    <!-- Description -->
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Description)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(m => m.Description)
+        <p style="color:red;">@Html.ValidationMessageFor(m => m.Description)</p>
+    </div>
+
+    <div class="editor-label">
+
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.FileStream, new { type = "file" })
+        <p style="color:red;">@Html.ValidationMessageFor(m => m.FileStream)</p>
+    </div>
+    <br />
+    <input type="submit" value="Upload" class="btn btn-primary" />
+</fieldset>
+    }
+</div>

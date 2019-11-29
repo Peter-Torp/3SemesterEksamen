@@ -6,6 +6,8 @@
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" />
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd3" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAuctionService_GetActiveAuctionsByUsername_InputMessage">
@@ -37,6 +39,12 @@
   <wsdl:message name="DownloadRequest">
     <wsdl:part name="parameters" element="tns:DownloadRequest" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_InsertPictures_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPictures" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_InsertPictures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertPicturesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetActiveAuctionsByUsername" message="tns:IAuctionService_GetActiveAuctionsByUsername_InputMessage" />
@@ -57,6 +65,10 @@
     <wsdl:operation name="GetPicture">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetPicture" name="DownloadRequest" message="tns:DownloadRequest" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetPictureResponse" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPictures">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertPictures" message="tns:IAuctionService_InsertPictures_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertPicturesResponse" message="tns:IAuctionService_InsertPictures_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -110,6 +122,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertPictures">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPictures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IAuctionService_Streaming" type="tns:IAuctionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -159,6 +180,15 @@
       <wsdl:output name="RemoteFileInfo">
         <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
         <soap:header message="tns:RemoteFileInfo_Headers" part="Length" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPictures">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPictures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
