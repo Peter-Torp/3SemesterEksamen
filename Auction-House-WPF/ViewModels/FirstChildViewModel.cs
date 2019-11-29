@@ -218,18 +218,7 @@ namespace Auction_House_WPF.ViewModels
             }
         }
 
-        public void InsertDummyPerson()
-        {
-            _firstName = "George Jensen";
-            _lastName = "McDutten";
-            _userName = "OkBoomer";
-            _address = "ZoomerTown";
-            _email = "IAmNotADoomer@NotDoomer.cn";
-            _phone = "133769420";
-            _zipcode = "6969";
-            _dateOfBirth = "420/69/666";
 
-        }
 
     }
 }

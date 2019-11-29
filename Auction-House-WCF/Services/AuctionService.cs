@@ -16,6 +16,7 @@ namespace Auction_House_WCF.Services
             throw new NotImplementedException();
         }
 
+
         public AuctionData GetDoneAuctionsByUsername(string userName)
         {
             throw new NotImplementedException();
@@ -43,5 +44,12 @@ namespace Auction_House_WCF.Services
         {
             throw new NotImplementedException();
         }
+
+        public List<AuctionData> GetAuctions(string auctionName)
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.GetAuctions(auctionName);
+        }
+
     }
 }

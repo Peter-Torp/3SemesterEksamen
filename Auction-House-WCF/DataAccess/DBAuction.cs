@@ -60,10 +60,10 @@ namespace Auction_House_WCF.DataAccess
                         {
                             cmdGUser.Parameters.AddWithValue("userName", entity.UserName);
                             SqlDataReader reader = cmdGUser.ExecuteReader();
-                                while (reader.Read())
-                                {
-                                    user_Id = Convert.ToInt32(reader["Id"]);
-                                }
+                            while (reader.Read())
+                            {
+                                user_Id = Convert.ToInt32(reader["Id"]);
+                            }
                             reader.Close();
                             if (user_Id == -1)
                             {
@@ -104,7 +104,7 @@ namespace Auction_House_WCF.DataAccess
 
 
                         //If everything went well, will commit.
-                            scope.Complete();
+                        scope.Complete();
                     }
                     catch (TransactionAbortedException e)
                     {
@@ -139,7 +139,8 @@ namespace Auction_House_WCF.DataAccess
                         //Open connection to database.
                         conn.Open();
 
-                        foreach (ImageData image in images) {
+                        foreach (ImageData image in images)
+                        {
                             using (var cmdIImage = new SqlCommand(insertImage, conn))
                             {
                                 cmdIImage.Parameters.AddWithValue("auctionId", image.AuctionId);
@@ -181,6 +182,64 @@ namespace Auction_House_WCF.DataAccess
             throw new NotImplementedException();
         }
 
+        /*
+         * Return a list of auction selected from the database.
+         * */
+        internal List<AuctionData> GetAuctions(string auctionName)
+        {
+            List<AuctionData> auctionDatas = new List<AuctionData>();
+            string getAuctions = "SELECT * FROM Auction WHERE something something = ?";//ret
 
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    using (var DBAuctions = new SqlCommand(getAuctions, conn))
+                    {
+
+                        DBAuctions.Parameters.AddWithValue("auctionName", auctionName);
+
+
+                        SqlDataReader reader = DBAuctions.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            AuctionData auction = new AuctionData
+                            {
+                                Id = reader.GetInt32(1),
+                                StartPrice = reader.GetDouble(2),
+                                BuyOutPrice = reader.GetDouble(3),
+                                BidInterval = reader.GetDouble(4),
+                                Description = reader.GetString(5),
+                                StartDate = reader.GetDateTime(6),
+                                EndDate = reader.GetDateTime(7),
+                                Category = reader.GetString(8), //category id (SQL)
+                                UserId = reader.GetInt32(9)
+
+                            };
+                            auctionDatas.Add(auction);
+                        }
+                    
+                    }
+                }
+
+                catch (SqlException e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+                return auctionDatas;
+            }
+
+
+        }
     }
 }
