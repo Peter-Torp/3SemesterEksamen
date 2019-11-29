@@ -60,6 +60,13 @@ namespace Auction_House_MVC.Controllers
             return View();
         }
 
+        //public ActionResult ShowAuctions()
+        //{
+        //    B_AuctionController bActr = new B_AuctionController();
+            
+        //    return View();
+        //}
+
         
 
         public FileStreamResult AuctionShowImage()

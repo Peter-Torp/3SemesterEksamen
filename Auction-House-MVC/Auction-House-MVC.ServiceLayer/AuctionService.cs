@@ -36,5 +36,16 @@ namespace Auction_House_MVC.ServiceLayer
             return aSClient.GetPicture(downloadRequest);
 
         }
+
+        ////public List<CreateAuction> ShowAuctions(string auctionName)
+        //{
+        //    IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+        //    ConvertDataModel converter = new ConvertDataModel();
+
+        //    }
+            
+
+
+        }
     }
-}
