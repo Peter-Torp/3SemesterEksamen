@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Auction_House_WPF.Model;
+using Auction_House_WPF.RepositoryLayer.Interface;
+using Auction_House_WPF.Repository;
 
 namespace Auction_House_WPF.ViewModels
 {
@@ -24,14 +26,17 @@ namespace Auction_House_WPF.ViewModels
 
         private ObservableCollection<UserShowModel> _retrievedModel;
         private readonly List<UserShowModel> results;
+        private UserShowModel SelectedModel;
+        private IUserRepos IUserRepos;  
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private ICommand _searchCommand;
+        
 
         //Constructor
         public FirstChildViewModel()
-        {
-
+        {   
+            //Instantiate Interface for repository. 
+            IUserRepos = new UserRepos();
         }
 
         //public ICommand SearchUserCommand
@@ -194,9 +199,13 @@ namespace Auction_House_WPF.ViewModels
          }*/
 
         internal void Search(string userName)
-        {       //needs more implementation!!!
+        {
+            var foundUser = IUserRepos.GetUserByUserName(userName);
+
+            new UserShowModel(null,null,foundUser.Username,foundUser.Address,foundUser.Email,foundUser.Phone,foundUser.Zipcode,foundUser.DateofBirth);
+
             RetrievedModel = new ObservableCollection<UserShowModel>(results);
-            //SelectedItem = RetrievedItems.Count > 0 ? RetrievedItems[0] : string.Empty;
+
         }
 
         // Create the OnPropertyChanged method to raise the event

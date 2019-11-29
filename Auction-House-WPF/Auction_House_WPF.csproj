@@ -127,6 +127,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ModelLayer\ModelLayer.csproj">
+      <Project>{DE32F193-3336-4271-9999-3AAC7DFE6FFB}</Project>
+      <Name>ModelLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="RepositoryLayer\RepositoryLayer.csproj">
       <Project>{050369bd-20ba-4422-ba95-14de724bb922}</Project>
       <Name>RepositoryLayer</Name>

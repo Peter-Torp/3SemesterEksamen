@@ -8,7 +8,7 @@ using Auction_House_WPF.ModelLayer;
 
 namespace Auction_House_WPF.RepositoryLayer.Interface
 {
-    internal interface IUserRepos
+    public interface IUserRepos
     {
         UserModel GetUserByUserName(string _userName);
 
