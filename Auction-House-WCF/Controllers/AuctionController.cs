@@ -11,6 +11,7 @@ namespace Auction_House_WCF.Controllers
 {
     public class AuctionController
     {
+     
 
         public int InsertAuction(AuctionData auctionData)
         {
@@ -60,5 +61,13 @@ namespace Auction_House_WCF.Controllers
                 throw exp;
             }
         }
+
+        internal List<AuctionData> GetAuctions(string auctionName)
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.GetAuctions(auctionName);
+        }
+
+
     }
 }
