@@ -22,10 +22,17 @@ namespace Auction_House_WCF.Controllers
             return auctionDB.Create(auctionData);
         }
 
-        public void InsertPicture(Stream imageStream, UserData userData)
+        public void InsertPictures(List<ImageData> images, Stream imageStream)
         {
+            DBAuction auctionDB = new DBAuction();
 
+            //Set the dates.
+            foreach(ImageData image in images)
+            {
+                image.DateAdded = DateTime.Now;
+            }
 
+            auctionDB.InsertPictures(images);
         }
         
         public RemoteFileInfo GetPicture(DownloadRequest request)

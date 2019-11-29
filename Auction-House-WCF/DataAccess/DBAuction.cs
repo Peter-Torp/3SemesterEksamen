@@ -109,6 +109,54 @@ namespace Auction_House_WCF.DataAccess
             return entity.Id;
         }
 
+        public void InsertPictures(List<ImageData> images)
+        {
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.Serializable
+            };
+
+            string insertImage = "INSERT INTO Image (Auction_Id, Img_URL, DateAdded, Description, Name) VALUES(@auctionId,@imgUrl,@dateAdded, @description, @name)";
+
+            //Transaction
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+
+                        foreach (ImageData image in images) {
+                            using (var cmdIImage = new SqlCommand(insertImage, conn))
+                            {
+                                cmdIImage.Parameters.AddWithValue("auctionId", image.AuctionId);
+                                cmdIImage.Parameters.AddWithValue("imgUrl", image.ImgUrl);
+                                cmdIImage.Parameters.AddWithValue("dateAdded", image.DateAdded);
+                                cmdIImage.Parameters.AddWithValue("description", image.Description);
+                                cmdIImage.Parameters.AddWithValue("name", image.Name);
+
+                                cmdIImage.ExecuteScalar();
+                            }
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+        }
+
         public AuctionData Get(int id)
         {
             throw new NotImplementedException();

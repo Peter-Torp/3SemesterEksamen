@@ -53,10 +53,12 @@
     <Compile Include="DataAccess\DBAuction.cs" />
     <Compile Include="DataAccess\DBLogin.cs" />
     <Compile Include="DataAccess\DBUser.cs" />
+    <Compile Include="DataAccess\ImageHandler.cs" />
     <Compile Include="DataAccess\Interfaces\ICRUD.cs" />
     <Compile Include="DataAccess\Interfaces\IUserCRUD.cs" />
     <Compile Include="Models\AuctionData.cs" />
     <Compile Include="Models\DownloadRequest.cs" />
+    <Compile Include="Models\ImageData.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\RemoteFileInfo.cs" />
     <Compile Include="Services\AuctionService.cs" />
