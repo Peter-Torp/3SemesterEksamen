@@ -51,6 +51,10 @@ namespace Auction_House_MVC.BusinessLayer
             throw new NotImplementedException();
         }
 
-
+        //public List<CreateAuction> ShowAuctions(string auctionName)
+        //{
+        //    AuctionService aS = new AuctionService();
+        //    return aS.ShowAuctions(auctionName);
+        //}
     }
 }

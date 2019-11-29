@@ -1,7 +1,64 @@
-﻿
+﻿@model IEnumerable<Auction_House_MVC.Models.Auction>
+
 @{
     ViewBag.Title = "Auctions";
 }
 
-<h2>Index</h2>
+<h2>Auctions</h2>
+
+<p>
+    @Html.ActionLink("Auction List", "Auction")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bidding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BuyOut)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Bidding)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+</tr>
+    }
+
+</table>
+
+
+
+
 
