@@ -81,5 +81,20 @@ namespace Auction_House_MVC.ServiceLayer.Utility
             return imageData;
         }
 
+        public ImageData1 ConvertFromImageToImageData(Image image)
+        {
+
+                ImageData1 imageD = new ImageData1
+                {
+                    AuctionId = image.AuctionId,
+                    UserId = image.UserId,
+                    Description = image.Description,
+                    FileName = image.FileName,
+                    FileStream = image.FileStream
+                };
+
+            return imageD;
+        }
+
     }
 }

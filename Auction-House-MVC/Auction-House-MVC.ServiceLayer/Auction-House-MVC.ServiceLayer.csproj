@@ -73,9 +73,6 @@
     <Content Include="Connected Services\AuctionServiceReference\Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\AuctionServiceReference\Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\AuctionServiceReference\Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -85,6 +82,9 @@
     <None Include="Connected Services\AuctionServiceReference\AuctionService41.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Connected Services\AuctionServiceReference\Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\AuctionServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\AuctionServiceReference\configuration.svcinfo" />
     <None Include="Connected Services\AuctionServiceReference\Reference.svcmap">

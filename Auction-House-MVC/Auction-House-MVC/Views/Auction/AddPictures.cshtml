@@ -3,34 +3,40 @@
     ViewBag.Title = "AddPictures";
 }
 
-<div class="thumbnail">
-    <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
-    <div class="caption">
-        <p class="text-center">A computer</p>
-    </div>
-    @using (Html.BeginForm("InsertPictureDetail", "Auction"))
-    {
-        <fieldset>
-            <legend> Upload Image </legend>
+    <div class="thumbnail">
+        <h3>Showing pictures from auction @Html.ViewBag.AuctionId</h3>
+        <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
+        <div class="caption">
+            <p class="text-center">A computer</p>
+        </div>
 
-            <!-- Description -->
-            <div class="editor-label">
-                @Html.LabelFor(m => m.Description)
-            </div>
-            <div class="editor-field">
-                @Html.TextAreaFor(m => m.Description)
-                <p style="color:red;">@Html.ValidationMessageFor(m => m.Description)</p>
-            </div>
 
-            <div class="editor-label">
+        @using (Html.BeginForm("AddPictureToMemory", "Auction", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+    <fieldset>
+        <legend> Upload Image </legend>
 
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(m => m.FileStream, new { type = "file" })
-                <p style="color:red;">@Html.ValidationMessageFor(m => m.FileStream)</p>
-            </div>
-            <br />
-            <input type="submit" value="Upload" class="btn btn-primary" />
-        </fieldset>
-    }
-</div>
+        <!-- Description -->
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(m => m.Description)
+            <p style="color:red;">@Html.ValidationMessageFor(m => m.Description)</p>
+        </div>
+
+        <div class="editor-label">
+
+        </div>
+        <div class="editor-field">
+
+            @Html.TextBoxFor(m => m.FileStream, new { type = "file", placeholder = Html.DisplayNameFor(m => m.FileStream), @class = "form-control" })
+
+            <p style="color:red;">@Html.ValidationMessageFor(m => m.FileStream)</p>
+        </div>
+        <br />
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </fieldset>
+            }
+
+        </div>

@@ -46,9 +46,35 @@ namespace Auction_House_MVC.BusinessLayer
             throw new NotImplementedException();
         }
 
-        public bool InsertPictures(List<Image> images)
+        public void InsertPicture(Image image, string userName, int auctionId)
         {
             AuctionService aS = new AuctionService();
+
+            B_UserController uBCtr = new B_UserController();
+
+            int userId = uBCtr.GetUserByUserName(userName).Id;
+
+            image.AuctionId = auctionId;
+            image.UserId = userId;
+
+            aS.InsertPicture(image);
+
+        }
+
+        public bool InsertPictures(List<Image> images, string userName, int auctionId)
+        {
+            AuctionService aS = new AuctionService();
+
+            B_UserController uBCtr = new B_UserController();
+
+            int userId = uBCtr.GetUserByUserName(userName).Id;
+
+            foreach(Image image in images)
+            {
+                image.AuctionId = auctionId;
+                image.UserId = userId;
+            };
+
             bool successful = aS.InsertPictures(images);
             return successful;
         }

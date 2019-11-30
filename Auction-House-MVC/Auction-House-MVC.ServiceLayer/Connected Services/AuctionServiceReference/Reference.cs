@@ -367,10 +367,10 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         // CODEGEN: Generating message contract since the operation InsertPicture is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPicture", ReplyAction="http://tempuri.org/IAuctionService/InsertPictureResponse")]
-        Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse InsertPicture(Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo request);
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse InsertPicture(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPicture", ReplyAction="http://tempuri.org/IAuctionService/InsertPictureResponse")]
-        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo request);
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 request);
         
         // CODEGEN: Generating message contract since the wrapper name (DownloadRequest) of message DownloadRequest does not match the default value (GetPicture)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetPicture", ReplyAction="http://tempuri.org/IAuctionService/GetPictureResponse")]
@@ -384,30 +384,52 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPictures", ReplyAction="http://tempuri.org/IAuctionService/InsertPicturesResponse")]
         System.Threading.Tasks.Task<bool> InsertPicturesAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionsResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctions(string auctionName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionsResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class RemoteFileInfo {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ImageData", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ImageData1 {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public int AuctionId;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public System.DateTime DateAdded;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string Description;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
         public string FileName;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public long Length;
+        public string ImgUrl;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public int UserId;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream FileByteStream;
+        public System.IO.Stream FileStream;
         
-        public RemoteFileInfo() {
+        public ImageData1() {
         }
         
-        public RemoteFileInfo(string FileName, long Length, System.IO.Stream FileByteStream) {
+        public ImageData1(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            this.AuctionId = AuctionId;
+            this.DateAdded = DateAdded;
+            this.Description = Description;
             this.FileName = FileName;
-            this.Length = Length;
-            this.FileByteStream = FileByteStream;
+            this.ImgUrl = ImgUrl;
+            this.UserId = UserId;
+            this.FileStream = FileStream;
         }
     }
     
@@ -443,6 +465,31 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
             this.AuctionNumber = AuctionNumber;
             this.FileName = FileName;
             this.UserId = UserId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RemoteFileInfo {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string FileName;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public long Length;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream FileByteStream;
+        
+        public RemoteFileInfo() {
+        }
+        
+        public RemoteFileInfo(string FileName, long Length, System.IO.Stream FileByteStream) {
+            this.FileName = FileName;
+            this.Length = Length;
+            this.FileByteStream = FileByteStream;
         }
     }
     
@@ -498,28 +545,36 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService.InsertPicture(Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo request) {
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService.InsertPicture(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 request) {
             return base.Channel.InsertPicture(request);
         }
         
-        public void InsertPicture(string FileName, long Length, System.IO.Stream FileByteStream) {
-            Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo inValue = new Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo();
+        public void InsertPicture(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 inValue = new Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1();
+            inValue.AuctionId = AuctionId;
+            inValue.DateAdded = DateAdded;
+            inValue.Description = Description;
             inValue.FileName = FileName;
-            inValue.Length = Length;
-            inValue.FileByteStream = FileByteStream;
+            inValue.ImgUrl = ImgUrl;
+            inValue.UserId = UserId;
+            inValue.FileStream = FileStream;
             Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse retVal = ((Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService)(this)).InsertPicture(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService.InsertPictureAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo request) {
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService.InsertPictureAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 request) {
             return base.Channel.InsertPictureAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(string FileName, long Length, System.IO.Stream FileByteStream) {
-            Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo inValue = new Auction_House_MVC.ServiceLayer.AuctionServiceReference.RemoteFileInfo();
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1 inValue = new Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData1();
+            inValue.AuctionId = AuctionId;
+            inValue.DateAdded = DateAdded;
+            inValue.Description = Description;
             inValue.FileName = FileName;
-            inValue.Length = Length;
-            inValue.FileByteStream = FileByteStream;
+            inValue.ImgUrl = ImgUrl;
+            inValue.UserId = UserId;
+            inValue.FileStream = FileStream;
             return ((Auction_House_MVC.ServiceLayer.AuctionServiceReference.IAuctionService)(this)).InsertPictureAsync(inValue);
         }
         
@@ -558,6 +613,14 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<bool> InsertPicturesAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] images) {
             return base.Channel.InsertPicturesAsync(images);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctions(string auctionName) {
+            return base.Channel.GetAuctions(auctionName);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName) {
+            return base.Channel.GetAuctionsAsync(auctionName);
         }
     }
 }

@@ -17,8 +17,22 @@ namespace Auction_House_WCF.DataAccess
         {
             bool successful = false;
 
-            string fullPath = Path.Combine(_appDirectory, _baseDirectory, 
-                image.UserId.ToString(), image.AuctionId.ToString(), image.FileName);
+            string userDirectory = Path.Combine(_appDirectory, _baseDirectory, image.UserId.ToString());
+            string auctionDirectory = Path.Combine(userDirectory, image.AuctionId.ToString());
+            string fullPath = Path.Combine(auctionDirectory, image.FileName);
+
+            //Check if user id is in folders
+            if (!Directory.Exists(userDirectory))
+            {
+                Directory.CreateDirectory(userDirectory);
+            } 
+            //Check if auction id is in folders
+            if (!Directory.Exists(auctionDirectory))
+            {
+                Directory.CreateDirectory(auctionDirectory);
+            }
+
+            //Check if file name exists in end folder.
             if (!File.Exists(fullPath))
             {
                 var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);

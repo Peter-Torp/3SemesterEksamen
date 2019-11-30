@@ -119,8 +119,10 @@ namespace Auction_House_WCF.DataAccess
             return entity.Id;
         }
 
-        public void InsertPictures(List<ImageData> images)
+        public bool InsertPictures(List<ImageData> images)
         {
+            bool successful = false;
+
             //Set isolation level
             var options = new TransactionOptions
             {
@@ -158,7 +160,7 @@ namespace Auction_House_WCF.DataAccess
                         if (!succsesful)
                         {
                             scope.Dispose();
-                            return;
+                            return successful = false;
                         }
 
 
@@ -167,6 +169,7 @@ namespace Auction_House_WCF.DataAccess
                     }
                     catch (TransactionAbortedException e)
                     {
+                        successful = false;
                         throw e;
                     }
                     finally
@@ -175,6 +178,7 @@ namespace Auction_House_WCF.DataAccess
                     }
                 }
             }
+            return successful;
         }
 
         public AuctionData Get(int id)

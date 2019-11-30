@@ -38,6 +38,15 @@ namespace Auction_House_MVC.ServiceLayer
 
         }
 
+        public void InsertPicture(Image image)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService_Streaming");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            aSClient.InsertPicture(converter.ConvertFromImageToImageData(image));
+        }
+
         public bool InsertPictures(List<Image> images)
         {
             IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService_Streaming");

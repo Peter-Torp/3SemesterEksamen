@@ -23,7 +23,7 @@ namespace Auction_House_WCF.Controllers
             return auctionDB.Create(auctionData);
         }
 
-        public void InsertPictures(List<ImageData> images, Stream imageStream)
+        public bool InsertPictures(List<ImageData> images)
         {
             DBAuction auctionDB = new DBAuction();
 
@@ -31,9 +31,17 @@ namespace Auction_House_WCF.Controllers
             foreach(ImageData image in images)
             {
                 image.DateAdded = DateTime.Now;
+                image.ImgUrl = image.UserId.ToString() + @"\" + image.AuctionId.ToString();
             }
 
-            auctionDB.InsertPictures(images);
+            return auctionDB.InsertPictures(images);
+        }
+
+        public bool InsertPicture(ImageData image)
+        {
+            ImageHandler iHandler = new ImageHandler();
+
+            return iHandler.InsertPictureToFolder(image);
         }
         
         public RemoteFileInfo GetPicture(DownloadRequest request)

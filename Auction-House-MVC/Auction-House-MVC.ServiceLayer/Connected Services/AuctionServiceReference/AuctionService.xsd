@@ -34,4 +34,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ImageData" nillable="true" type="tns:ImageData" />
+  <xs:complexType name="ArrayOfAuctionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuctionData" nillable="true" type="tns:AuctionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuctionData" nillable="true" type="tns:ArrayOfAuctionData" />
 </xs:schema>

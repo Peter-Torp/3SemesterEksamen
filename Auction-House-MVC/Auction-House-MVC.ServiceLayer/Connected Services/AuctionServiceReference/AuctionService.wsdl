@@ -28,6 +28,21 @@
   <wsdl:message name="IAuctionService_InsertAuction_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertAuctionResponse" />
   </wsdl:message>
+  <wsdl:message name="ImageData">
+    <wsdl:part name="parameters" element="tns:ImageData" />
+  </wsdl:message>
+  <wsdl:message name="ImageData_Headers">
+    <wsdl:part name="AuctionId" element="tns:AuctionId" />
+    <wsdl:part name="DateAdded" element="tns:DateAdded" />
+    <wsdl:part name="Description" element="tns:Description" />
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="ImgUrl" element="tns:ImgUrl" />
+    <wsdl:part name="UserId" element="tns:UserId" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_InsertPicture_OutputMessage" />
+  <wsdl:message name="DownloadRequest">
+    <wsdl:part name="parameters" element="tns:DownloadRequest" />
+  </wsdl:message>
   <wsdl:message name="RemoteFileInfo">
     <wsdl:part name="parameters" element="tns:RemoteFileInfo" />
   </wsdl:message>
@@ -35,15 +50,17 @@
     <wsdl:part name="FileName" element="tns:FileName" />
     <wsdl:part name="Length" element="tns:Length" />
   </wsdl:message>
-  <wsdl:message name="IAuctionService_InsertPicture_OutputMessage" />
-  <wsdl:message name="DownloadRequest">
-    <wsdl:part name="parameters" element="tns:DownloadRequest" />
-  </wsdl:message>
   <wsdl:message name="IAuctionService_InsertPictures_InputMessage">
     <wsdl:part name="parameters" element="tns:InsertPictures" />
   </wsdl:message>
   <wsdl:message name="IAuctionService_InsertPictures_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertPicturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAuctions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuctions" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAuctions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuctionsResponse" />
   </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
@@ -59,7 +76,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertAuctionResponse" message="tns:IAuctionService_InsertAuction_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="InsertPicture">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertPicture" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertPicture" name="ImageData" message="tns:ImageData" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertPictureResponse" message="tns:IAuctionService_InsertPicture_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPicture">
@@ -69,6 +86,10 @@
     <wsdl:operation name="InsertPictures">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertPictures" message="tns:IAuctionService_InsertPictures_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertPicturesResponse" message="tns:IAuctionService_InsertPictures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAuctions" message="tns:IAuctionService_GetAuctions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionsResponse" message="tns:IAuctionService_GetAuctions_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -102,9 +123,13 @@
     </wsdl:operation>
     <wsdl:operation name="InsertPicture">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPicture" style="document" />
-      <wsdl:input name="RemoteFileInfo">
-        <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
-        <soap:header message="tns:RemoteFileInfo_Headers" part="Length" use="literal" />
+      <wsdl:input name="ImageData">
+        <soap:header message="tns:ImageData_Headers" part="AuctionId" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="DateAdded" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="Description" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="ImgUrl" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="UserId" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -124,6 +149,15 @@
     </wsdl:operation>
     <wsdl:operation name="InsertPictures">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPictures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuctions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -163,9 +197,13 @@
     </wsdl:operation>
     <wsdl:operation name="InsertPicture">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPicture" style="document" />
-      <wsdl:input name="RemoteFileInfo">
-        <soap:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
-        <soap:header message="tns:RemoteFileInfo_Headers" part="Length" use="literal" />
+      <wsdl:input name="ImageData">
+        <soap:header message="tns:ImageData_Headers" part="AuctionId" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="DateAdded" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="Description" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="ImgUrl" use="literal" />
+        <soap:header message="tns:ImageData_Headers" part="UserId" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -185,6 +223,15 @@
     </wsdl:operation>
     <wsdl:operation name="InsertPictures">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertPictures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuctions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

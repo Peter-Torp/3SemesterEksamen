@@ -57,22 +57,32 @@ namespace Auction_House_MVC.Utility
             return cA;
         }
 
-        public List<Image> ConvertFromAuctionPicturesToImages(List<AuctionPicture> auctionPictures, int auctionId, int userId)
+        public List<Image> ConvertFromAuctionPicturesToImages(List<AuctionPicture> auctionPictures)
         {
             List<Image> images = new List<Image>();
             foreach (AuctionPicture aPic in auctionPictures)
             {
                 Image image = new Image
                 {
-                    AuctionId = auctionId,
-                    UserId = userId,
                     Description = aPic.Description,
                     FileName = aPic.FileName,
-                    FileStream = aPic.FileStream
+                    FileStream = aPic.FileStream.InputStream
                 };
                 images.Add(image);
             }
             return images;
+        }
+
+        public Image ConvertFromAuctionPictureToImage(AuctionPicture aPic)
+        {
+
+                Image image = new Image
+                {
+                    Description = aPic.Description,
+                    FileName = aPic.FileStream.FileName,
+                    FileStream = aPic.FileStream.InputStream
+                };
+            return image;
         }
     }
 }

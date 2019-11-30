@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Auction_House_WCF.Models
 {
-    [DataContract]
+    [MessageContract]
     public class ImageData
     {
-        [DataMember]
+        [MessageHeader]
         public int AuctionId { get; set; }
-        [DataMember]
+        [MessageHeader]
         public int UserId { get; set; }
-        [DataMember]
+        [MessageHeader]
         public string ImgUrl { get; set; }
-        [DataMember]
+        [MessageHeader]
         public DateTime DateAdded { get; set; }
-        [DataMember]
+        [MessageHeader]
         public string Description { get; set; }
-        [DataMember]
+        [MessageHeader]
         public string FileName { get; set; }
-        [DataMember]
+        [MessageBodyMember]
         public Stream FileStream { get; set; }
     }
 }

@@ -39,6 +39,9 @@ namespace Auction_House_MVC.Controllers
 
         public ActionResult AddPictures()
         {
+            //TODO: GET AUCTION ID
+            int auctionId = 5;
+            ViewBag.AuctionId = auctionId;
             return View();
         }
 
@@ -107,6 +110,23 @@ namespace Auction_House_MVC.Controllers
             else
             {
                 return View("AddPictures");
+            }
+            return View("AddPictures");
+        }
+
+        public ActionResult AddPictureToMemory(AuctionPicture picture)
+        {
+            B_AuctionController bACtr = new B_AuctionController();
+            //TODO: GET AUCTION ID
+            int auctionId = 5;
+            ViewBag.AuctionId = auctionId;
+
+            //GET ALL PICTURES FROM AUCTION
+            if (ModelState.IsValid)
+            {
+                ConvertViewModel converter = new ConvertViewModel();
+
+                bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, auctionId);
             }
             return View("AddPictures");
         }

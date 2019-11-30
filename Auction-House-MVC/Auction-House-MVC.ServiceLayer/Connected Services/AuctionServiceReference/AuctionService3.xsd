@@ -44,15 +44,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RemoteFileInfo">
+  <xs:element name="ImageData">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="FileByteStream" type="q4:StreamBody" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="FileStream" type="q4:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AuctionId" type="xs:int" />
+  <xs:element name="DateAdded" type="xs:dateTime" />
+  <xs:element name="Description" nillable="true" type="xs:string" />
   <xs:element name="FileName" nillable="true" type="xs:string" />
-  <xs:element name="Length" type="xs:long" />
+  <xs:element name="ImgUrl" nillable="true" type="xs:string" />
+  <xs:element name="UserId" type="xs:int" />
   <xs:element name="DownloadRequest">
     <xs:complexType>
       <xs:sequence>
@@ -62,10 +66,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RemoteFileInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/Message" name="FileByteStream" type="q5:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Length" type="xs:long" />
   <xs:element name="InsertPictures">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="images" nillable="true" type="q5:ArrayOfImageData" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="images" nillable="true" type="q6:ArrayOfImageData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -73,6 +85,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="InsertPicturesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuctions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="auctionName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuctionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetAuctionsResult" nillable="true" type="q7:ArrayOfAuctionData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -35,14 +35,18 @@ namespace Auction_House_WCF.Services
             return aCtr.InsertAuction(aData);
         }
 
-        public void InsertPicture(RemoteFileInfo request)
+        public void InsertPicture(ImageData image)
         {
-            throw new NotImplementedException();
+            AuctionController aCtr = new AuctionController();
+
+            aCtr.InsertPicture(image);
         }
 
         public bool InsertPictures(List<ImageData> images)
         {
-            throw new NotImplementedException();
+            AuctionController aCtr = new AuctionController();
+
+            return aCtr.InsertPictures(images);
         }
 
         public List<AuctionData> GetAuctions(string auctionName)

@@ -21,7 +21,7 @@ namespace Auction_House_WCF.Services
         int InsertAuction(AuctionData aData);
 
         [OperationContract]
-        void InsertPicture(RemoteFileInfo request);
+        void InsertPicture(ImageData image);
         [OperationContract]
         RemoteFileInfo GetPicture(DownloadRequest request);
 

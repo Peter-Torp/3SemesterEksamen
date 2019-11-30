@@ -14,10 +14,9 @@ namespace Auction_House_MVC.Models
         [Required]
         [DisplayName("Description")]
         public string Description { get; set; }
-        [Required(ErrorMessage = "Choose an image"), FileExtensions(Extensions = "jpg,png",
-            ErrorMessage = "Specify a jpg or png file.")]
         [DisplayName("Upload image")]
-        public Stream FileStream { get; set; }
+        [Required(ErrorMessage = "Choose an image")]
+        public HttpPostedFileBase FileStream { get; set; }
         public string FileName { get; set; }
     }
 }
