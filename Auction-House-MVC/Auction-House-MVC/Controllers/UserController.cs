@@ -47,7 +47,12 @@ namespace Auction_House_MVC.Controllers
             return View("SignUp");
         }
 
-        public ActionResult MyAccount(Models.UserShowModel userDetails)
+        public ActionResult MyAccount()
+        {
+            return View();
+        }
+
+        public ActionResult UserInfoPartial(Models.UserShowModel userDetails)
         {
             B_UserController bUCtr = new B_UserController();
             User user = bUCtr.GetUserByUserName(User.Identity.Name);
@@ -56,7 +61,7 @@ namespace Auction_House_MVC.Controllers
             userDetails.Phone = user.Phone;
             userDetails.ZipCode = user.ZipCode;
             userDetails.Region = user.Region;
-            return View(userDetails);
+            return PartialView(userDetails);
         }
 
         public ActionResult LogOut()

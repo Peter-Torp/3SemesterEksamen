@@ -390,6 +390,18 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionsResponse")]
         System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetUserAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetUserAuctionsResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetUserAuctions(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetUserAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetUserAuctionsResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetUserAuctionsAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuction", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData GetAuction(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuction", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -621,6 +633,22 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName) {
             return base.Channel.GetAuctionsAsync(auctionName);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetUserAuctions(string userName) {
+            return base.Channel.GetUserAuctions(userName);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetUserAuctionsAsync(string userName) {
+            return base.Channel.GetUserAuctionsAsync(userName);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData GetAuction(int auctionId) {
+            return base.Channel.GetAuction(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId) {
+            return base.Channel.GetAuctionAsync(auctionId);
         }
     }
 }

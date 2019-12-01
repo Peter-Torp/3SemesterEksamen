@@ -82,7 +82,7 @@ namespace Auction_House_WCF.DataAccess
                                 cat_Id = Convert.ToInt32(reader["Cat_Id"]);
                             }
                             reader.Close();
-                            if(cat_Id == -1)
+                            if (cat_Id == -1)
                             {
                                 scope.Dispose();
                                 throw new TransactionAbortedException(("Username not found " + cat_Id.ToString()));
@@ -181,11 +181,142 @@ namespace Auction_House_WCF.DataAccess
             return successful;
         }
 
-        public AuctionData Get(int id)
+        public AuctionData Get(int auctionId)
         {
-            throw new NotImplementedException();
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.Serializable
+            };
+
+            // SQL query
+            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, A.Id " +
+                "FROM Auction AS A " +
+                "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
+                "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "WHERE A.Id = @auctionId";
+
+            //Create return Object
+            AuctionData auctionData = new AuctionData();
+
+            //Create transaction.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+                        using (var cmdGAuctions = new SqlCommand(getAuctions, conn))
+                        {
+                            cmdGAuctions.Parameters.AddWithValue("auctionId", auctionId);
+                            SqlDataReader reader = cmdGAuctions.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
+                                       reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
+                                       reader.GetDouble(4), reader.GetDouble(3));
+                                }
+                            }
+                            reader.Close();
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+            return auctionData;
         }
 
+        public List<AuctionData> GetUserAuctions(string userName)
+        {
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.Serializable
+            };
+
+            // SQL query
+            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name " +
+                "FROM Auction AS A " +
+                "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
+                "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "WHERE UserName = @userName";
+
+            //Create auctions list to return.
+            List<AuctionData> auctions = new List<AuctionData>();
+
+            //Create transaction.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+                        using (var cmdGAuctions = new SqlCommand(getAuctions, conn))
+                        {
+                            cmdGAuctions.Parameters.AddWithValue("userName", userName);
+                            SqlDataReader reader = cmdGAuctions.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    AuctionData auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
+                                       reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
+                                       reader.GetDouble(4), reader.GetDouble(3));
+                                    auctions.Add(auctionData);
+                                }
+                            }
+                            reader.Close();
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+            return auctions;
+        }
+
+        private AuctionData ToObject(int auctionId, string userName, string description, string category,
+            DateTime startDate, DateTime endDate, double startPrice, double bidInterval, double buyOutPrice)
+        {
+            AuctionData auction = new AuctionData
+            {
+                Id = auctionId,
+                UserName = userName,
+                Description = description,
+                Category = category,
+                StartDate = startDate,
+                EndDate = endDate,
+                StartPrice = startPrice,
+                BidInterval = bidInterval,
+                BuyOutPrice = buyOutPrice
+            };
+            return auction;
+        }
         /*
          * Return a list of auction selected from the database.
          * */
@@ -225,7 +356,7 @@ namespace Auction_House_WCF.DataAccess
                             };
                             auctionDatas.Add(auction);
                         }
-                    
+
                     }
                 }
 

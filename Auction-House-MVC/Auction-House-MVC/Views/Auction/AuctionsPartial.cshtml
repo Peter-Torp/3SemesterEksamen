@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Auction_House_MVC.Models.AuctionModel>
+@{
+    ViewBag.Title = "AuctionsPartial";
+}
+
+<h2>My auctions</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Start Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.Description</td>
+                <td>@item.Category</td>
+                <td>@item.StartPrice</td>
+                <td>@Html.ActionLink("See auction", "Auction", "Auction", new { item.Id }, new { @class = "btn btn-info" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

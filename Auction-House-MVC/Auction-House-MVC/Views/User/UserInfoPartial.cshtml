@@ -1,0 +1,31 @@
+﻿@model Auction_House_MVC.Models.UserShowModel
+@{
+    ViewBag.Title = "UserInfoPartial";
+}
+
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">User Name</h5>
+        </div>
+        <p class="mb-1"><b>@Model.UserName</b></p>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">E-mail</h5>
+        </div>
+        <p class="mb-1"><b>@Model.Email</b></p>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Phone</h5>
+        </div>
+        <p class="mb-1"><b>@Model.Phone</b></p>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">City and zip code</h5>
+        </div>
+        <p class="mb-1"><b>@Model.Region - @Model.ZipCode</b></p>
+    </a>
+</div>

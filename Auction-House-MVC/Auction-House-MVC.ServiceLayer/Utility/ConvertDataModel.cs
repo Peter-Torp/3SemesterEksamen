@@ -96,5 +96,31 @@ namespace Auction_House_MVC.ServiceLayer.Utility
             return imageD;
         }
 
+        public List<Auction> ConvertFromAuctionDataToAuctions(AuctionData[] auctionData)
+        {
+            List<Auction> auctions = new List<Auction>();
+
+            foreach (AuctionData aD in auctionData)
+            {
+                Auction auction = ConvertFromAuctionDataToAuction(aD);
+                auctions.Add(auction);
+            }
+            return auctions;
+        }
+
+        public Auction ConvertFromAuctionDataToAuction(AuctionData aD)
+        {
+            Auction auction = new Auction(
+                aD.Id,
+                aD.StartPrice,
+                aD.BuyOutPrice,
+                aD.BidInterval,
+                aD.Description,
+                aD.StartDate,
+                aD.EndDate,
+                aD.Category);
+            return auction;
+        }
+
     }
 }

@@ -30,6 +30,10 @@ namespace Auction_House_WCF.Services
 
         [OperationContract]
         List<AuctionData> GetAuctions(string auctionName);
+        [OperationContract]
+        List<AuctionData> GetUserAuctions(string userName);
+        [OperationContract]
+        AuctionData GetAuction(int auctionId);
 
     }
 }

@@ -121,7 +121,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Auction.cs" />
+    <Compile Include="Models\AuctionModel.cs" />
     <Compile Include="Models\AuctionPicture.cs" />
     <Compile Include="Models\AuctionSetUp.cs" />
     <Compile Include="Models\LogInModel.cs" />
@@ -174,10 +174,14 @@
     <Content Include="Views\Auction\AddPicturePartial.cshtml" />
     <Content Include="Views\Auction\AddAuctionPartial.cshtml" />
     <Content Include="Views\Auction\AddPictures.cshtml" />
+    <Content Include="Views\User\MyAccount.cshtml" />
+    <Content Include="Views\User\SignUp.cshtml" />
+    <Content Include="Views\User\LogIn.cshtml" />
+    <Content Include="Views\Auction\AuctionsPartial.cshtml" />
+    <Content Include="Views\User\UserInfoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

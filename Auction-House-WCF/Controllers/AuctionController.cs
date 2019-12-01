@@ -37,6 +37,21 @@ namespace Auction_House_WCF.Controllers
             return auctionDB.InsertPictures(images);
         }
 
+        public List<AuctionData> GetUserAuctions(string userName)
+        {
+            DBAuction dBAuction = new DBAuction();
+
+            return dBAuction.GetUserAuctions(userName);
+        }
+
+        public AuctionData GetAuction(int auctionId)
+        {
+            DBAuction dBAuction = new DBAuction();
+
+            return dBAuction.Get(auctionId);
+        }
+
+
         public bool InsertPicture(ImageData image)
         {
             ImageHandler iHandler = new ImageHandler();

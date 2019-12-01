@@ -102,4 +102,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetUserAuctions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserAuctionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetUserAuctionsResult" nillable="true" type="q8:ArrayOfAuctionData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="auctionId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuctionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetAuctionResult" nillable="true" type="q9:AuctionData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

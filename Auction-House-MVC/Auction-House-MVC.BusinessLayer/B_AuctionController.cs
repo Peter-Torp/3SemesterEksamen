@@ -46,6 +46,13 @@ namespace Auction_House_MVC.BusinessLayer
             throw new NotImplementedException();
         }
 
+        public Auction GetAuction(int auctionId)
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetAuction(auctionId);
+        }
+
         public void InsertPicture(Image image, string userName, int auctionId)
         {
             AuctionService aS = new AuctionService();
@@ -77,6 +84,13 @@ namespace Auction_House_MVC.BusinessLayer
 
             bool successful = aS.InsertPictures(images);
             return successful;
+        }
+
+        public List<Auction> GetUserAuctions(string userName)
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetUserAuctions(userName);
         }
 
         //public List<CreateAuction> ShowAuctions(string auctionName)

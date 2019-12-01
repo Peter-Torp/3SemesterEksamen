@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Auction_House_WCF.DataAccess;
 using Auction_House_WCF.Models;
 using Auction_House_WCF.Controllers;
+using System.Collections.Generic;
 
 namespace Auction_House_WCF.Test
 {
@@ -108,6 +109,29 @@ namespace Auction_House_WCF.Test
             //Assert
             Assert.IsTrue(boolean);
 
+        }
+
+        [TestMethod]
+        public void TestGetUserAuctions()
+        {
+            //Arrange
+            AuctionController aCtr = new AuctionController();
+            bool NotEmpty;
+
+            //Act
+            List<AuctionData> auctions = aCtr.GetUserAuctions("Magnus");
+            int count = auctions.Count;
+            if(count > 0)
+            {
+                NotEmpty = true;
+            }
+            else
+            {
+                NotEmpty = false;
+            }
+
+            //Assert
+            Assert.IsTrue(NotEmpty);
         }
     }
 }

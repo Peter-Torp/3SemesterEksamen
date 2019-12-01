@@ -1,4 +1,5 @@
 ﻿using Auction_House_MVC.BusinessLayer;
+using Auction_House_MVC.ModelLayer.Auction;
 using Auction_House_MVC.Models;
 using Auction_House_MVC.Utility;
 using System;
@@ -71,12 +72,6 @@ namespace Auction_House_MVC.Controllers
             return View("CreateAuction");
         }
 
-        // GET: Auction  
-
-        public ActionResult Auction()
-        {
-            return View();
-        }
 
         public PartialViewResult AddPicturePartial()
         {
@@ -114,6 +109,17 @@ namespace Auction_House_MVC.Controllers
             return View("AddPictures");
         }
 
+        public ActionResult Auction(int id)
+        {
+            B_AuctionController bACtr = new B_AuctionController();
+
+            ConvertViewModel converter = new ConvertViewModel();
+
+            AuctionModel auctionModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
+
+            return View(auctionModel);
+        }
+
         public ActionResult AddPictureToMemory(AuctionPicture picture)
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -138,6 +144,18 @@ namespace Auction_House_MVC.Controllers
         //    return View();
         //}
 
+        public ActionResult AuctionsPartial()
+        {
+            B_AuctionController bACtr = new B_AuctionController();
+
+            ConvertViewModel converter = new ConvertViewModel();
+
+            List<Auction> auctions = bACtr.GetUserAuctions(User.Identity.Name);
+
+            List<AuctionModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
+
+            return View(auctionModels);
+        }
 
 
         public FileStreamResult AuctionShowImage()

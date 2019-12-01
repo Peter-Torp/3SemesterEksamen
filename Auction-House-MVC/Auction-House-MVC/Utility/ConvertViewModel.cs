@@ -76,13 +76,42 @@ namespace Auction_House_MVC.Utility
         public Image ConvertFromAuctionPictureToImage(AuctionPicture aPic)
         {
 
-                Image image = new Image
-                {
-                    Description = aPic.Description,
-                    FileName = aPic.FileStream.FileName,
-                    FileStream = aPic.FileStream.InputStream
-                };
+            Image image = new Image
+            {
+                Description = aPic.Description,
+                FileName = aPic.FileStream.FileName,
+                FileStream = aPic.FileStream.InputStream
+            };
             return image;
+        }
+
+        public List<AuctionModel> ConvertFromAuctionsToAuctionModels(List<Auction> auctions)
+        {
+            List<AuctionModel> auctionModels = new List<AuctionModel>();
+            foreach (Auction auction in auctions)
+            {
+                AuctionModel auctionModel = ConvertFromAuctionToAuctionModel(auction);
+                auctionModels.Add(auctionModel);
+            }
+            return auctionModels;
+        }
+
+        public AuctionModel ConvertFromAuctionToAuctionModel(Auction auction)
+        {
+            AuctionModel auctionModel = new AuctionModel
+            {
+                StartPrice = auction.StartPrice,
+                BuyOutPrice = auction.BuyOutPrice,
+                BidInterval = auction.BidInterval,
+                Description = auction.Description,
+                StartDate = auction.StartDate,
+                EndDate = auction.EndDate,
+                Category = auction.Category,
+                UserName = auction.UserName,
+                Id = auction.Id
+            };
+
+            return auctionModel;
         }
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auction\Auction.cs" />
     <Compile Include="CreateAuction.cs" />
     <Compile Include="Auction\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

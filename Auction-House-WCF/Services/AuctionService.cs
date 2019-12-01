@@ -55,5 +55,17 @@ namespace Auction_House_WCF.Services
             return aCtr.GetAuctions(auctionName);
         }
 
+        public List<AuctionData> GetUserAuctions(string userName)
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.GetUserAuctions(userName);
+        }
+
+        public AuctionData GetAuction(int auctionId)
+        {
+            AuctionController aCtr = new AuctionController(); ;
+            return aCtr.GetAuction(auctionId);
+        }
+
     }
 }
