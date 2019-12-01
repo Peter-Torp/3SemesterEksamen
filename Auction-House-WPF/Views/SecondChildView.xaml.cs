@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Auction_House_WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace Auction_House_WPF.Views
     /// </summary>
     public partial class SecondChildView : UserControl
     {
+        String userShowModel;
+
         public SecondChildView()
         {
             InitializeComponent();
+
+            SecondChildViewModel sCWM = new SecondChildViewModel();
+            userShowModel = sCWM.userShowModel.ToString();
+            DataContext = sCWM; 
         }
     }
 }

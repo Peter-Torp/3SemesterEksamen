@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Auction_House_WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace Auction_House_WPF.Views
         public FirstChildView()
         {
             InitializeComponent();
+
+            FirstChildViewModel firstViewModel = new FirstChildViewModel();
+            DataContext = firstViewModel;
         }
 
         private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
@@ -40,14 +44,6 @@ namespace Auction_House_WPF.Views
             }
         }
 
-        private void EnterUsernameTextbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void FillDataGrid()
-        {
-            
-        }
+        
     }
 }
