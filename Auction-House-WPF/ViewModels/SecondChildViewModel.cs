@@ -14,11 +14,10 @@ namespace Auction_House_WPF.ViewModels
     {
         public UserShowModel foundUser;
         public string FirstName, LastName, UserName, Address, Email, Phone, ZipCode, DateOfBirth;
-        internal string inputString;
 
 
         //Metode til at finde en model.
-        public void getUserByUserName(string userName)
+        public UserShowModel getUserByUserName(string userName)
         {
             UserRepos userRepos = new UserRepos();
             foundUser = ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(userName));
@@ -31,6 +30,8 @@ namespace Auction_House_WPF.ViewModels
             this.Phone = foundUser.Phone;
             this.ZipCode = foundUser.Zipcode;
             this.DateOfBirth = foundUser.DateofBirth;
+
+            return foundUser;
         }
 
         /*

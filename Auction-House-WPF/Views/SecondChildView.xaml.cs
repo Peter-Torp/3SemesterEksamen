@@ -23,7 +23,6 @@ namespace Auction_House_WPF.Views
     public partial class SecondChildView : UserControl
     {
         
-        public event PropertyChangedEventHandler PropertyChanged;
         SecondChildViewModel sCWM;
 
         public SecondChildView()
