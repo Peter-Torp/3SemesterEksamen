@@ -66,9 +66,9 @@ namespace Auction_House_WPF.ViewModels
         {
             var foundUser = IUserRepos.GetUserByUserName(userName);
 
-            new UserShowModel(null,null,foundUser.Username,foundUser.Address,foundUser.Email,foundUser.Phone,foundUser.Zipcode,foundUser.DateofBirth);
+           // var userFound = new UserShowModel(null,null,foundUser.Username,foundUser.Address,foundUser.Email,foundUser.Phone,foundUser.Zipcode,foundUser.DateofBirth);
 
-            RetrievedModel = new ObservableCollection<UserShowModel>(results);
+            
 
         }
 

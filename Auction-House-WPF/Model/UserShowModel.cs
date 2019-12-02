@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Auction_House_WPF.ModelLayer;
 
 namespace Auction_House_WPF.Model
 {
@@ -14,16 +15,16 @@ namespace Auction_House_WPF.Model
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public UserShowModel(string _firstName, string _lastName, string _userName, string _address, string _email, string _phone, string _zipCode, string _dateOfBirth)
+        public UserShowModel(UserModel user)
         {
-            this.FirstName = _firstName;
-            this.LastName = _lastName;
-            this.UserName = _userName;
-            this.Address = _address;
-            this.Email = _email;
-            this.Phone = _phone;
-            this.Zipcode = _zipCode;
-            this.DateofBirth = _dateOfBirth;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
+            this.UserName = user.Username;
+            this.Address = user.Address;
+            this.Email = user.Email;
+            this.Phone = user.Phone;
+            this.Zipcode = user.Zipcode;
+            this.DateofBirth = user.DateofBirth;
 
         }
 

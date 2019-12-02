@@ -16,6 +16,7 @@ namespace Auction_House_WPF
         public Bootstrapper()
         {
             Initialize();
+            
         }
         //We're overriding OnStartUp event instead of the default one
         protected override void OnStartup(object sender, StartupEventArgs e)
