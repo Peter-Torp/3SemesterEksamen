@@ -63,6 +63,33 @@ namespace Auction_House_WCF.DataAccess
             }
             return successful;
         }
+
+        public RemoteFileInfo GetPicture(DownloadRequest request)
+        {
+            RemoteFileInfo rFI = new RemoteFileInfo();
+            try
+            {
+                string userDirectory = Path.Combine(_appDirectory, _baseDirectory, request.UserId.ToString());
+                string auctionDirectory = Path.Combine(userDirectory, request.AuctionNumber.ToString());
+                string fullDirectory = Path.Combine(auctionDirectory, request.FileName);
+
+                bool fileExist = File.Exists(fullDirectory);
+                if (fileExist)
+                {
+                    FileStream imgFile = File.OpenRead(fullDirectory);
+                    rFI.FileByteStream = imgFile;
+                    return rFI;
+                }
+                else
+                {
+                    throw new FileNotFoundException("File not found at: " + fullDirectory, request.FileName);
+                }
+            }
+            catch (IOException exp)
+            {
+                throw exp;
+            }
+        }
     }
 
 

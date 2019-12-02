@@ -121,10 +121,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuctionInfoModel.cs" />
     <Compile Include="Models\AuctionModel.cs" />
     <Compile Include="Models\AuctionPicture.cs" />
     <Compile Include="Models\AuctionSetUp.cs" />
     <Compile Include="Models\LogInModel.cs" />
+    <Compile Include="Models\ShowAuctionPictureModel.cs" />
     <Compile Include="Models\UserShowModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +181,7 @@
     <Content Include="Views\User\LogIn.cshtml" />
     <Content Include="Views\Auction\AuctionsPartial.cshtml" />
     <Content Include="Views\User\UserInfoPartial.cshtml" />
+    <Content Include="Views\Auction\ViewAuctionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

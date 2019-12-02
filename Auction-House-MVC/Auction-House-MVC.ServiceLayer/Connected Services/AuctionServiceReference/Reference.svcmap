@@ -22,6 +22,7 @@
     <MetadataSource Address="http://localhost:8080/Auction_House/AuctionService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="AuctionService5.xsd" MetadataType="Schema" ID="52f1976d-de6b-4a7a-9e85-c2306758d536" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd6" />
     <MetadataFile FileName="AuctionService.disco" MetadataType="Disco" ID="94411b01-c900-419c-9348-df8e4a5ce2cd" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?disco" />
     <MetadataFile FileName="AuctionService.xsd" MetadataType="Schema" ID="d1ca9598-3376-4d61-ae7a-3b572254a117" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd2" />
     <MetadataFile FileName="AuctionService2.xsd" MetadataType="Schema" ID="8a2e1fed-f546-45b7-ab72-686551429a0b" SourceId="1" SourceUrl="http://localhost:8080/Auction_House/AuctionService?xsd=xsd3" />

@@ -18,5 +18,6 @@ namespace Auction_House_MVC.Models
         [Required(ErrorMessage = "Choose an image")]
         public HttpPostedFileBase FileStream { get; set; }
         public string FileName { get; set; }
+        public int Id { get; set; }
     }
 }

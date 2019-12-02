@@ -51,6 +51,13 @@ namespace Auction_House_WCF.Controllers
             return dBAuction.Get(auctionId);
         }
 
+        public List<string> GetCategories() 
+        {
+            DBAuction dBAuction = new DBAuction();
+
+            return dBAuction.GetCategory();
+        }
+
 
         public bool InsertPicture(ImageData image)
         {
@@ -61,34 +68,21 @@ namespace Auction_House_WCF.Controllers
         
         public RemoteFileInfo GetPicture(DownloadRequest request)
         {
-            RemoteFileInfo rFI = new RemoteFileInfo();
-            try
-            {
-                string appDirectory = @"C:\Users\Martin\source\repos\Auction-House-V2\Auction-House-WCF\"; // AppDomain.CurrentDomain.BaseDirectory
-                string baseDirectory = @"Images\Auctions\";
-                string fullDirectory = appDirectory + baseDirectory + request.UserId + @"\" + request.AuctionNumber + @"\" + request.FileName;
-                bool fileExist = File.Exists(fullDirectory);
-                if (fileExist)
-                {
-                    FileStream imgFile = File.OpenRead(fullDirectory);
-                    rFI.FileByteStream = imgFile;
-                    return rFI;
-                }
-                else
-                {
-                    throw new FileNotFoundException("File not found at: " + fullDirectory, request.FileName);
-                }
-            }
-            catch (IOException exp)
-            {
-                throw exp;
-            }
+            ImageHandler iHandler = new ImageHandler();
+
+            return iHandler.GetPicture(request);
         }
 
         internal List<AuctionData> GetAuctions(string auctionName)
         {
             DBAuction dBAuction = new DBAuction();
             return dBAuction.GetAuctions(auctionName);
+        }
+
+        public List<ImageData> GetImages(int auctionId)
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.GetImages(auctionId);
         }
 
 

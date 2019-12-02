@@ -19,7 +19,7 @@ namespace Auction_House_MVC.BusinessLayer
             return aS.InsertAuction(createAuction);
         }
 
-        public Stream GetPicture(string userName, int auctionId)
+        public Image GetPicture(string userName, int auctionId, string fileName)
         {
             //Get user ID to get folder destination.
             B_UserController bUCtr = new B_UserController();
@@ -30,15 +30,15 @@ namespace Auction_House_MVC.BusinessLayer
 
             //Set up request
             DownloadRequest downloadRequest = new DownloadRequest();
-            downloadRequest.FileName = "image_1.jpg";
+            downloadRequest.FileName = fileName;
             downloadRequest.AuctionNumber = auctionId;
             downloadRequest.UserId = user.Id;
 
             //Get stream from service.
             AuctionService aS = new AuctionService();
-            Stream rFI = aS.GetPicture(downloadRequest).FileByteStream;
+            Image image = aS.GetPicture(downloadRequest);
 
-            return rFI;
+            return image;
         }
 
         public List<Image> GetAllPictures()
@@ -98,5 +98,19 @@ namespace Auction_House_MVC.BusinessLayer
         //    AuctionService aS = new AuctionService();
         //    return aS.ShowAuctions(auctionName);
         //}
+
+        public List<string> GetCategories()
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetCategories();
+        }
+
+        public List<Image> GetImages(int auctionId)
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetImages(auctionId);
+        }
     }
 }

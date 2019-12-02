@@ -7,14 +7,7 @@ namespace Auction_House_MVC.Models
 {
     public class AuctionModel
     {
-        public double StartPrice { get; set; }
-        public double BuyOutPrice { get; set; }
-        public double BidInterval { get; set; }
-        public string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string Category { get; set; }
-        public string UserName { get; set; }
-        public int Id { get; set; }
+        public AuctionInfoModel AuctionInfoModel { get; set; }
+        public List<ShowAuctionPictureModel> ShowAuctionPictureModels { get; set; }
     }
 }
