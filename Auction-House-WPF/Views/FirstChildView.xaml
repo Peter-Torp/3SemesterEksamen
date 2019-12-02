@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="1" Grid.Column="1" x:Name="Search" Content="Search User:" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="White"/>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" TextChanged="EnterUsernameTextbox_TextChanged"/>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
         <Button Command="{Binding Search}" Click="ProfileSearchButton_Click" Grid.Row="1" Grid.Column="3" x:Name="ProfileSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="9" Margin="0.4,0,0,0" Height="25" VerticalAlignment="Top"/>
 
 
@@ -56,9 +56,9 @@
         <Label Grid.Row="10" Grid.Column="1" x:Name="DateofBirthLabel" Content="DateofBirth: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
 
 
-       
-        
-             <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="3" Grid.Column="2" x:Name="FirstNameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
+
+        <Grid>
+            <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="3" Grid.Column="2" x:Name="FirstNameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
             <TextBlock Text="{Binding Path=LastName, Mode=OneWay}" Grid.Row="4" Grid.Column="2" x:Name="LastNameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
             <TextBlock Text="{Binding Path=Username, Mode=OneWay}" Grid.Row="5" Grid.Column="2" x:Name="UsernameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
             <TextBlock Text="{Binding Path=Address, Mode=OneWay}" Grid.Row="6" Grid.Column="2" x:Name="AddressTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
@@ -66,8 +66,8 @@
             <TextBlock Text="{Binding Path=Phone, Mode=OneWay}" Grid.Row="8" Grid.Column="2" x:Name="PhoneTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
             <TextBlock Text="{Binding Path=Zipcode, Mode=OneWay}" Grid.Row="9" Grid.Column="2" x:Name="ZipcodeTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
             <TextBlock Text="{Binding Path=DateofBirth, Mode=OneWay}" Grid.Row="10" Grid.Column="2" x:Name="DateofBirthTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-        
-       
+        </Grid>
+
 
 
     </Grid>

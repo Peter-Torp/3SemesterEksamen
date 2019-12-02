@@ -1,6 +1,8 @@
-﻿using Auction_House_WPF.ViewModels;
+﻿using Auction_House_WPF.Model;
+using Auction_House_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +22,25 @@ namespace Auction_House_WPF.Views
     /// </summary>
     public partial class SecondChildView : UserControl
     {
-        String userShowModel;
+        
+        SecondChildViewModel sCWM;
 
         public SecondChildView()
         {
             InitializeComponent();
 
-            SecondChildViewModel sCWM = new SecondChildViewModel();
-            userShowModel = sCWM.userShowModel.ToString();
+            sCWM = new SecondChildViewModel();
             DataContext = sCWM; 
         }
+
+        //When textfield is entered. Mouse click. And get result. 
+        private void ProfileSearchButton_MouseEnter(object sender, RoutedEventArgs e)
+        {
+            // EnterUsernameTextbox.Text += ((Button)sender).Content.ToString();
+            string input = EnterUsernameTextbox.Text;
+            sCWM.getUserByUserName(input);
+        }
     }
+
+  
 }
