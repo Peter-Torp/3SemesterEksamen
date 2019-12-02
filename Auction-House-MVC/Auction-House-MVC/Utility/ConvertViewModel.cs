@@ -85,20 +85,20 @@ namespace Auction_House_MVC.Utility
             return image;
         }
 
-        public List<AuctionModel> ConvertFromAuctionsToAuctionModels(List<Auction> auctions)
+        public List<AuctionInfoModel> ConvertFromAuctionsToAuctionModels(List<Auction> auctions)
         {
-            List<AuctionModel> auctionModels = new List<AuctionModel>();
+            List<AuctionInfoModel> auctionModels = new List<AuctionInfoModel>();
             foreach (Auction auction in auctions)
             {
-                AuctionModel auctionModel = ConvertFromAuctionToAuctionModel(auction);
+                AuctionInfoModel auctionModel = ConvertFromAuctionToAuctionModel(auction);
                 auctionModels.Add(auctionModel);
             }
             return auctionModels;
         }
 
-        public AuctionModel ConvertFromAuctionToAuctionModel(Auction auction)
+        public AuctionInfoModel ConvertFromAuctionToAuctionModel(Auction auction)
         {
-            AuctionModel auctionModel = new AuctionModel
+            AuctionInfoModel auctionModel = new AuctionInfoModel
             {
                 StartPrice = auction.StartPrice,
                 BuyOutPrice = auction.BuyOutPrice,
@@ -112,6 +112,26 @@ namespace Auction_House_MVC.Utility
             };
 
             return auctionModel;
+        }
+
+        public ShowAuctionPictureModel ConvertFromImageToShowAuctionPictureModel(Image image)
+        {
+            ShowAuctionPictureModel sAPM = new ShowAuctionPictureModel()
+            {
+                FileName = image.FileName,
+                Description = image.Description
+            };
+            return sAPM;
+        }
+
+        public List<ShowAuctionPictureModel> ConvertFromImagesToShowAuctionPictureModels(List<Image> images)
+        {
+            List<ShowAuctionPictureModel> lSAPM = new List<ShowAuctionPictureModel>();
+            foreach (Image image in images)
+            {
+                ConvertFromImageToShowAuctionPictureModel(image);
+            }
+            return lSAPM;
         }
     }
 }

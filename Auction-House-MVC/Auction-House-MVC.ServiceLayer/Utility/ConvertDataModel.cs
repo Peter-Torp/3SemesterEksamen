@@ -122,5 +122,41 @@ namespace Auction_House_MVC.ServiceLayer.Utility
             return auction;
         }
 
+        //Convert from system.array to generic list.
+        public List<string> ConvertFromBasicArrayToGenericArray(string[] array)
+        {
+            return new List<string>(array);
+        }
+
+        public Image ConvertRemoteFileInfoToImage(RemoteFileInfo rFI)
+        {
+            Image image = new Image
+            { 
+                Description = rFI.FileName,
+                FileStream = rFI.FileByteStream
+            };
+            return image;
+        }
+
+        public Image ConvertFromImageDataToImage(ImageData imageData)
+        {
+            Image image = new Image
+            {
+                AuctionId = imageData.AuctionId,
+                FileName = imageData.FileName,
+                Description = imageData.Description,
+            };
+            return image;
+        }
+
+        public List<Image> ConvertFromImageDataToImages(ImageData[] imageData)
+        {
+            List<Image> images = new List<Image>();
+            foreach (ImageData sImageData in imageData)
+            {
+                images.Add(ConvertFromImageDataToImage(sImageData));
+            }
+            return images;
+        }
     }
 }

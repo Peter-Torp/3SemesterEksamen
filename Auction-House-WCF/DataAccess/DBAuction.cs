@@ -240,6 +240,58 @@ namespace Auction_House_WCF.DataAccess
             return auctionData;
         }
 
+        public List<string> GetCategory()
+        {
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.ReadUncommitted
+            };
+
+            // SQL query
+            string getCategories = "SELECT * FROM Category";
+
+            //Create auctions list to return.
+            List<string> categories = new List<string>();
+
+            //Create transaction.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+                        using (var cmdGAuctions = new SqlCommand(getCategories, conn))
+                        {
+                            SqlDataReader reader = cmdGAuctions.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    categories.Add(reader.GetString(1));
+                                }
+                            }
+                            reader.Close();
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+            return categories;
+        }
+
         public List<AuctionData> GetUserAuctions(string userName)
         {
             //Set isolation level
@@ -317,6 +369,76 @@ namespace Auction_House_WCF.DataAccess
             };
             return auction;
         }
+
+        private ImageData ToImageObject(int auctionId, string imgUrl, DateTime dateAdded,
+            string description, string fileName)
+        {
+            ImageData imageData = new ImageData
+            {
+                AuctionId = auctionId,
+                ImgUrl = imgUrl,
+                DateAdded = dateAdded,
+                Description = description,
+                FileName = fileName
+            };
+            return imageData;
+        }
+
+        public List<ImageData> GetImages(int auctionId)
+        {
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.ReadCommitted
+            };
+
+            // SQL query
+            string getAuctions = "SELECT * FROM Image WHERE Auction_Id = @auctionId";
+
+            //Create auctions list to return.
+            List<ImageData> images = new List<ImageData>();
+
+            //Create transaction.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+                        using (var cmdGAuctions = new SqlCommand(getAuctions, conn))
+                        {
+                            cmdGAuctions.Parameters.AddWithValue("auctionId", auctionId);
+                            SqlDataReader reader = cmdGAuctions.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    ImageData imageData = ToImageObject(reader.GetInt32(1), reader.GetString(2), reader.GetDateTime(3),
+                                        reader.GetString(4), reader.GetString(5));
+                                    images.Add(imageData);
+                                }
+                            }
+                            reader.Close();
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+            return images;
+        }
+
         /*
          * Return a list of auction selected from the database.
          * */

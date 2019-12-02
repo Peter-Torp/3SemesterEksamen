@@ -6,11 +6,20 @@
 <h2>Auction</h2>
 
 <ul class="list-group">
-    <li class="list-group-item">@Model.Description</li>
-    <li class="list-group-item">@Model.Category</li>
-    <li class="list-group-item">@Model.StartDate</li>
-    <li class="list-group-item">@Model.EndDate</li>
-    <li class="list-group-item">@Model.StartPrice</li>
-    <li class="list-group-item">@Model.BidInterval</li>
-    <li class="list-group-item">@Model.BuyOutPrice</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.Description</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.Category</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.StartDate</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.EndDate</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.StartPrice</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.BidInterval</li>
+    <li class="list-group-item">@Model.AuctionInfoModel.BuyOutPrice</li>
 </ul>
+
+@for (int i = 0; i < Model.ShowAuctionPictureModels.Count; i++)
+{
+    <img src="@Url.Action("AuctionShowImage", new { id = Model.AuctionInfoModel.Id, fileName = Model.ShowAuctionPictureModels.ElementAt(i).FileName })"
+         alt="Image for Hello guys!" style="width: 250px;" />
+}
+
+
+<td>@Html.ActionLink("Add Picture", "AddPictures", "Auction", new { id = Model.AuctionInfoModel.Id }, new { @class = "btn btn-info" })</td>

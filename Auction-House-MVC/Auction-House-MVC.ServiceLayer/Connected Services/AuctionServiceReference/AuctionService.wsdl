@@ -8,6 +8,7 @@
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd3" namespace="http://schemas.microsoft.com/Message" />
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
       <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8080/Auction_House/AuctionService?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAuctionService_GetActiveAuctionsByUsername_InputMessage">
@@ -74,6 +75,18 @@
   <wsdl:message name="IAuctionService_GetAuction_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAuctionResponse" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_GetCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImages" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImagesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetActiveAuctionsByUsername" message="tns:IAuctionService_GetActiveAuctionsByUsername_InputMessage" />
@@ -110,6 +123,14 @@
     <wsdl:operation name="GetAuction">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAuction" message="tns:IAuctionService_GetAuction_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionResponse" message="tns:IAuctionService_GetAuction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetCategories" message="tns:IAuctionService_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetCategoriesResponse" message="tns:IAuctionService_GetCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetImages" message="tns:IAuctionService_GetImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetImagesResponse" message="tns:IAuctionService_GetImages_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -203,6 +224,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImages">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IAuctionService_Streaming" type="tns:IAuctionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -288,6 +327,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAuction">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImages">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetImages" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

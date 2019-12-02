@@ -63,9 +63,20 @@ namespace Auction_House_WCF.Services
 
         public AuctionData GetAuction(int auctionId)
         {
-            AuctionController aCtr = new AuctionController(); ;
+            AuctionController aCtr = new AuctionController();
             return aCtr.GetAuction(auctionId);
         }
 
+        public List<string> GetCategories()
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.GetCategories();
+        }
+
+        public List<ImageData> GetImages(int auctionId)
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.GetImages(auctionId);
+        }
     }
 }

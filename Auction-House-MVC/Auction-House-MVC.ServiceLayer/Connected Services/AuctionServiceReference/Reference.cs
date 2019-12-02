@@ -402,6 +402,18 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuction", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionResponse")]
         System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetCategories", ReplyAction="http://tempuri.org/IAuctionService/GetCategoriesResponse")]
+        string[] GetCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetCategories", ReplyAction="http://tempuri.org/IAuctionService/GetCategoriesResponse")]
+        System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] GetImages(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[]> GetImagesAsync(int auctionId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -649,6 +661,22 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId) {
             return base.Channel.GetAuctionAsync(auctionId);
+        }
+        
+        public string[] GetCategories() {
+            return base.Channel.GetCategories();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetCategoriesAsync() {
+            return base.Channel.GetCategoriesAsync();
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] GetImages(int auctionId) {
+            return base.Channel.GetImages(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[]> GetImagesAsync(int auctionId) {
+            return base.Channel.GetImagesAsync(auctionId);
         }
     }
 }

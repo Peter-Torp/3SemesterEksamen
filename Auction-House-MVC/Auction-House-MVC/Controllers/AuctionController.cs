@@ -27,23 +27,28 @@ namespace Auction_House_MVC.Controllers
 
         public ActionResult CreateAuction()
         {
+            B_AuctionController bACtr = new B_AuctionController();
             AuctionSetUp aSU = new AuctionSetUp();
-             aSU.Categories = new SelectList(new List<SelectListItem>
+
+            //Get categories from DB.
+            List<string> categories = bACtr.GetCategories();
+
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            foreach (string category in categories)
             {
-                            new SelectListItem {Value= "Elektronik" , Text = "Elektronik"},
-                            new SelectListItem {Value = "Biler" , Text = "Biler"},
-                            new SelectListItem {Value = "Have", Text = "Have"}
-            }, "Value", "Text");
+                selectList.Add(new SelectListItem { Value = category, Text = category });
+            }
+            aSU.Categories = new SelectList(selectList, "Value", "Text");
 
             return View(aSU);
         }
 
-        public ActionResult AddPictures()
+        public ActionResult AddPictures(int id)
         {
-            //TODO: GET AUCTION ID
-            int auctionId = 5;
-            ViewBag.AuctionId = auctionId;
-            return View();
+            AuctionPicture auctionPicture = new AuctionPicture();
+            auctionPicture.Id = id;
+
+            return View(auctionPicture);
         }
 
         public ActionResult CreateAuctionDetails(Models.AuctionSetUp auctionDetails)
@@ -115,26 +120,38 @@ namespace Auction_House_MVC.Controllers
 
             ConvertViewModel converter = new ConvertViewModel();
 
-            AuctionModel auctionModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
+            AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
 
-            return View(auctionModel);
+            /*            //Get picture
+                        Stream image = bACtr.GetPicture(User.Identity.Name, id);
+                        var fileStreamResult = new FileStreamResult(image, "image/jpeg");
+                        ShowAuctionPictureModel aPic = new ShowAuctionPictureModel();
+                        aPic.FileStream = fileStreamResult;
+                        List<ShowAuctionPictureModel> sAPM = new List<ShowAuctionPictureModel>();
+                        sAPM.Add(aPic);*/
+
+            List<ShowAuctionPictureModel> sAPM = converter.ConvertFromImagesToShowAuctionPictureModels(bACtr.GetImages(id));
+            sAPM.Add(new ShowAuctionPictureModel { FileName = "image_4.jpg" });
+            sAPM.Add(new ShowAuctionPictureModel { FileName = "image_4.jpg" });
+            sAPM.Add(new ShowAuctionPictureModel { FileName = "image_1.jpg" });
+            sAPM.Add(new ShowAuctionPictureModel { FileName = "image_1.jpg" });
+            return View(new AuctionModel(){ AuctionInfoModel = auctionInfoModel,ShowAuctionPictureModels = sAPM});
         }
 
-        public ActionResult AddPictureToMemory(AuctionPicture picture)
+        public ActionResult AddPictureToMemory(AuctionPicture picture,int id)
         {
             B_AuctionController bACtr = new B_AuctionController();
-            //TODO: GET AUCTION ID
-            int auctionId = 5;
-            ViewBag.AuctionId = auctionId;
 
             //GET ALL PICTURES FROM AUCTION
             if (ModelState.IsValid)
             {
                 ConvertViewModel converter = new ConvertViewModel();
 
-                bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, auctionId);
+                bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
             }
-            return View("AddPictures");
+
+            return RedirectToAction("AddPictures", new { id });
+            //return View("AddPictures", new { id = id });
         }
 
         //public ActionResult ShowAuctions()
@@ -152,20 +169,20 @@ namespace Auction_House_MVC.Controllers
 
             List<Auction> auctions = bACtr.GetUserAuctions(User.Identity.Name);
 
-            List<AuctionModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
+            List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
 
             return View(auctionModels);
         }
 
 
-        public FileStreamResult AuctionShowImage()
+        public FileStreamResult AuctionShowImage(int id, string fileName)
         {
             B_AuctionController bActr = new B_AuctionController();
 
-            Stream image = bActr.GetPicture(User.Identity.Name, 1);
+            Image image = bActr.GetPicture(User.Identity.Name, id, fileName);
 
-            var fileStreamResult = new FileStreamResult(image, "image/jpeg");
-
+            var fileStreamResult = new FileStreamResult(image.FileStream, "image/jpg");
+            fileStreamResult.FileDownloadName = image.FileName;
             return fileStreamResult;
         }
     }

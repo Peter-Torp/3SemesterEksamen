@@ -29,12 +29,14 @@ namespace Auction_House_MVC.ServiceLayer
             return confirmed;
         }
 
-        public RemoteFileInfo GetPicture(DownloadRequest downloadRequest)
+        public Image GetPicture(DownloadRequest downloadRequest)
         {
             // Use streaming endpoint. Because images = larger files.
             IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService_Streaming");
 
-            return aSClient.GetPicture(downloadRequest);
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertRemoteFileInfoToImage(aSClient.GetPicture(downloadRequest));
 
         }
 
@@ -86,7 +88,23 @@ namespace Auction_House_MVC.ServiceLayer
 
         //    }
             
+        public List<string> GetCategories()
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
 
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertFromBasicArrayToGenericArray(aSClient.GetCategories());
+        }
+
+        public List<Image> GetImages(int auctionId)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertFromImageDataToImages(aSClient.GetImages(auctionId));
+        }
 
         }
     }

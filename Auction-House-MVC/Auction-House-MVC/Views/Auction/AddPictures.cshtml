@@ -3,16 +3,9 @@
     ViewBag.Title = "AddPictures";
 }
 
-    <div class="thumbnail">
-        <h3>Showing pictures from auction @Html.ViewBag.AuctionId</h3>
-        <img class="" src="~/Utility/PinClipart.com_server-clipart_330180.png" />
-        <div class="caption">
-            <p class="text-center">A computer</p>
-        </div>
-
-
-        @using (Html.BeginForm("AddPictureToMemory", "Auction", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+<!-- TODO: PASS AUCTION ID TO HERE AT ID HARDCODED 5 MVC DOES NOT KNOW HOW TO MVC-->
+@using (Html.BeginForm("AddPictureToMemory", "Auction", new { id = Html.DisplayFor(m => m.Id) } ,FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     <fieldset>
         <legend> Upload Image </legend>
 
@@ -37,6 +30,4 @@
         <br />
         <input type="submit" value="Upload" class="btn btn-primary" />
     </fieldset>
-            }
-
-        </div>
+}

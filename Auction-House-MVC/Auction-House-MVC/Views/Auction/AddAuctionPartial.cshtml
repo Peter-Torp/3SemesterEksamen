@@ -56,10 +56,10 @@
             <div class="editor-label">
             @Html.LabelFor(aS => aS.SelectedCategory)
         </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(aS => aS.SelectedCategory, new SelectList(Model.Categories, "Value", "Text"), "Select")
-            <p style="color:red;">@Html.ValidationMessageFor(aS => aS.SelectedCategory)</p>
-        </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(aS => aS.SelectedCategory, new SelectList(Model.Categories, "Value", "Text"), "Select")
+                <p style="color:red;">@Html.ValidationMessageFor(aS => aS.SelectedCategory)</p>
+            </div>
 
 
             <input type="submit" value="Submit" class="btn btn-primary" />

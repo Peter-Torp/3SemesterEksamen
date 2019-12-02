@@ -29,7 +29,7 @@ namespace Auction_House_MVC.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime EndDate { get; set; }
         [DisplayName("Category")]
-        [Required]
+        [Required(ErrorMessage = "Please choose category")]
         public string SelectedCategory { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
 
