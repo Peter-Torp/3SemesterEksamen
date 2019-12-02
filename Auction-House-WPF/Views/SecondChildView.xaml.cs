@@ -37,8 +37,15 @@ namespace Auction_House_WPF.Views
         private void ProfileSearchButton_MouseEnter(object sender, RoutedEventArgs e)
         {
             // EnterUsernameTextbox.Text += ((Button)sender).Content.ToString();
-            string input = EnterUsernameTextbox.Text;
-            sCWM.getUserByUserName(input);
+            if (EnterUsernameTextbox.Text != null)
+            {
+                string input = EnterUsernameTextbox.Text;
+                sCWM.getUserByUserName(input);
+            }
+            else
+            {
+                MessageBox.Show("Searchfield is empty!");
+            }
         }
     }
 

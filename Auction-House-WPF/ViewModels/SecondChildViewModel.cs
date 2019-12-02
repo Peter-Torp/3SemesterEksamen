@@ -21,15 +21,19 @@ namespace Auction_House_WPF.ViewModels
         {
             UserRepos userRepos = new UserRepos();
             foundUser = ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(userName));
-
-            this.FirstName = foundUser.FirstName;
-            this.LastName = foundUser.LastName;
-            this.UserName = foundUser.UserName;
-            this.Address = foundUser.Address;
-            this.Email = foundUser.Email;
-            this.Phone = foundUser.Phone;
-            this.ZipCode = foundUser.Zipcode;
-            this.DateOfBirth = foundUser.DateofBirth;
+            if (foundUser != null) {
+                this.FirstName = foundUser.FirstName;
+                this.LastName = foundUser.LastName;
+                this.UserName = foundUser.UserName;
+                this.Address = foundUser.Address;
+                this.Email = foundUser.Email;
+                this.Phone = foundUser.Phone;
+                this.ZipCode = foundUser.Zipcode;
+                this.DateOfBirth = foundUser.DateofBirth;
+            } else
+            {
+                return null;
+            }
 
             return foundUser;
         }
