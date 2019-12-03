@@ -46,14 +46,14 @@
                   ItemsSource="{Binding UserShowModel}">
             
                 <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=UserShowModel.FirstName, Mode=OneWay}" Header="First Name"/>
-                <DataGridTextColumn Binding="{Binding Path=UserShowModel.LastName, Mode=OneWay}" Header="Last Name"/>
-                <DataGridTextColumn Binding="{Binding Path=UserName, Mode=OneWay}" Header="Username"/>
-                <DataGridTextColumn Binding="{Binding Path=Address, Mode=OneWay}" Header="Address"/>
-                <DataGridTextColumn Binding="{Binding Path=Email, Mode=OneWay}" Header="Email"/>
-                <DataGridTextColumn Binding="{Binding Path=Phone, Mode=OneWay}" Header="Phone"/>
-                <DataGridTextColumn Binding="{Binding Path=Zipcode, Mode=OneWay}" Header="Zipcode"/>
-                <DataGridTextColumn Binding="{Binding Path=DateofBirth, Mode=OneWay}" Header="Date of Birth"/>
+                <DataGridTextColumn Binding="{Binding Path=UserShowModel.FirstName, Mode=OneWay}" Header="First Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=UserShowModel.LastName, Mode=OneWay}" Header="Last Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=UserName, Mode=OneWay}" Header="Username" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Address, Mode=OneWay}" Header="Address" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Email, Mode=OneWay}" Header="Email" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Phone, Mode=OneWay}" Header="Phone" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Zipcode, Mode=OneWay}" Header="Zipcode" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=DateofBirth, Mode=OneWay}" Header="Date of Birth" Width="*"/>
             </DataGrid.Columns>
             
         </DataGrid>
