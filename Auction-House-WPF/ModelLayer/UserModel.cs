@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Auction_House_WPF.ModelLayer
 {
-    public class UserModel
+    public class UserModel : INotifyPropertyChanged
     {
 
         public UserModel(string firstName, string lastName, string userName, string address, string email, string phone, string zipCode, string dateOfBirth)
@@ -38,6 +39,6 @@ namespace Auction_House_WPF.ModelLayer
 
         public string DateofBirth { get; set; }
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

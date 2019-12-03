@@ -34,5 +34,8 @@ namespace Auction_House_WPF.Repository
 
             return user;
         }
+
+        
+
     }
 }

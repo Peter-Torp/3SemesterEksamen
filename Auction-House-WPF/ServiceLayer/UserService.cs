@@ -22,7 +22,6 @@ namespace Auction_House_WPF.ServiceLayer
          */
         public UserModel GetUserByUserName(string UserName)
         {
-            UserUtility utility = new UserUtility();
             UserModel userModel = null;
 
             UserData user = null;
@@ -31,18 +30,14 @@ namespace Auction_House_WPF.ServiceLayer
                 IUserService _userClientUserName = createServiceClient();
                 user = _userClientUserName.GetUserByUserName(UserName);
 
-                userModel = utility.ConvertUserDataToUserModelData(user);
+                userModel = UserUtility.ConvertUserDataToUserModelData(user);
 
             }
             catch (ServiceAccessException)
             {
                 throw new ServiceAccessException(ExceptionMessages.Couldnt_Retrive_User_From_Service);
             }
-            finally
-            {
-                if (utility != null)
-                    ((IDisposable)utility).Dispose();
-            }
+            
 
             return userModel;
         }
@@ -55,7 +50,6 @@ namespace Auction_House_WPF.ServiceLayer
          */
         public UserModel getUserId(int userId)
         {
-            UserUtility utility = new UserUtility();
             UserModel userModel = null;
             UserData user;
 
@@ -64,17 +58,13 @@ namespace Auction_House_WPF.ServiceLayer
                 IUserService _userServiceId = createServiceClient();
                 user = _userServiceId.GetUserById(userId);
 
-                userModel = utility.ConvertUserDataToUserModelData(user);
+                userModel = UserUtility.ConvertUserDataToUserModelData(user);
             }
             catch (ServiceAccessException)
             {
                 throw new ServiceAccessException(ExceptionMessages.Couldnt_Retrive_User_From_Service);
             }
-            finally
-            {
-                if (utility != null)
-                    ((IDisposable)utility).Dispose();
-            }
+            
 
             return userModel;
         }

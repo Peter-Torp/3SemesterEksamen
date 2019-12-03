@@ -1,41 +1,43 @@
 ﻿using Auction_House_WPF.Model;
 using Auction_House_WPF.ModelLayer;
 using Auction_House_WPF.Repository;
+using Auction_House_WPF.Views;
 using Caliburn.Micro;
-using System;
+using MySys = System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Auction_House_WPF.ViewModels
 {
     public class SecondChildViewModel : Screen
     {
-        public UserShowModel foundUser;
-        public string FirstName, LastName, UserName, Address, Email, Phone, ZipCode, DateOfBirth;
+        UserRepos userRepos = new UserRepos();
+        SecondChildView secondChildView;
+        public RelayCommand DisplayUserInfo { get; private set; }
+        public MessageCommand DisplayMessageCommand { get; private set; }
 
-
-        //Metode til at finde en model.
-        public UserShowModel getUserByUserName(string userName)
+        public SecondChildViewModel()
         {
-            UserRepos userRepos = new UserRepos();
-            foundUser = ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(userName));
-            if (foundUser != null) {
-                this.FirstName = foundUser.FirstName;
-                this.LastName = foundUser.LastName;
-                this.UserName = foundUser.UserName;
-                this.Address = foundUser.Address;
-                this.Email = foundUser.Email;
-                this.Phone = foundUser.Phone;
-                this.ZipCode = foundUser.Zipcode;
-                this.DateOfBirth = foundUser.DateofBirth;
-            } else
-            {
-                return null;
-            }
-
-            return foundUser;
+           // DisplayMessageCommand = new MessageCommand(Display);
+            DisplayUserInfo = new RelayCommand(SearchUserByUserName);
+            UserShowModel = new ObservableCollection<UserShowModel>();
+            
+        }
+        public void Display(string message)
+        {
+            MessageBox.Show(message);
+        }
+        
+        //Search the user in the database and convert it to a UserShowModel and return the user.
+        public void SearchUserByUserName(string searchString)
+        {
+            UserShowModel.Add(ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(searchString)));
+            
         }
 
         /*
@@ -43,19 +45,27 @@ namespace Auction_House_WPF.ViewModels
          * */
         public UserShowModel ConvertUserModelToUserShowModel(UserModel user)
         {
-            UserShowModel foundUser = new UserShowModel(user);
-            foundUser.FirstName = user.FirstName;
-            foundUser.LastName = user.LastName;
-            foundUser.UserName = user.Username;
-            foundUser.Address = user.Address;
-            foundUser.Email = user.Email;
-            foundUser.Phone = user.Phone;
-            foundUser.Zipcode = user.Zipcode;
-            foundUser.DateofBirth = user.DateofBirth;
+            UserShowModel userShowModel = new UserShowModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                UserName = user.Username,
+                Email = user.Email,
+                Phone = user.Phone,
+                ZipCode = user.Zipcode,
+                DateOfBirth = user.DateofBirth
+                
+            };
 
-            return foundUser;
+            return userShowModel;
         }
 
+        public ObservableCollection<UserShowModel> UserShowModel
+        {
+            get;
+            set;            
+        }
        
         
 

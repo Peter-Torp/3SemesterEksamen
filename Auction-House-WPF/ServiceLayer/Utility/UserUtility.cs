@@ -8,10 +8,10 @@ using ServiceLayer.UserServiceReference;
 
 namespace Auction_House_WPF.ServiceLayer.Utility
 {
-    class UserUtility
+    static class UserUtility
     {
 
-        public UserModel ConvertUserDataToUserModelData(UserData _userData)
+        public static UserModel ConvertUserDataToUserModelData(UserData _userData)
         {
             UserModel userModel = new UserModel(null, null, null, null, null, null, null, null)
             {
