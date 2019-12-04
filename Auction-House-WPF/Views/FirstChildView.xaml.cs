@@ -25,7 +25,8 @@ namespace Auction_House_WPF.Views
         {
             InitializeComponent();
 
-        
+            FirstChildViewModel fCWM = new FirstChildViewModel();
+            DataContext = fCWM;
         }
 
 
@@ -46,14 +47,6 @@ namespace Auction_House_WPF.Views
             MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void AuctionSearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            EmptyAuctionSearch();
-        }
-
-        private void DeleteAuctionButton_Click(object sender, RoutedEventArgs e)
-        {
-            //AuctionHasBeenDeleted();
-        }
+       
     }
 }

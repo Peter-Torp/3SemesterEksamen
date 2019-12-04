@@ -134,7 +134,7 @@ namespace Auction_House_WCF.Test
             Assert.IsTrue(NotEmpty);
         }
 
-        [TestMethod]
+      /*  [TestMethod]
         public void TestGetBids()
         {
             //Arrange 
@@ -155,6 +155,6 @@ namespace Auction_House_WCF.Test
             //Assert
             Assert.IsTrue(NotEmpty);
 
-        }
+        }*/
     }
 }

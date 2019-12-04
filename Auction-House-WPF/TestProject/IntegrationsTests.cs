@@ -25,16 +25,22 @@ namespace TestProject
         public void GetUserByUserName()
         {
             //Arrange
+            string testInput = "Magnus";
             //Act
+            secondChildViewModel.SearchUserByUserName(testInput);
             //Assert
+            Assert.AreEqual(1, secondChildViewModel.UserShowModel.Count);
         }
 
         [TestMethod]
         public void TryGetUserByUserNameInvalid()
         {
             //Arrange
+            string testInput = "AWDSAWDS";
             //Act
+            secondChildViewModel.SearchUserByUserName(testInput);
             //Assert
+            Assert.AreEqual(0, secondChildViewModel.UserShowModel.Count);
         }
 
         [TestCleanup]

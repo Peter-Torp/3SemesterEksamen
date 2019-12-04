@@ -10,17 +10,21 @@ using System.Windows.Input;
 using Auction_House_WPF.Model;
 using Auction_House_WPF.RepositoryLayer.Interface;
 using Auction_House_WPF.Repository;
+using ModelLayer;
+using RepositoryLayer;
 
 namespace Auction_House_WPF.ViewModels
 {
     public class FirstChildViewModel : Screen, INotifyPropertyChanged
     {
 
-        private ObservableCollection<UserShowModel> _retrievedModel;
-        private readonly List<UserShowModel> results;
-        private UserShowModel SelectedModel;
-        private IUserRepos IUserRepos;  
+        private ObservableCollection<AuctionShowModel> _retrievedAuctionModels;
+        private AuctionRepos auctionRepos = new AuctionRepos();
 
+        //Commands
+        public RelayCommand DisplayAuctions { get; private set; }
+
+        //Event
         public event PropertyChangedEventHandler PropertyChanged;
         
 
@@ -28,49 +32,17 @@ namespace Auction_House_WPF.ViewModels
         public FirstChildViewModel()
         {   
             //Instantiate Interface for repository. 
-            IUserRepos = new UserRepos();
+            _retrievedAuctionModels = new ObservableCollection<AuctionShowModel>();
+            DisplayAuctions = new RelayCommand(SearchAuction);
         }
 
 
-
-        internal ObservableCollection<UserShowModel> RetrievedModel
+        public void SearchAuction(string searchString)
         {
-            get
-            {
-                return _retrievedModel;
-            }
-            set
-            {
-                _retrievedModel = value;
-                OnPropertyChanged("RetrievedModel");
-            }
-
+            _retrievedAuctionModels.Add(ConvertAuctionModelToAuctionShowModel(auctionRepos.getAuctionsByUserName(searchString)));
         }
 
-        /* internal PersonModel Search(string userName)
-         {
-             IUserRepos uR = new UserRepos();
-             PersonModel user = null;
-             if (userName != null)
-             {
-                 user = uR.GetUserByUserName(userName);
-             }
-             else
-             {
-                 Console.WriteLine("User name wasent entered. Try again!");
-             }
-             return user;
-         }*/
 
-        internal void Search(string userName)
-        {
-            var foundUser = IUserRepos.GetUserByUserName(userName);
-
-           // var userFound = new UserShowModel(null,null,foundUser.Username,foundUser.Address,foundUser.Email,foundUser.Phone,foundUser.Zipcode,foundUser.DateofBirth);
-
-            
-
-        }
 
         // Create the OnPropertyChanged method to raise the event
         protected void OnPropertyChanged(string name)
@@ -80,6 +52,32 @@ namespace Auction_House_WPF.ViewModels
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public AuctionShowModel ConvertAuctionModelToAuctionShowModel(List<AuctionModel> auctions)
+        {
+            AuctionShowModel auctionShowModel;
+            foreach (AuctionModel auctionModel in auctions) {
+
+                auctionShowModel = new AuctionShowModel
+                {
+                    StartPrice = auctionModel.StartPrice,
+                    BuyOutPrice = auctionModel.BuyOutPrice,
+                    BidInterval = auctionModel.BidInterval,
+                    StartDate = auctionModel.StartDate,
+                    EndDate = auctionModel.EndDate,
+                    Description = auctionModel.Description,
+                    Category = auctionModel.Category
+                };
+                return auctionShowModel;
+            }
+            return null;
+        }
+
+        public ObservableCollection<AuctionShowModel> UserShowModel
+        {
+            get;
+            set;
         }
 
 
