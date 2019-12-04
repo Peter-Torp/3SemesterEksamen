@@ -66,8 +66,7 @@ namespace Auction_House_WPF.ViewModels
             get;
             set;            
         }
-       
-        
+
 
     }
 

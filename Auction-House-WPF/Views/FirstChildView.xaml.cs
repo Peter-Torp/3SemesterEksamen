@@ -28,21 +28,32 @@ namespace Auction_House_WPF.Views
         
         }
 
-        private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            EmptySearch();
 
-        }
 
-        public void EmptySearch()
+        public void EmptyAuctionSearch()
         {
-            if (String.IsNullOrEmpty(EnterUsernameTextbox.Text))
+            if (String.IsNullOrEmpty(EnterAuctionTextbox.Text))
             {
-                MessageBox.Show("Cannot be left empty, please input username", "Invalid search",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Cannot be left empty, please input auction", "Invalid search",
+                    MessageBoxButton.OK, MessageBoxImage.Error);    
             }
         }
 
-        
+        public void AuctionHasBeenDeleted()
+        {
+
+            MessageBox.Show("Auction has been deleted", "Auction deleted",
+            MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void AuctionSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmptyAuctionSearch();
+        }
+
+        private void DeleteAuctionButton_Click(object sender, RoutedEventArgs e)
+        {
+            //AuctionHasBeenDeleted();
+        }
     }
 }
