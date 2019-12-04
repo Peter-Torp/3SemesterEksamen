@@ -9,5 +9,7 @@ namespace Auction_House_MVC.Models
     {
         public AuctionInfoModel AuctionInfoModel { get; set; }
         public List<ShowAuctionPictureModel> ShowAuctionPictureModels { get; set; }
+        public List<ShowBid> ShowBids { get; set; }
+        public InsertBidModel InsertBidModel {get; set;}
     }
 }

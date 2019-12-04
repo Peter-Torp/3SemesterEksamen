@@ -82,7 +82,10 @@ namespace Auction_House_WCF.DataAccess
                 }
                 else
                 {
-                    throw new FileNotFoundException("File not found at: " + fullDirectory, request.FileName);
+                    FileStream imgFile = File.OpenRead(Path.Combine(_appDirectory, _baseDirectory, "projekt-notfound.jpg"));
+                    rFI.FileByteStream = imgFile;
+                    return rFI;
+                    //throw new FileNotFoundException("File not found at: " + fullDirectory, request.FileName);
                 }
             }
             catch (IOException exp)

@@ -1,5 +1,6 @@
 ﻿using Auction_House_MVC.ModelLayer;
 using Auction_House_MVC.ModelLayer.Auction;
+using Auction_House_MVC.ModelLayer.Bid;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using Auction_House_MVC.ServiceLayer.Utility;
 using System;
@@ -87,7 +88,7 @@ namespace Auction_House_MVC.ServiceLayer
         //    ConvertDataModel converter = new ConvertDataModel();
 
         //    }
-            
+
         public List<string> GetCategories()
         {
             IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
@@ -103,8 +104,37 @@ namespace Auction_House_MVC.ServiceLayer
 
             ConvertDataModel converter = new ConvertDataModel();
 
-            return converter.ConvertFromImageDataToImages(aSClient.GetImages(auctionId));
+            List<Image> images = converter.ConvertFromImageInfoDataToImages(aSClient.GetImages(auctionId));
+
+            return images;
         }
 
+        public List<Auction> GetLatestAuctions()
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertFromAuctionDataToAuctions(aSClient.GetLatestAuctions());
         }
+
+        public List<Bid> GetBids(int auctionId)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertFromBidDataToBids(aSClient.GetBids(auctionId));
+        }
+
+        public int InsertBid(Bid bid)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return aSClient.InsertBid(converter.ConvertFromBidToBidData(bid));
+        }
+
     }
+}

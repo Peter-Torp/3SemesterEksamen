@@ -343,6 +343,256 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImageInfoData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class ImageInfoData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AuctionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AuctionId {
+            get {
+                return this.AuctionIdField;
+            }
+            set {
+                if ((this.AuctionIdField.Equals(value) != true)) {
+                    this.AuctionIdField = value;
+                    this.RaisePropertyChanged("AuctionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgUrl {
+            get {
+                return this.ImgUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgUrlField, value) != true)) {
+                    this.ImgUrlField = value;
+                    this.RaisePropertyChanged("ImgUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BidData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class BidData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Auction_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Bid_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int User_IdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Auction_Id {
+            get {
+                return this.Auction_IdField;
+            }
+            set {
+                if ((this.Auction_IdField.Equals(value) != true)) {
+                    this.Auction_IdField = value;
+                    this.RaisePropertyChanged("Auction_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Bid_Id {
+            get {
+                return this.Bid_IdField;
+            }
+            set {
+                if ((this.Bid_IdField.Equals(value) != true)) {
+                    this.Bid_IdField = value;
+                    this.RaisePropertyChanged("Bid_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int User_Id {
+            get {
+                return this.User_IdField;
+            }
+            set {
+                if ((this.User_IdField.Equals(value) != true)) {
+                    this.User_IdField = value;
+                    this.RaisePropertyChanged("User_Id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuctionServiceReference.IAuctionService")]
     public interface IAuctionService {
@@ -410,10 +660,28 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
-        Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] GetImages(int auctionId);
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageInfoData[] GetImages(int auctionId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
-        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[]> GetImagesAsync(int auctionId);
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageInfoData[]> GetImagesAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetLatestAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetLatestAuctionsResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetLatestAuctions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetLatestAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetLatestAuctionsResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetLatestAuctionsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetBids", ReplyAction="http://tempuri.org/IAuctionService/GetBidsResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData[] GetBids(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetBids", ReplyAction="http://tempuri.org/IAuctionService/GetBidsResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
+        int InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
+        System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -671,12 +939,36 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
             return base.Channel.GetCategoriesAsync();
         }
         
-        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[] GetImages(int auctionId) {
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageInfoData[] GetImages(int auctionId) {
             return base.Channel.GetImages(auctionId);
         }
         
-        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageData[]> GetImagesAsync(int auctionId) {
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.ImageInfoData[]> GetImagesAsync(int auctionId) {
             return base.Channel.GetImagesAsync(auctionId);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetLatestAuctions() {
+            return base.Channel.GetLatestAuctions();
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetLatestAuctionsAsync() {
+            return base.Channel.GetLatestAuctionsAsync();
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData[] GetBids(int id) {
+            return base.Channel.GetBids(id);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id) {
+            return base.Channel.GetBidsAsync(id);
+        }
+        
+        public int InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
+            return base.Channel.InsertBid(bidData);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
+            return base.Channel.InsertBidAsync(bidData);
         }
     }
 }

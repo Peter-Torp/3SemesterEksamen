@@ -125,8 +125,10 @@
     <Compile Include="Models\AuctionModel.cs" />
     <Compile Include="Models\AuctionPicture.cs" />
     <Compile Include="Models\AuctionSetUp.cs" />
+    <Compile Include="Models\InsertBidModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\ShowAuctionPictureModel.cs" />
+    <Compile Include="Models\ShowBid.cs" />
     <Compile Include="Models\UserShowModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,6 +184,9 @@
     <Content Include="Views\Auction\AuctionsPartial.cshtml" />
     <Content Include="Views\User\UserInfoPartial.cshtml" />
     <Content Include="Views\Auction\ViewAuctionPartial.cshtml" />
+    <Content Include="Views\Auction\LatestAuctionsPartial.cshtml" />
+    <Content Include="Views\Auction\ShowBids.cshtml" />
+    <Content Include="Views\Auction\InsertBid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

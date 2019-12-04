@@ -87,6 +87,24 @@
   <wsdl:message name="IAuctionService_GetImages_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetImagesResponse" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_GetLatestAuctions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestAuctions" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetLatestAuctions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestAuctionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetBids_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBids" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetBids_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBidsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_InsertBid_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBid" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_InsertBid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertBidResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetActiveAuctionsByUsername" message="tns:IAuctionService_GetActiveAuctionsByUsername_InputMessage" />
@@ -131,6 +149,18 @@
     <wsdl:operation name="GetImages">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetImages" message="tns:IAuctionService_GetImages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetImagesResponse" message="tns:IAuctionService_GetImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestAuctions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetLatestAuctions" message="tns:IAuctionService_GetLatestAuctions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetLatestAuctionsResponse" message="tns:IAuctionService_GetLatestAuctions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBids">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetBids" message="tns:IAuctionService_GetBids_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetBidsResponse" message="tns:IAuctionService_GetBids_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertBid" message="tns:IAuctionService_InsertBid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertBidResponse" message="tns:IAuctionService_InsertBid_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -242,6 +272,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetLatestAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetLatestAuctions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBids">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetBids" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBid">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertBid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IAuctionService_Streaming" type="tns:IAuctionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -345,6 +402,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetImages">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/GetImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetLatestAuctions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBids">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetBids" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBid">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertBid" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

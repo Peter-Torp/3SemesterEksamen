@@ -73,10 +73,29 @@ namespace Auction_House_WCF.Services
             return aCtr.GetCategories();
         }
 
-        public List<ImageData> GetImages(int auctionId)
+        public List<ImageInfoData> GetImages(int auctionId)
         {
             AuctionController aCtr = new AuctionController();
-            return aCtr.GetImages(auctionId);
+            List<ImageInfoData> images = aCtr.GetImages(auctionId);
+            return images;
+        }
+
+        public List<AuctionData> GetLatestAuctions()
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.GetLatestAuctions();
+        }
+
+        public List<BidData> GetBids(int id)
+        {
+            BidController bCtr = new BidController();
+            return bCtr.GetBids(id);
+        }
+
+        public int InsertBid(BidData bidData)
+        {
+            BidController bCtr = new BidController();
+            return bCtr.InsertBid(bidData);
         }
     }
 }
