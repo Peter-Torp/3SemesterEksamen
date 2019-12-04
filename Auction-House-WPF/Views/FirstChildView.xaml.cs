@@ -25,8 +25,7 @@ namespace Auction_House_WPF.Views
         {
             InitializeComponent();
 
-            FirstChildViewModel firstViewModel = new FirstChildViewModel();
-            DataContext = firstViewModel;
+        
         }
 
         private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
