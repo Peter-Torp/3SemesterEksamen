@@ -37,7 +37,13 @@ namespace Auction_House_WCF.Services
         [OperationContract]
         List<string> GetCategories();
         [OperationContract]
-        List<ImageData> GetImages(int auctionId);
+        List<ImageInfoData> GetImages(int auctionId);
+        [OperationContract]
+        List<AuctionData> GetLatestAuctions();
+        [OperationContract]
+        List<BidData> GetBids(int id);
+        [OperationContract]
+        int InsertBid(BidData bidData);
 
     }
 }

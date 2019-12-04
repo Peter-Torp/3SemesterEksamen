@@ -1,5 +1,6 @@
 ﻿using Auction_House_MVC.ModelLayer;
 using Auction_House_MVC.ModelLayer.Auction;
+using Auction_House_MVC.ModelLayer.Bid;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using Auction_House_MVC.ServiceLayer.UserServiceReference;
 using System;
@@ -119,6 +120,7 @@ namespace Auction_House_MVC.ServiceLayer.Utility
                 aD.StartDate,
                 aD.EndDate,
                 aD.Category);
+            auction.UserName = aD.UserName;
             return auction;
         }
 
@@ -138,25 +140,62 @@ namespace Auction_House_MVC.ServiceLayer.Utility
             return image;
         }
 
-        public Image ConvertFromImageDataToImage(ImageData imageData)
+        public Image ConvertFromImageInfoDataToImage(ImageInfoData imageInfoData)
         {
             Image image = new Image
             {
-                AuctionId = imageData.AuctionId,
-                FileName = imageData.FileName,
-                Description = imageData.Description,
+                AuctionId = imageInfoData.AuctionId,
+                FileName = imageInfoData.FileName,
+                Description = imageInfoData.Description,
             };
             return image;
         }
 
-        public List<Image> ConvertFromImageDataToImages(ImageData[] imageData)
+        public List<Image> ConvertFromImageInfoDataToImages(ImageInfoData[] imageData)
         {
             List<Image> images = new List<Image>();
-            foreach (ImageData sImageData in imageData)
+            foreach (ImageInfoData sImageInfoData in imageData)
             {
-                images.Add(ConvertFromImageDataToImage(sImageData));
+                images.Add(ConvertFromImageInfoDataToImage(sImageInfoData));
             }
             return images;
+        }
+
+        public Bid ConvertFromBidDataToBid(BidData bidData)
+        {
+            Bid bid = new Bid
+            {
+                Bid_Id = bidData.Bid_Id,
+                Auction_Id = bidData.Auction_Id,
+                User_Id = bidData.User_Id,
+                Amount = bidData.Amount,
+                Date = bidData.Date,
+                UserName = bidData.UserName
+            };
+            return bid;
+        }
+
+        public List<Bid> ConvertFromBidDataToBids(BidData[] bidData)
+        {
+            List<Bid> bids = new List<Bid>();
+            foreach (BidData sBidData in bidData)
+            {
+                bids.Add(ConvertFromBidDataToBid(sBidData));
+            }
+            return bids;
+        }
+
+        public BidData ConvertFromBidToBidData(Bid bid)
+        {
+            BidData bidData = new BidData
+            {
+                Auction_Id = bid.Auction_Id,
+                User_Id = bid.User_Id,
+                Amount = bid.Amount,
+                Date = bid.Date,
+                UserName = bid.UserName
+            };
+            return bidData;
         }
     }
 }

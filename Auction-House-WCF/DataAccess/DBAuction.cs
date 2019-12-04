@@ -126,10 +126,11 @@ namespace Auction_House_WCF.DataAccess
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
-            string insertImage = "INSERT INTO Image (Auction_Id, Img_URL, DateAdded, Description, Name) VALUES(@auctionId,@imgUrl,@dateAdded, @description, @name)";
+            string insertImage = "INSERT INTO Image (Auction_Id, Img_URL, DateAdded, Description, Name) " +
+                "VALUES(@auctionId,@imgUrl,@dateAdded, @description, @name)";
 
             //Transaction
             using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
@@ -370,10 +371,10 @@ namespace Auction_House_WCF.DataAccess
             return auction;
         }
 
-        private ImageData ToImageObject(int auctionId, string imgUrl, DateTime dateAdded,
+        private ImageInfoData ToImageInfoObject(int auctionId, string imgUrl, DateTime dateAdded,
             string description, string fileName)
         {
-            ImageData imageData = new ImageData
+            ImageInfoData imageInfoData = new ImageInfoData
             {
                 AuctionId = auctionId,
                 ImgUrl = imgUrl,
@@ -381,10 +382,10 @@ namespace Auction_House_WCF.DataAccess
                 Description = description,
                 FileName = fileName
             };
-            return imageData;
+            return imageInfoData;
         }
 
-        public List<ImageData> GetImages(int auctionId)
+        public List<ImageInfoData> GetImages(int auctionId)
         {
             //Set isolation level
             var options = new TransactionOptions
@@ -396,7 +397,7 @@ namespace Auction_House_WCF.DataAccess
             string getAuctions = "SELECT * FROM Image WHERE Auction_Id = @auctionId";
 
             //Create auctions list to return.
-            List<ImageData> images = new List<ImageData>();
+            List<ImageInfoData> images = new List<ImageInfoData>();
 
             //Create transaction.
             using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
@@ -415,9 +416,9 @@ namespace Auction_House_WCF.DataAccess
                             {
                                 while (reader.Read())
                                 {
-                                    ImageData imageData = ToImageObject(reader.GetInt32(1), reader.GetString(2), reader.GetDateTime(3),
+                                    ImageInfoData imageInfoData = ToImageInfoObject(reader.GetInt32(1), reader.GetString(2), reader.GetDateTime(3),
                                         reader.GetString(4), reader.GetString(5));
-                                    images.Add(imageData);
+                                    images.Add(imageInfoData);
                                 }
                             }
                             reader.Close();
@@ -437,6 +438,66 @@ namespace Auction_House_WCF.DataAccess
                 }
             }
             return images;
+        }
+
+        public List<AuctionData> GetLastestAuctions()
+        {
+            //Set isolation level
+            var options = new TransactionOptions
+            {
+                IsolationLevel = IsolationLevel.Serializable
+            };
+
+            // SQL query
+            string getLatestAuctions = "SELECT TOP 10 " +
+                "A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name " +
+                "FROM Auction AS A " +
+                "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
+                "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "ORDER BY A.StartDate DESC";
+
+            //Create auctions list to return.
+            List<AuctionData> auctions = new List<AuctionData>();
+
+            //Create transaction.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    try
+                    {
+                        //Open connection to database.
+                        conn.Open();
+                        using (var cmdGAuctions = new SqlCommand(getLatestAuctions, conn))
+                        {
+                            SqlDataReader reader = cmdGAuctions.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    AuctionData auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
+                                       reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
+                                       reader.GetDouble(4), reader.GetDouble(3));
+                                    auctions.Add(auctionData);
+                                }
+                            }
+                            reader.Close();
+                        }
+
+                        //If everything went well, will commit.
+                        scope.Complete();
+                    }
+                    catch (TransactionAbortedException e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        scope.Dispose();
+                    }
+                }
+            }
+            return auctions;
         }
 
         /*

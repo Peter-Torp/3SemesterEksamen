@@ -153,7 +153,47 @@
   <xs:element name="GetImagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetImagesResult" nillable="true" type="q11:ArrayOfImageData" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetImagesResult" nillable="true" type="q11:ArrayOfImageInfoData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestAuctions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLatestAuctionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetLatestAuctionsResult" nillable="true" type="q12:ArrayOfAuctionData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBids">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBidsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetBidsResult" nillable="true" type="q13:ArrayOfBidData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertBid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="bidData" nillable="true" type="q14:BidData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertBidResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertBidResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

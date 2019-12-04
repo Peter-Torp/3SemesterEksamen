@@ -40,4 +40,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfAuctionData" nillable="true" type="tns:ArrayOfAuctionData" />
+  <xs:complexType name="ArrayOfImageInfoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImageInfoData" nillable="true" type="tns:ImageInfoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImageInfoData" nillable="true" type="tns:ArrayOfImageInfoData" />
+  <xs:complexType name="ImageInfoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuctionId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateAdded" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImgUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImageInfoData" nillable="true" type="tns:ImageInfoData" />
+  <xs:complexType name="ArrayOfBidData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BidData" nillable="true" type="tns:BidData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBidData" nillable="true" type="tns:ArrayOfBidData" />
+  <xs:complexType name="BidData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:double" />
+      <xs:element minOccurs="0" name="Auction_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Bid_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="User_Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BidData" nillable="true" type="tns:BidData" />
 </xs:schema>

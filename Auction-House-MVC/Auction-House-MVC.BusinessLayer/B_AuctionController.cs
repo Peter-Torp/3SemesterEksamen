@@ -1,5 +1,6 @@
 ﻿using Auction_House_MVC.ModelLayer;
 using Auction_House_MVC.ModelLayer.Auction;
+using Auction_House_MVC.ModelLayer.Bid;
 using Auction_House_MVC.ServiceLayer;
 using Auction_House_MVC.ServiceLayer.AuctionServiceReference;
 using System;
@@ -111,6 +112,35 @@ namespace Auction_House_MVC.BusinessLayer
             AuctionService aS = new AuctionService();
 
             return aS.GetImages(auctionId);
+        }
+
+        public List<Auction> GetLatestAuctions()
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetLatestAuctions();
+
+        }
+        public List<Bid> GetBids(int auctionId)
+        {
+            AuctionService aS = new AuctionService();
+            return aS.GetBids(auctionId);
+        }
+
+        public bool InsertBid(Bid bid)
+        {
+            AuctionService aS = new AuctionService();
+
+            int result = aS.InsertBid(bid);
+
+            if (result == -1)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
+
         }
     }
 }

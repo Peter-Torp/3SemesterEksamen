@@ -58,12 +58,33 @@ namespace Auction_House_WCF.Controllers
             return dBAuction.GetCategory();
         }
 
+        public List<AuctionData> GetLatestAuctions()
+        {
+            DBAuction dBAuction = new DBAuction();
+
+            return dBAuction.GetLastestAuctions();
+        }
+
 
         public bool InsertPicture(ImageData image)
         {
-            ImageHandler iHandler = new ImageHandler();
+            //ImageHandler iHandler = new ImageHandler();
 
-            return iHandler.InsertPictureToFolder(image);
+            //TEST
+            DBAuction dBAuction = new DBAuction();
+
+            //Add URL
+            image.ImgUrl = Path.Combine(image.UserId.ToString(), image.AuctionId.ToString());
+
+            //Add server date
+            image.DateAdded = DateTime.Now;
+
+            List<ImageData> images = new List<ImageData>();
+            images.Add(image);
+
+            return dBAuction.InsertPictures(images);
+
+            //return iHandler.InsertPictureToFolder(image);
         }
         
         public RemoteFileInfo GetPicture(DownloadRequest request)
@@ -79,7 +100,7 @@ namespace Auction_House_WCF.Controllers
             return dBAuction.GetAuctions(auctionName);
         }
 
-        public List<ImageData> GetImages(int auctionId)
+        public List<ImageInfoData> GetImages(int auctionId)
         {
             DBAuction dBAuction = new DBAuction();
             return dBAuction.GetImages(auctionId);

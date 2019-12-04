@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Auction_House_MVC.ModelLayer.Bid;
 
 namespace Auction_House_MVC.Utility
 {
@@ -129,9 +130,40 @@ namespace Auction_House_MVC.Utility
             List<ShowAuctionPictureModel> lSAPM = new List<ShowAuctionPictureModel>();
             foreach (Image image in images)
             {
-                ConvertFromImageToShowAuctionPictureModel(image);
+                lSAPM.Add(ConvertFromImageToShowAuctionPictureModel(image));
             }
             return lSAPM;
+        }
+
+        public ShowBid ConvertFromBidToShowBid(Bid bid)
+        {
+            ShowBid showBid = new ShowBid
+            {
+                Amount = bid.Amount,
+                Date = bid.Date,
+                UserName = bid.UserName
+            };
+            return showBid;
+        }
+        public List<ShowBid> ConvertFromBidsToShowBids(List<Bid> bids)
+        {
+            List<ShowBid> showBids = new List<ShowBid>();
+            foreach (Bid bid in bids)
+            {
+                showBids.Add(ConvertFromBidToShowBid(bid));
+            }
+            return showBids;
+        }
+
+        public Bid ConvertFromBidInsertModelToBid(InsertBidModel iBM, string userName, int auctionId)
+        {
+            Bid bid = new Bid
+            {
+                Auction_Id = auctionId,
+                Amount = iBM.Amount,
+                UserName = userName
+            };
+            return bid;
         }
     }
 }

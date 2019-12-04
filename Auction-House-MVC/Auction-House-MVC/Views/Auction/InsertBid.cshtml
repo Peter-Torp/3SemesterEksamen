@@ -1,0 +1,26 @@
+﻿@model Auction_House_MVC.Models.InsertBidModel
+@{
+    ViewBag.Title = "InsertBid";
+    Layout = null;
+}
+
+<h2>Bid here</h2>
+
+<h4>Bid to beat: 1000</h4>
+
+@using (Html.BeginForm("InsertBidDetail", "Auction", new { Model , id = Model.AuctionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <fieldset>
+            <!-- Bid amount -->
+            <div class="editor-label">
+                @Html.LabelFor(iB => iB.Amount)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(iB => iB.Amount, new { type = "number", min = "0", step = "0.50" })
+                <p style="color:red;">@Html.ValidationMessageFor(aS => aS.Amount)</p>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </fieldset>
+    </div>
+}
