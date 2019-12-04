@@ -41,32 +41,49 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="1" x:Name="Search" Content="Search User:" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="White"/>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-        <Button Command="{Binding Search}" Click="ProfileSearchButton_Click" Grid.Row="1" Grid.Column="3" x:Name="ProfileSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="9" Margin="0.4,0,0,0" Height="25" VerticalAlignment="Top"/>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="Search" Content="Search Auction:" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="White"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="EnterUsernameTextbox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" Margin="120,2,0,0"/>
+        <Button  Grid.Row="1" Grid.Column="3" x:Name="AuctionSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="9" Margin="0.4,0,0,0" Height="25" VerticalAlignment="Top"/>
 
+        <DataGrid Grid.Row="2" Grid.Column="1" x:Name="UserGrid" HorizontalAlignment="Left" Height="370" Margin="0,10,0,0" VerticalAlignment="Top" Width="760" Grid.ColumnSpan="8" RenderTransformOrigin="0.37,0.591"
+                  ItemsSource="{Binding FirstChildView}"
+                  IsReadOnly="True">
 
-        <Label Grid.Row="3" Grid.Column="1" x:Name="FirstNameLabel" Content="FirstName: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="4" Grid.Column="1" x:Name="LastNameLabel" Content="LastName: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="5" Grid.Column="1" x:Name="UsernameLabel" Content="Username: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="6" Grid.Column="1" x:Name="AddressLabel" Content="Address: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="7" Grid.Column="1" x:Name="EmailLabel" Content="Email: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="8" Grid.Column="1" x:Name="PhoneLabel" Content="Phone: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="9" Grid.Column="1" x:Name="ZipcodeLabel" Content="Zipcode: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
-        <Label Grid.Row="10" Grid.Column="1" x:Name="DateofBirthLabel" Content="DateofBirth: " HorizontalContentAlignment="Center" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White"/>
+            <DataGrid.Columns>
 
+                <DataGridTextColumn Header="Category" Width="*"/>
 
+                <DataGridTextColumn Header="Description" Width="*"/>
+                
+                <DataGridTextColumn Header="End Date" Width="*"/>
+    
+                <DataGridTextColumn Header="Start Price" ElementStyle="{StaticResource RightAlignStyle}"  Width="*"/>
 
-        <Grid>
-            <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="3" Grid.Column="2" x:Name="FirstNameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=LastName, Mode=OneWay}" Grid.Row="4" Grid.Column="2" x:Name="LastNameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=Username, Mode=OneWay}" Grid.Row="5" Grid.Column="2" x:Name="UsernameTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=Address, Mode=OneWay}" Grid.Row="6" Grid.Column="2" x:Name="AddressTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=Email, Mode=OneWay}" Grid.Row="7" Grid.Column="2" x:Name="EmailTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=Phone, Mode=OneWay}" Grid.Row="8" Grid.Column="2" x:Name="PhoneTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=Zipcode, Mode=OneWay}" Grid.Row="9" Grid.Column="2" x:Name="ZipcodeTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-            <TextBlock Text="{Binding Path=DateofBirth, Mode=OneWay}" Grid.Row="10" Grid.Column="2" x:Name="DateofBirthTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
-        </Grid>
+                <DataGridTextColumn Header="Bid Interval" ElementStyle="{StaticResource RightAlignStyle}" Width="*"/>
+
+                <DataGridTextColumn Header="Buy Out Price" ElementStyle="{StaticResource RightAlignStyle}"  Width="*"/>
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+            <Style  x:Key="RightAlignStyle" TargetType="{x:Type TextBlock}" >
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="Padding" Value="5,0"/>
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+           
+            <Style x:Key="LeftAlignStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="TextAlignment" Value="Left" />
+                <Setter Property="Padding" Value="5,0"/>
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            
+
+            </DataGrid.Resources>
+            
+        </DataGrid>
+        
+
 
 
 

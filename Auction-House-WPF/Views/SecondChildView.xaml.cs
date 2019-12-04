@@ -33,13 +33,9 @@ namespace Auction_House_WPF.Views
             DataContext = sCWM; 
         }
 
-        //When textfield is entered. Mouse click. And get result. 
-        private void ProfileSearchButton_MouseEnter(object sender, RoutedEventArgs e)
-        {
-            // EnterUsernameTextbox.Text += ((Button)sender).Content.ToString();
-            string input = EnterUsernameTextbox.Text;
-            sCWM.getUserByUserName(input);
-        }
+        
+
+        
     }
 
   

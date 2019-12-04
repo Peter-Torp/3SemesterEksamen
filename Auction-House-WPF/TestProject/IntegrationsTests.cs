@@ -25,24 +25,16 @@ namespace TestProject
         public void GetUserByUserName()
         {
             //Arrange
-            string testInput = "Magnus";
-            UserModel testOutput = new UserModel(null, null, "Magnus", null, null, null, null, null);
             //Act
-            UserShowModel foundUser = secondChildViewModel.getUserByUserName(testInput);
-            UserShowModel testUser = new UserShowModel(testOutput);
             //Assert
-            Assert.AreEqual(foundUser.UserName, testUser.UserName); 
         }
 
         [TestMethod]
         public void TryGetUserByUserNameInvalid()
         {
             //Arrange
-            string testInput = "AWDSAWDS";
             //Act
-            UserShowModel foundUser = secondChildViewModel.getUserByUserName(testInput);
             //Assert
-            Assert.IsNull(foundUser);
         }
 
         [TestCleanup]

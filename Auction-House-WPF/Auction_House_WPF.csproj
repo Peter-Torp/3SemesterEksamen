@@ -69,6 +69,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\FirstChildViewModel.cs" />
+    <Compile Include="ViewModels\MessageCommand.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SecondChildViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\FirstChildView.xaml.cs">
