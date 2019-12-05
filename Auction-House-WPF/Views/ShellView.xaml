@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Auction_House_WPF.Views"
         mc:Ignorable="d"
-        Title="ShellView" 
-        Height="555.104" 
-        Width="881.314" 
+        Title="ShellView"
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
         Background="#FF464646" Foreground="White"
         FontSize="16"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" Width="868.844"
         >
 
-    <Grid>
+    <Grid Margin="0,0,1.6,-0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="auto" />
@@ -36,13 +34,11 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
-        <!-- Row 1 -->
-        <TextBlock Text="{Binding Path=FullName, Mode=OneWay}" Grid.Row="1" 
-                   Grid.Column="1" Grid.ColumnSpan="2"></TextBlock>
+       
 
         <!-- Row 2 -->
-        <Button x:Name="LoadPageOne" Grid.Row="2" Grid.Column="1">Load First Page</Button>
-        <Button x:Name="LoadPageTwo" Grid.Row="2" Grid.Column="2">Load Second Page</Button>
+        <Button x:Name="LoadPageOne" Width="100" Grid.Row="2" Grid.Column="1">Find Auctions</Button>
+        <Button x:Name="LoadPageTwo" Width="100" Grid.Row="2" Grid.Column="2">Find Users</Button>
 
         <!-- Row 3 -->
         <ContentControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" 

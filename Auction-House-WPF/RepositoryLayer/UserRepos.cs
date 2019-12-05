@@ -13,7 +13,7 @@ namespace Auction_House_WPF.Repository
     public class UserRepos : IUserRepos
     {
 
-        UserService uSP = new UserService();
+        //UserService uSP = new UserService();
 
         public UserModel GetUserById(int id)
         {
@@ -29,6 +29,7 @@ namespace Auction_House_WPF.Repository
          */
         public UserModel GetUserByUserName(string _userName)
         {
+            UserService uSP = new UserService();
             UserModel user = null;
             user = uSP.GetUserByUserName(_userName);
 

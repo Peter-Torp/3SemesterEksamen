@@ -29,7 +29,7 @@ namespace TestProject
             //Act
             UserModel output = userService.GetUserByUserName(input);
             //Assert
-            Assert.AreEqual(testUser,output);
+            Assert.AreEqual(testUser.Username, output.Username);
         }
 
         [TestMethod] 

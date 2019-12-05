@@ -33,9 +33,21 @@ namespace Auction_House_WPF.Views
             DataContext = sCWM; 
         }
 
-        
+        private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmptySearch();
+        }
 
-        
+
+        //Error Handling to Nothing entered
+        public void EmptySearch()
+        {
+            if (string.IsNullOrEmpty(EnterUsernameTextbox.Text))
+            {
+                MessageBox.Show("Cannot be left empty, please input username", "Invalid search",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 
   

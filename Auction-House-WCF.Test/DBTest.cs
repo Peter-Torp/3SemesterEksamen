@@ -134,7 +134,10 @@ namespace Auction_House_WCF.Test
             Assert.IsTrue(NotEmpty);
         }
 
-        public void TestGetBid()
+
+      [TestMethod]
+        public void TestGetBids()
+
         {
             //Arrange 
             BidController bCtr = new BidController();
