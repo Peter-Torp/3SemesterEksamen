@@ -25,10 +25,12 @@
     }
 </style>
 
-<h2>Auction</h2>
+<h2>@Model.AuctionInfoModel.Description</h2>
 
 <ul class="list-group">
-    <li class="list-group-item">Description: @Model.AuctionInfoModel.Description</li>
+    <li class="list-group-item">
+    <h3 class="text-danger">Bid to beat: @Model.InsertBidModel.CurrentHighestBid</h3>
+    </li>
     <li class="list-group-item">Category: @Model.AuctionInfoModel.Category</li>
     <li class="list-group-item">Auction start date: @Model.AuctionInfoModel.StartDate</li>
     <li class="list-group-item">Auction end date: @Model.AuctionInfoModel.EndDate</li>
@@ -49,7 +51,7 @@
         @for (int i = 0; i < Model.ShowAuctionPictureModels.Count; i++)
         {
             <div class="col-sm-3">
-                <img src="@Url.Action("AuctionShowImage", new { id = Model.AuctionInfoModel.Id, fileName = Model.ShowAuctionPictureModels.ElementAt(i).FileName })"
+                <img src="@Url.Action("AuctionShowImage", new { id = Model.AuctionInfoModel.Id, fileName = Model.ShowAuctionPictureModels.ElementAt(i).FileName , Model.AuctionInfoModel.UserName })"
                      class="imageSize" />
             </div>
         }
@@ -59,12 +61,12 @@
 @if (User.Identity.IsAuthenticated && !User.Identity.Name.Equals(Model.AuctionInfoModel.UserName))
 {
     <div>
-        @Html.Action("InsertBid", new { Model.InsertBidModel, id = Model.AuctionInfoModel.Id })
+        @Html.Action("InsertBid", new { insertBidModel = Model.InsertBidModel, id = Model.AuctionInfoModel.Id })
     </div>
 }
 else if (User.Identity.Name.Equals(Model.AuctionInfoModel.UserName))
 {
-    <div class="badge badge-primary text-wrap success marginTop">
+    <div class="badge badge-primary text-wrap alert-success marginTop">
         <p>My auction</p>
     </div>
 }
@@ -77,7 +79,7 @@ else
 
 <div>
     <div class="container">
-        @Html.Action("ShowBids", new { Model.ShowBids });
+        @Html.Action("ShowBids", new { Model.ShowBids })
     </div>
 </div>
 

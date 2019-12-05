@@ -10,6 +10,13 @@ namespace Auction_House_WCF.Controllers
 {
     public class UserController
     {
+
+        public bool CheckUserName(string userName)
+        {
+            DBUser userDB = new DBUser();
+
+            return userDB.CheckUserName(userName);
+        }
         public int InsertUser(string userName, string email, string phone, string zipCode, string region, string password)
         {
             DBUser userDB = new DBUser();

@@ -197,6 +197,12 @@ namespace Auction_House_MVC.ServiceLayer.UserServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/TestString", ReplyAction="http://tempuri.org/IUserService/TestStringResponse")]
         System.Threading.Tasks.Task<string> TestStringAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CheckUserName", ReplyAction="http://tempuri.org/IUserService/CheckUserNameResponse")]
+        bool CheckUserName(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/CheckUserName", ReplyAction="http://tempuri.org/IUserService/CheckUserNameResponse")]
+        System.Threading.Tasks.Task<bool> CheckUserNameAsync(string userName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -256,6 +262,14 @@ namespace Auction_House_MVC.ServiceLayer.UserServiceReference {
         
         public System.Threading.Tasks.Task<string> TestStringAsync() {
             return base.Channel.TestStringAsync();
+        }
+        
+        public bool CheckUserName(string userName) {
+            return base.Channel.CheckUserName(userName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckUserNameAsync(string userName) {
+            return base.Channel.CheckUserNameAsync(userName);
         }
     }
 }

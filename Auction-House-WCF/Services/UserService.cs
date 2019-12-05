@@ -32,5 +32,11 @@ namespace Auction_House_WCF.Services
             UserController uCtr = new UserController();
             return uCtr.GetUserByUserName(userName);
         }
+
+        public bool CheckUserName(string userName)
+        {
+            UserController uCtr = new UserController();
+            return uCtr.CheckUserName(userName);
+        }
     }
 }

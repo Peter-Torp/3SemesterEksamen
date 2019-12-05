@@ -54,5 +54,11 @@ namespace Auction_House_MVC.ServiceLayer
 
             return confirmed;
         }
+
+        public bool CheckUserName(string userName)
+        {
+            IUserService uSClient = new UserServiceClient("BasicHttpBinding_IUserService");
+            return uSClient.CheckUserName(userName);
+        }
     }
 }

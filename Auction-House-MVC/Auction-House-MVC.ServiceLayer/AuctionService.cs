@@ -136,5 +136,12 @@ namespace Auction_House_MVC.ServiceLayer
             return aSClient.InsertBid(converter.ConvertFromBidToBidData(bid));
         }
 
+        public double GetHighestBidOnAuction(int auctionId)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            return aSClient.GetMaxBidOnAuction(auctionId);
+        }
+
     }
 }

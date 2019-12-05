@@ -25,5 +25,13 @@ namespace Auction_House_WCF.Controllers
 
             return dBBidding.Create(bidData);
         }
+
+        public double GetMaxBidOnAuction(int auctionId)
+        {
+            DBBidding dBBidding = new DBBidding();
+            return dBBidding.GetMaxBidOnAuction(auctionId);
+        }
+
+
     }
 }

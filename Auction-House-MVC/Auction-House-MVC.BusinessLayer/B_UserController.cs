@@ -44,5 +44,11 @@ namespace Auction_House_MVC.BusinessLayer
 
             return uS.InsertUser(uSU);
         }
+
+        public bool CheckUserName(string userName)
+        {
+            UserService uS = new UserService();
+            return uS.CheckUserName(userName);
+        }
     }
 }

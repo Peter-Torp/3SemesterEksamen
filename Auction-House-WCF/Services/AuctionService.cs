@@ -97,5 +97,11 @@ namespace Auction_House_WCF.Services
             BidController bCtr = new BidController();
             return bCtr.InsertBid(bidData);
         }
+
+        public double GetMaxBidOnAuction(int auctionId)
+        {
+            BidController bCtr = new BidController();
+            return bCtr.GetMaxBidOnAuction(auctionId);
+        }
     }
 }

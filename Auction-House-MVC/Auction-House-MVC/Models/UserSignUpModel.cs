@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Security;
+using Auction_House_MVC.Utility;
 
 namespace Auction_House_MVC.Models
 {
@@ -15,6 +16,7 @@ namespace Auction_House_MVC.Models
         [Required(ErrorMessage = "Please enter username.")]
         [StringLength(30, MinimumLength = 3)]
         [DisplayName("User name")]
+        [CheckExistingUserName(ErrorMessage = "User name is taken!")]
         public string UserName { get; set; }
 
         [Required]

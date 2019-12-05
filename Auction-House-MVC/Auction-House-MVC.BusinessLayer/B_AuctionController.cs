@@ -142,5 +142,12 @@ namespace Auction_House_MVC.BusinessLayer
             }
 
         }
+
+        public double GetHighestBidOnAuction(int auctionId)
+        {
+            AuctionService aS = new AuctionService();
+
+            return aS.GetHighestBidOnAuction(auctionId);
+        }
     }
 }

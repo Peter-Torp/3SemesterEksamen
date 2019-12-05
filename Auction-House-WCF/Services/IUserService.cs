@@ -19,5 +19,8 @@ namespace Auction_House_WCF.Services
         int InsertUser(string userName, string email, string phone, string zipCode, string region, string password);
         [OperationContract]
         string TestString();
+        [OperationContract]
+        bool CheckUserName(string userName);
+
     }
 }

@@ -11,8 +11,6 @@ namespace Auction_House_WCF.Controllers
 {
     public class AuctionController
     {
-     
-
         public int InsertAuction(AuctionData auctionData)
         {
             DBAuction auctionDB = new DBAuction();

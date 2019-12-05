@@ -31,6 +31,12 @@
   <wsdl:message name="IUserService_TestString_OutputMessage">
     <wsdl:part name="parameters" element="tns:TestStringResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_CheckUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserName" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_CheckUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="GetUserById">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserById" message="tns:IUserService_GetUserById_InputMessage" />
@@ -47,6 +53,10 @@
     <wsdl:operation name="TestString">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/TestString" message="tns:IUserService_TestString_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/TestStringResponse" message="tns:IUserService_TestString_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/CheckUserName" message="tns:IUserService_CheckUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/CheckUserNameResponse" message="tns:IUserService_CheckUserName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
@@ -80,6 +90,15 @@
     </wsdl:operation>
     <wsdl:operation name="TestString">
       <soap:operation soapAction="http://tempuri.org/IUserService/TestString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserName">
+      <soap:operation soapAction="http://tempuri.org/IUserService/CheckUserName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -359,6 +359,41 @@ namespace Auction_House_WCF.DataAccess
             return user;
         }
 
+        public bool CheckUserName(string userName)
+        {
+            bool found = false;
+            string queryString =
+                "SELECT P.Id " +
+                "FROM Person AS P " +
+                "WHERE P.UserName = @UserName";
+
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmdGetUser = new SqlCommand(queryString, connection);
+                cmdGetUser.Parameters.AddWithValue("@UserName", userName);
+
+                connection.Open();
+                SqlDataReader reader = cmdGetUser.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int userId = reader.GetInt32(0);
+                        if (userId > 0)
+                        {
+                            found = true;
+                        }
+                    }
+                }
+                //Close reader
+                reader.Close();
+                //Close connection
+                connection.Close();
+            }
+            return found;
+        }
+
         public Boolean testConnection(int id)
         {
             Boolean hasConnection = false;

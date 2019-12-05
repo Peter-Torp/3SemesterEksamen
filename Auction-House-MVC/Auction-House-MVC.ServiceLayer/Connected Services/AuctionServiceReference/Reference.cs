@@ -682,6 +682,12 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
         System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
+        double GetMaxBidOnAuction(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
+        System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -969,6 +975,14 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
             return base.Channel.InsertBidAsync(bidData);
+        }
+        
+        public double GetMaxBidOnAuction(int auctionId) {
+            return base.Channel.GetMaxBidOnAuction(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId) {
+            return base.Channel.GetMaxBidOnAuctionAsync(auctionId);
         }
     }
 }

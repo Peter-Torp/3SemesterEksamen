@@ -120,29 +120,22 @@ namespace Auction_House_MVC.Controllers
 
             ConvertViewModel converter = new ConvertViewModel();
 
+            //Auction details from database.
             AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
 
-            /*            //Get picture
-                        Stream image = bACtr.GetPicture(User.Identity.Name, id);
-                        var fileStreamResult = new FileStreamResult(image, "image/jpeg");
-                        ShowAuctionPictureModel aPic = new ShowAuctionPictureModel();
-                        aPic.FileStream = fileStreamResult;
-                        List<ShowAuctionPictureModel> sAPM = new List<ShowAuctionPictureModel>();
-                        sAPM.Add(aPic);*/
-
-            //Get Image info from database.
+            //Get Images info from database.
             List<ShowAuctionPictureModel> sAPM = converter.ConvertFromImagesToShowAuctionPictureModels(bACtr.GetImages(id));
-            if (sAPM.Count < 1)
-            {
-                sAPM.Add(new ShowAuctionPictureModel { FileName = "image_2.jpg" });
-                sAPM.Add(new ShowAuctionPictureModel { FileName = "image_1.jpg" });
-                sAPM.Add(new ShowAuctionPictureModel { FileName = "image_5.png" });
-                sAPM.Add(new ShowAuctionPictureModel { FileName = "image_1.jpg" });
-            }
 
+            //Get bids on the auction from database.
             List<ShowBid> showBids = converter.ConvertFromBidsToShowBids(bACtr.GetBids(id));
 
-            return View(new AuctionModel(){ AuctionInfoModel = auctionInfoModel,ShowAuctionPictureModels = sAPM, ShowBids = showBids});
+            //Get highest bid from database - Create insert bids model
+            InsertBidModel insertBidModel = new InsertBidModel();
+            insertBidModel.CurrentHighestBid = bACtr.GetHighestBidOnAuction(id);
+            insertBidModel.MinimumValidBid = insertBidModel.CurrentHighestBid + auctionInfoModel.BidInterval;
+
+            //Return the AuctionModel
+            return View(new AuctionModel(){ AuctionInfoModel = auctionInfoModel,ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel});
         }
 
         public ActionResult AddPictureToMemory(AuctionPicture picture,int id)
@@ -195,14 +188,15 @@ namespace Auction_House_MVC.Controllers
         }
 
 
-        public FileStreamResult AuctionShowImage(int id, string fileName)
+        public FileStreamResult AuctionShowImage(int id, string fileName, string userName)
         {
             B_AuctionController bActr = new B_AuctionController();
 
-            Image image = bActr.GetPicture(User.Identity.Name, id, fileName);
+            Image image = bActr.GetPicture(userName, id, fileName);
 
-            var fileStreamResult = new FileStreamResult(image.FileStream, "image/jpg");
+            var fileStreamResult = new FileStreamResult(image.FileStream, "image/"+Path.GetExtension(fileName));
             fileStreamResult.FileDownloadName = image.FileName;
+            
             return fileStreamResult;
         }
 
@@ -211,21 +205,28 @@ namespace Auction_House_MVC.Controllers
             return View("ShowBids",showBids);
         }
 
-        public ActionResult InsertBid(InsertBidModel insertBid, int id)
+        public ActionResult InsertBid(InsertBidModel insertBidModel, int id)
         {
-            insertBid.AuctionId = id;
-            return View("InsertBid", insertBid );
+            insertBidModel.AuctionId = id;
+            return View("InsertBid", insertBidModel );
         }
 
+        [HttpPost]
         public ActionResult InsertBidDetail(InsertBidModel insertBid, int id)
         {
-            B_AuctionController bACtr = new B_AuctionController();
+            if (ModelState.IsValid)
+            {
+                B_AuctionController bACtr = new B_AuctionController();
 
-            ConvertViewModel converter = new ConvertViewModel();
+                ConvertViewModel converter = new ConvertViewModel();
 
-            bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
+                bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
 
-            AuctionModel aModel = new AuctionModel();
+                AuctionModel aModel = new AuctionModel();
+            } else
+            {
+                ModelState.AddModelError("", "Incorrect value");
+            }
 
             return RedirectToAction("Auction", new { id } );
         }

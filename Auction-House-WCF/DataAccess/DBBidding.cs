@@ -35,9 +35,9 @@ namespace Auction_House_WCF.DataAccess
             };
 
             // SQL query
-            string getBids = 
+            string getBids =
                 "SELECT B.Bid_Id, B.Auction_Id, B.User_Id, B.Date, B.Amount, P.UserName " +
-                "FROM Bid AS B " + 
+                "FROM Bid AS B " +
                 "INNER JOIN Person AS P ON B.User_Id = P.Id " +
                 "WHERE B.Auction_Id = @auctionId " +
                 "ORDER BY B.Amount DESC";
@@ -62,7 +62,7 @@ namespace Auction_House_WCF.DataAccess
                             {
                                 while (reader.Read())
                                 {
-                                    BidData bid = ToObject(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), 
+                                    BidData bid = ToObject(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2),
                                         reader.GetDateTime(3), Convert.ToDouble(reader.GetDouble(4)), reader.GetString(5));
                                     bidData.Add(bid);
                                 }
@@ -86,7 +86,7 @@ namespace Auction_House_WCF.DataAccess
             return bidData;
         }
 
-        public BidData ToObject(int bidId, int auctionId, int userId, DateTime date , double amount, string userName)
+        public BidData ToObject(int bidId, int auctionId, int userId, DateTime date, double amount, string userName)
         {
             BidData bidData = new BidData()
             {
@@ -100,7 +100,48 @@ namespace Auction_House_WCF.DataAccess
             return bidData;
         }
 
+        public double GetMaxBidOnAuction(int auctionId)
+        {
+            string getMaxBid = "SELECT MAX(B.Amount) " +
+                "FROM Bid AS B " +
+                "WHERE B.Auction_Id = @auctionId";
 
+            double maxBid = -1;
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    //Open connection to database.
+                    conn.Open();
+                    using (var cmdGMaxBid = new SqlCommand(getMaxBid, conn))
+                    {
+                        cmdGMaxBid.Parameters.AddWithValue("auctionId", auctionId);
+                        SqlDataReader reader = cmdGMaxBid.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                               maxBid = reader.GetDouble(0);
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+                catch (SqlException e)
+                {
+                    throw e;
+                }
+            }
+            return maxBid;
+        }
+
+        /// <summary>
+        /// Inserts a bid in database.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public int Create(BidData entity)
         {
             //Set isolation level
@@ -125,6 +166,8 @@ namespace Auction_House_WCF.DataAccess
                         //Open connection to database.
                         conn.Open();
 
+
+
                         entity.User_Id = -1;
                         using (var cmdGUser = new SqlCommand(getUser, conn))
                         {
@@ -139,7 +182,7 @@ namespace Auction_House_WCF.DataAccess
                             }
                             reader.Close();
                         }
-                        if(entity.User_Id == -1)
+                        if (entity.User_Id == -1)
                         {
                             scope.Dispose();
                         }
