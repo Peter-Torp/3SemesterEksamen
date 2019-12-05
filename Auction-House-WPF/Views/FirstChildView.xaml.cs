@@ -47,6 +47,20 @@ namespace Auction_House_WPF.Views
             MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-       
+        private void DeleteAuctionButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            //Error handling? If nothing is selected
+            if (AuctionDataGrid.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("No row selected !");// show a message here to inform
+            }
+
+           //make code that selects and deletes selected row here
+
+
+            //Refreshes the datagrid? Maybee should implement Inotifychangedproperty?
+            AuctionDataGrid.Items.Refresh();
+        }
     }
 }
