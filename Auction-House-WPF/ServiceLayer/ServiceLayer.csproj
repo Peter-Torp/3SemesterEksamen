@@ -87,7 +87,22 @@
     <None Include="Connected Services\AuctionServiceReference\AuctionService3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\AuctionServiceReference\ServiceLayer.AuctionServiceReference.AuctionData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\ServiceLayer.AuctionServiceReference.BidData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\ServiceLayer.AuctionServiceReference.ImageInfoData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AuctionServiceReference\ServiceLayer.AuctionServiceReference.InsertPictureResponse.datasource">

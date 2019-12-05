@@ -70,11 +70,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\AuctionServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Model\AuctionShowModel.cs" />
     <Compile Include="ViewModels\FirstChildViewModel.cs" />
     <Compile Include="ViewModels\MessageCommand.cs" />
@@ -127,43 +122,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService.wsdl" />
-    <None Include="Connected Services\AuctionServiceReference\AuctionService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\AuctionService6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\Auction_House_WPF.AuctionServiceReference.AuctionData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\Auction_House_WPF.AuctionServiceReference.BidData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\Auction_House_WPF.AuctionServiceReference.ImageInfoData.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\Auction_House_WPF.AuctionServiceReference.InsertPictureResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\AuctionServiceReference\Auction_House_WPF.AuctionServiceReference.RemoteFileInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -188,21 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AuctionServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\AuctionServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\AuctionServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\AuctionServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

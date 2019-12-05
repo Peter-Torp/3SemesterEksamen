@@ -202,6 +202,397 @@ namespace ServiceLayer.AuctionServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImageData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class ImageData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AuctionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.IO.Stream FileStreamField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AuctionId {
+            get {
+                return this.AuctionIdField;
+            }
+            set {
+                if ((this.AuctionIdField.Equals(value) != true)) {
+                    this.AuctionIdField = value;
+                    this.RaisePropertyChanged("AuctionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.IO.Stream FileStream {
+            get {
+                return this.FileStreamField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileStreamField, value) != true)) {
+                    this.FileStreamField = value;
+                    this.RaisePropertyChanged("FileStream");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgUrl {
+            get {
+                return this.ImgUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgUrlField, value) != true)) {
+                    this.ImgUrlField = value;
+                    this.RaisePropertyChanged("ImgUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ImageInfoData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class ImageInfoData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AuctionIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateAddedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgUrlField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int AuctionId {
+            get {
+                return this.AuctionIdField;
+            }
+            set {
+                if ((this.AuctionIdField.Equals(value) != true)) {
+                    this.AuctionIdField = value;
+                    this.RaisePropertyChanged("AuctionId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateAdded {
+            get {
+                return this.DateAddedField;
+            }
+            set {
+                if ((this.DateAddedField.Equals(value) != true)) {
+                    this.DateAddedField = value;
+                    this.RaisePropertyChanged("DateAdded");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgUrl {
+            get {
+                return this.ImgUrlField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgUrlField, value) != true)) {
+                    this.ImgUrlField = value;
+                    this.RaisePropertyChanged("ImgUrl");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BidData", Namespace="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class BidData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Auction_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Bid_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int User_IdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Auction_Id {
+            get {
+                return this.Auction_IdField;
+            }
+            set {
+                if ((this.Auction_IdField.Equals(value) != true)) {
+                    this.Auction_IdField = value;
+                    this.RaisePropertyChanged("Auction_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Bid_Id {
+            get {
+                return this.Bid_IdField;
+            }
+            set {
+                if ((this.Bid_IdField.Equals(value) != true)) {
+                    this.Bid_IdField = value;
+                    this.RaisePropertyChanged("Bid_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int User_Id {
+            get {
+                return this.User_IdField;
+            }
+            set {
+                if ((this.User_IdField.Equals(value) != true)) {
+                    this.User_IdField = value;
+                    this.RaisePropertyChanged("User_Id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuctionServiceReference.IAuctionService")]
     public interface IAuctionService {
@@ -226,10 +617,10 @@ namespace ServiceLayer.AuctionServiceReference {
         
         // CODEGEN: Generating message contract since the operation InsertPicture is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPicture", ReplyAction="http://tempuri.org/IAuctionService/InsertPictureResponse")]
-        ServiceLayer.AuctionServiceReference.InsertPictureResponse InsertPicture(ServiceLayer.AuctionServiceReference.RemoteFileInfo request);
+        ServiceLayer.AuctionServiceReference.InsertPictureResponse InsertPicture(ServiceLayer.AuctionServiceReference.ImageData1 request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPicture", ReplyAction="http://tempuri.org/IAuctionService/InsertPictureResponse")]
-        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(ServiceLayer.AuctionServiceReference.RemoteFileInfo request);
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(ServiceLayer.AuctionServiceReference.ImageData1 request);
         
         // CODEGEN: Generating message contract since the wrapper name (DownloadRequest) of message DownloadRequest does not match the default value (GetPicture)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetPicture", ReplyAction="http://tempuri.org/IAuctionService/GetPictureResponse")]
@@ -237,30 +628,100 @@ namespace ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetPicture", ReplyAction="http://tempuri.org/IAuctionService/GetPictureResponse")]
         System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.RemoteFileInfo> GetPictureAsync(ServiceLayer.AuctionServiceReference.DownloadRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPictures", ReplyAction="http://tempuri.org/IAuctionService/InsertPicturesResponse")]
+        bool InsertPictures(ServiceLayer.AuctionServiceReference.ImageData[] images);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertPictures", ReplyAction="http://tempuri.org/IAuctionService/InsertPicturesResponse")]
+        System.Threading.Tasks.Task<bool> InsertPicturesAsync(ServiceLayer.AuctionServiceReference.ImageData[] images);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionsResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctions(string auctionName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionsResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetUserAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetUserAuctionsResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData[] GetUserAuctions(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetUserAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetUserAuctionsResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetUserAuctionsAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuction", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData GetAuction(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuction", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetCategories", ReplyAction="http://tempuri.org/IAuctionService/GetCategoriesResponse")]
+        string[] GetCategories();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetCategories", ReplyAction="http://tempuri.org/IAuctionService/GetCategoriesResponse")]
+        System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
+        ServiceLayer.AuctionServiceReference.ImageInfoData[] GetImages(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetImages", ReplyAction="http://tempuri.org/IAuctionService/GetImagesResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.ImageInfoData[]> GetImagesAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetLatestAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetLatestAuctionsResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData[] GetLatestAuctions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetLatestAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetLatestAuctionsResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetLatestAuctionsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetBids", ReplyAction="http://tempuri.org/IAuctionService/GetBidsResponse")]
+        ServiceLayer.AuctionServiceReference.BidData[] GetBids(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetBids", ReplyAction="http://tempuri.org/IAuctionService/GetBidsResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
+        int InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
+        System.Threading.Tasks.Task<int> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class RemoteFileInfo {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ImageData", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ImageData1 {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public int AuctionId;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public System.DateTime DateAdded;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string Description;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
         public string FileName;
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public long Length;
+        public string ImgUrl;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public int UserId;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream FileByteStream;
+        public System.IO.Stream FileStream;
         
-        public RemoteFileInfo() {
+        public ImageData1() {
         }
         
-        public RemoteFileInfo(string FileName, long Length, System.IO.Stream FileByteStream) {
+        public ImageData1(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            this.AuctionId = AuctionId;
+            this.DateAdded = DateAdded;
+            this.Description = Description;
             this.FileName = FileName;
-            this.Length = Length;
-            this.FileByteStream = FileByteStream;
+            this.ImgUrl = ImgUrl;
+            this.UserId = UserId;
+            this.FileStream = FileStream;
         }
     }
     
@@ -296,6 +757,31 @@ namespace ServiceLayer.AuctionServiceReference {
             this.AuctionNumber = AuctionNumber;
             this.FileName = FileName;
             this.UserId = UserId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RemoteFileInfo {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string FileName;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public long Length;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream FileByteStream;
+        
+        public RemoteFileInfo() {
+        }
+        
+        public RemoteFileInfo(string FileName, long Length, System.IO.Stream FileByteStream) {
+            this.FileName = FileName;
+            this.Length = Length;
+            this.FileByteStream = FileByteStream;
         }
     }
     
@@ -351,28 +837,36 @@ namespace ServiceLayer.AuctionServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ServiceLayer.AuctionServiceReference.InsertPictureResponse ServiceLayer.AuctionServiceReference.IAuctionService.InsertPicture(ServiceLayer.AuctionServiceReference.RemoteFileInfo request) {
+        ServiceLayer.AuctionServiceReference.InsertPictureResponse ServiceLayer.AuctionServiceReference.IAuctionService.InsertPicture(ServiceLayer.AuctionServiceReference.ImageData1 request) {
             return base.Channel.InsertPicture(request);
         }
         
-        public void InsertPicture(string FileName, long Length, System.IO.Stream FileByteStream) {
-            ServiceLayer.AuctionServiceReference.RemoteFileInfo inValue = new ServiceLayer.AuctionServiceReference.RemoteFileInfo();
+        public void InsertPicture(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            ServiceLayer.AuctionServiceReference.ImageData1 inValue = new ServiceLayer.AuctionServiceReference.ImageData1();
+            inValue.AuctionId = AuctionId;
+            inValue.DateAdded = DateAdded;
+            inValue.Description = Description;
             inValue.FileName = FileName;
-            inValue.Length = Length;
-            inValue.FileByteStream = FileByteStream;
+            inValue.ImgUrl = ImgUrl;
+            inValue.UserId = UserId;
+            inValue.FileStream = FileStream;
             ServiceLayer.AuctionServiceReference.InsertPictureResponse retVal = ((ServiceLayer.AuctionServiceReference.IAuctionService)(this)).InsertPicture(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> ServiceLayer.AuctionServiceReference.IAuctionService.InsertPictureAsync(ServiceLayer.AuctionServiceReference.RemoteFileInfo request) {
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> ServiceLayer.AuctionServiceReference.IAuctionService.InsertPictureAsync(ServiceLayer.AuctionServiceReference.ImageData1 request) {
             return base.Channel.InsertPictureAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(string FileName, long Length, System.IO.Stream FileByteStream) {
-            ServiceLayer.AuctionServiceReference.RemoteFileInfo inValue = new ServiceLayer.AuctionServiceReference.RemoteFileInfo();
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.InsertPictureResponse> InsertPictureAsync(int AuctionId, System.DateTime DateAdded, string Description, string FileName, string ImgUrl, int UserId, System.IO.Stream FileStream) {
+            ServiceLayer.AuctionServiceReference.ImageData1 inValue = new ServiceLayer.AuctionServiceReference.ImageData1();
+            inValue.AuctionId = AuctionId;
+            inValue.DateAdded = DateAdded;
+            inValue.Description = Description;
             inValue.FileName = FileName;
-            inValue.Length = Length;
-            inValue.FileByteStream = FileByteStream;
+            inValue.ImgUrl = ImgUrl;
+            inValue.UserId = UserId;
+            inValue.FileStream = FileStream;
             return ((ServiceLayer.AuctionServiceReference.IAuctionService)(this)).InsertPictureAsync(inValue);
         }
         
@@ -403,6 +897,78 @@ namespace ServiceLayer.AuctionServiceReference {
             inValue.FileName = FileName;
             inValue.UserId = UserId;
             return ((ServiceLayer.AuctionServiceReference.IAuctionService)(this)).GetPictureAsync(inValue);
+        }
+        
+        public bool InsertPictures(ServiceLayer.AuctionServiceReference.ImageData[] images) {
+            return base.Channel.InsertPictures(images);
+        }
+        
+        public System.Threading.Tasks.Task<bool> InsertPicturesAsync(ServiceLayer.AuctionServiceReference.ImageData[] images) {
+            return base.Channel.InsertPicturesAsync(images);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctions(string auctionName) {
+            return base.Channel.GetAuctions(auctionName);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionsAsync(string auctionName) {
+            return base.Channel.GetAuctionsAsync(auctionName);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData[] GetUserAuctions(string userName) {
+            return base.Channel.GetUserAuctions(userName);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetUserAuctionsAsync(string userName) {
+            return base.Channel.GetUserAuctionsAsync(userName);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData GetAuction(int auctionId) {
+            return base.Channel.GetAuction(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData> GetAuctionAsync(int auctionId) {
+            return base.Channel.GetAuctionAsync(auctionId);
+        }
+        
+        public string[] GetCategories() {
+            return base.Channel.GetCategories();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetCategoriesAsync() {
+            return base.Channel.GetCategoriesAsync();
+        }
+        
+        public ServiceLayer.AuctionServiceReference.ImageInfoData[] GetImages(int auctionId) {
+            return base.Channel.GetImages(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.ImageInfoData[]> GetImagesAsync(int auctionId) {
+            return base.Channel.GetImagesAsync(auctionId);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData[] GetLatestAuctions() {
+            return base.Channel.GetLatestAuctions();
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetLatestAuctionsAsync() {
+            return base.Channel.GetLatestAuctionsAsync();
+        }
+        
+        public ServiceLayer.AuctionServiceReference.BidData[] GetBids(int id) {
+            return base.Channel.GetBids(id);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id) {
+            return base.Channel.GetBidsAsync(id);
+        }
+        
+        public int InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData) {
+            return base.Channel.InsertBid(bidData);
+        }
+        
+        public System.Threading.Tasks.Task<int> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData) {
+            return base.Channel.InsertBidAsync(bidData);
         }
     }
 }

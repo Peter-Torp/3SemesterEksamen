@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IAuctionService = ServiceLayer.AuctionServiceReference.IAuctionService;
-using Auction_House_WPF;
 using ServiceLayer.AuctionServiceReference;
 using Auction_House_WPF.ServiceAccessExceptions;
 using ServiceLayer.Interface;
@@ -15,8 +13,15 @@ namespace Auction_House_WPF.ServiceLayer
 {
     public class AuctionService : IAuctionServiceLayer
     {
-        List<AuctionData> auctions;
+        List<object> auctions;
         List<AuctionModel> auctionModels;
+
+        public AuctionService()
+        {
+            auctions = new List<object>();
+            auctionModels = new List<AuctionModel>();
+        }
+        
 
         public bool deleteAuctionById(int id)
         {
@@ -28,23 +33,31 @@ namespace Auction_House_WPF.ServiceLayer
 
         public List<AuctionModel> getAuctionsByUserName(string userName)
         {
-            IAuctionService auctionService = createServiceClient();
-            auctions.Add(auctionService.GetActiveAuctionsByUsername(userName));
+            auctionModels.Clear();
+            auctions.Clear();
+            AuctionData auctionData;
 
-            foreach (AuctionData auction in auctions)
+            using(AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
             {
-                auctionModels.Add(AuctionUtility.convertAuctionDataToAuctionModel(auction));
+                auctions.Add(proxy.GetUserAuctions(userName));
+
+                    foreach (object auction in auctions)
+                {
+                    auctionData = (AuctionData)auction;
+                    auctionModels.Add(AuctionUtility.convertAuctionDataToAuctionModel(auctionData));
+                }
             }
 
             return auctionModels;
         }
-
-        private IAuctionService createServiceClient()
+        /*
+        private IAuctionService CreateServiceClient()
         {
             IAuctionService auctionService = null;
+
             try
             {
-                auctionService = new AuctionServiceClient();
+                auctionService = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
 
             }
             catch (ServiceAccessException)
@@ -53,6 +66,6 @@ namespace Auction_House_WPF.ServiceLayer
             }
 
             return auctionService;
-        }
+        }*/
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Interface
 {
-    interface IAuctionServiceLayer
+    public interface IAuctionServiceLayer
     {
         List<AuctionModel> getAuctionsByUserName(string userName);
         bool deleteAuctionById(int id);
