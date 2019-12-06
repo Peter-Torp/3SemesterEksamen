@@ -127,7 +127,7 @@ namespace Auction_House_MVC.ServiceLayer
             return converter.ConvertFromBidDataToBids(aSClient.GetBids(auctionId));
         }
 
-        public int InsertBid(Bid bid)
+        public bool InsertBid(Bid bid)
         {
             IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
 

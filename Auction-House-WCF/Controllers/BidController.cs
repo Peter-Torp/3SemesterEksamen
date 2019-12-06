@@ -16,14 +16,20 @@ namespace Auction_House_WCF.Controllers
             return dBBidding.GetBids(id);
         }
 
-        public int InsertBid(BidData bidData)
+        public bool InsertBid(BidData bidData)
         {
             DBBidding dBBidding = new DBBidding();
 
             // Add serverside date
             bidData.Date = DateTime.Now;
 
-            return dBBidding.Create(bidData);
+            int value = dBBidding.Create(bidData);
+            bool successful = false;
+            if(value == 1)
+            {
+                successful = true;
+            }
+            return successful;
         }
 
         public double GetMaxBidOnAuction(int auctionId)

@@ -678,10 +678,10 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
-        int InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
+        bool InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
-        System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
+        System.Threading.Tasks.Task<bool> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
         double GetMaxBidOnAuction(int auctionId);
@@ -969,11 +969,11 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
             return base.Channel.GetBidsAsync(id);
         }
         
-        public int InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
+        public bool InsertBid(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
             return base.Channel.InsertBid(bidData);
         }
         
-        public System.Threading.Tasks.Task<int> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
+        public System.Threading.Tasks.Task<bool> InsertBidAsync(Auction_House_MVC.ServiceLayer.AuctionServiceReference.BidData bidData) {
             return base.Channel.InsertBidAsync(bidData);
         }
         

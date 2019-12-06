@@ -131,16 +131,9 @@ namespace Auction_House_MVC.BusinessLayer
         {
             AuctionService aS = new AuctionService();
 
-            int result = aS.InsertBid(bid);
+            bool successful = aS.InsertBid(bid);
 
-            if (result == -1)
-            {
-                return false;
-            } else
-            {
-                return true;
-            }
-
+            return successful;
         }
 
         public double GetHighestBidOnAuction(int auctionId)

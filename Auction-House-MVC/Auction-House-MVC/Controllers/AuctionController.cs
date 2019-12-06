@@ -214,15 +214,20 @@ namespace Auction_House_MVC.Controllers
         [HttpPost]
         public ActionResult InsertBidDetail(InsertBidModel insertBid, int id)
         {
+            bool successful = false;
             if (ModelState.IsValid)
             {
                 B_AuctionController bACtr = new B_AuctionController();
 
                 ConvertViewModel converter = new ConvertViewModel();
 
-                bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
+                successful = bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
 
-                AuctionModel aModel = new AuctionModel();
+                if( successful )
+                {
+                    
+                    ModelState.AddModelError("", "Someone was faster than you! Pleas insert new bid.");
+                }
             } else
             {
                 ModelState.AddModelError("", "Incorrect value");

@@ -17,11 +17,5 @@ namespace Auction_House_MVC.Models
         [DataType(DataType.Currency)]
         public double Amount { get; set; }
         public int AuctionId {get; set;}
-
-        public double SetRange()
-        {
-            
-            return 0;
-        }
     }
 }

@@ -11,6 +11,7 @@ using System.Transactions;
 
 namespace Auction_House_WCF.DataAccess
 {
+    //Implicit transactions https://docs.microsoft.com/en-us/dotnet/framework/data/transactions/implementing-an-implicit-transaction-using-transaction-scope?view=netframework-4.8
     class DBBidding : ICRUD<BidData>
     {
         private string _connectionString;
@@ -122,7 +123,7 @@ namespace Auction_House_WCF.DataAccess
                         {
                             while (reader.Read())
                             {
-                               maxBid = reader.GetDouble(0);
+                                maxBid = reader.GetDouble(0);
                             }
                         }
                         reader.Close();
@@ -141,7 +142,7 @@ namespace Auction_House_WCF.DataAccess
         /// Inserts a bid in database.
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns></returns>
+        /// <returns>integer: -1 if failed : 1 if successful</returns>
         public int Create(BidData entity)
         {
             //Set isolation level
@@ -155,9 +156,20 @@ namespace Auction_House_WCF.DataAccess
                 "INSERT INTO Bid (Auction_Id, User_Id, Date,Amount) " +
                 "VALUES(@auctionId, @userId, @date, @amount)";
             string getUser = "SELECT Id FROM Person WHERE UserName = @userName";
+            string getHighestBid = 
+                "SELECT MAX(B.Amount) " +
+                "FROM Bid AS B " +
+                "WHERE B.Auction_Id = @auctionId";
+            string getAuction = 
+                "SELECT BidInterval " +
+                "FROM Auction " +
+                "WHERE Id = @auctionId";
 
-            //Create transaction.
-            using (var scope = new TransactionScope(TransactionScopeOption.Required, options))
+            bool isValid = false; // Determine if bid comply with restrictions.
+            int successful = -1; //Return value - If transaction was successful.
+
+            //Create transaction scope.
+            using (var scope = new TransactionScope(TransactionScopeOption.Required))
             {
                 using (var conn = new SqlConnection(_connectionString))
                 {
@@ -166,8 +178,52 @@ namespace Auction_House_WCF.DataAccess
                         //Open connection to database.
                         conn.Open();
 
+                        //Nested scope - TransactionScopeOption.Required so that it will continue on root scope.
+                        using (var scopeGetAndCalc = new TransactionScope(TransactionScopeOption.Required, options))
+                        {
+                            double highestBid = -1;
+                            double bidInterval = -1;
+                            double validBid = -1;
 
+                            using (var cmdGHighestBid = new SqlCommand(getHighestBid, conn))
+                            {
+                                cmdGHighestBid.Parameters.AddWithValue("auctionId", entity.Auction_Id);
+                                SqlDataReader reader = cmdGHighestBid.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        highestBid = reader.GetDouble(0);
+                                    }
+                                }
+                                reader.Close();
+                            }
 
+                            using (var cmdGAuction = new SqlCommand(getAuction, conn))
+                            {
+                                cmdGAuction.Parameters.AddWithValue("auctionId", entity.Auction_Id);
+                                SqlDataReader reader = cmdGAuction.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        bidInterval = reader.GetDouble(0);
+                                    }
+                                }
+                                reader.Close();
+                            }
+                            //Calculate valid bid when considering bid interval.
+                            validBid = highestBid + bidInterval;
+
+                            if (validBid <= entity.Amount)
+                            {
+                                isValid = true;
+                                scopeGetAndCalc.Complete();
+                            }
+                        }
+
+                        if (isValid)
+                        {
                         entity.User_Id = -1;
                         using (var cmdGUser = new SqlCommand(getUser, conn))
                         {
@@ -181,11 +237,8 @@ namespace Auction_House_WCF.DataAccess
                                 }
                             }
                             reader.Close();
-                        }
-                        if (entity.User_Id == -1)
-                        {
-                            scope.Dispose();
-                        }
+                            }
+                        
 
                         using (var cmdIBid = new SqlCommand(insertBid, conn))
                         {
@@ -193,23 +246,20 @@ namespace Auction_House_WCF.DataAccess
                             cmdIBid.Parameters.AddWithValue("userId", entity.User_Id);
                             cmdIBid.Parameters.AddWithValue("date", entity.Date);
                             cmdIBid.Parameters.AddWithValue("amount", entity.Amount);
-                            entity.Bid_Id = (int)Convert.ToInt32(cmdIBid.ExecuteScalar());
+                            cmdIBid.ExecuteScalar();
                         }
 
-                        //If everything went well, will commit.
                         scope.Complete();
+                            successful = 1;
+                        }
                     }
                     catch (TransactionAbortedException e)
                     {
                         throw e;
                     }
-                    finally
-                    {
-                        scope.Dispose();
-                    }
                 }
             }
-            return entity.Bid_Id;
+            return successful;
         }
 
         public BidData Get(int id)

@@ -17,8 +17,8 @@
                 @Html.LabelFor(iB => iB.Amount)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(iB => iB.Amount, new { type = "number", min = Model.MinimumValidBid.ToString(), step = "0.50"})
-                <p style="color:red;">@Html.ValidationMessageFor(aS => aS.Amount)</p>
+                @Html.TextBoxFor(iB => iB.Amount, new { type = "number", min = "0", step = "0.50"})
+                <p style="color:red;">@Html.ValidationMessageFor(iB => iB.Amount)</p>
             </div>
             <input type="submit" value="Submit" class="btn btn-primary" />
         </fieldset>

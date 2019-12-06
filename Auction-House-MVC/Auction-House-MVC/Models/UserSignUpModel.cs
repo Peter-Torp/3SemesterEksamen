@@ -40,8 +40,8 @@ namespace Auction_House_MVC.Models
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
-        [Display(Name = "Password")]
-        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Password does not contain atleast one of the following: a number, uppercase letter or lowercase letter.")]
+        [Display(Name = "Password", Description = "Password must contain: a number, an uppercase letter, lowercase letter and be 8 characters long. ")]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Password does not contain atleast one of the following: a number, an uppercase letter and a lowercase letter.")]
         public string Password { get; set; }
 
         [Compare("Password", ErrorMessage = "Confirm password does not match.")]

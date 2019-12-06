@@ -193,7 +193,7 @@
   <xs:element name="InsertBidResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="InsertBidResult" type="xs:int" />
+        <xs:element minOccurs="0" name="InsertBidResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

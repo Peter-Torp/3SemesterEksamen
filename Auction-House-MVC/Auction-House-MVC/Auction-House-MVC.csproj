@@ -132,9 +132,9 @@
     <Compile Include="Models\UserShowModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\CalculateMinimumValue.cs" />
     <Compile Include="Utility\ConvertViewModel.cs" />
     <Compile Include="Utility\CheckExistingUserName.cs" />
+    <Compile Include="Utility\HtmlExtensions.cs" />
     <Compile Include="Utility\IViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

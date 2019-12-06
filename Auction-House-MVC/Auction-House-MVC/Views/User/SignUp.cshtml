@@ -1,4 +1,7 @@
-﻿@model Auction_House_MVC.Models.UserSignUpModel
+﻿<!--Using for password description-->
+@using Auction_House_MVC.Utility
+@model Auction_House_MVC.Models.UserSignUpModel
+
 
 @{
     ViewBag.Title = "Sign Up";
@@ -54,7 +57,8 @@
 </div>
             <!-- Password -->
             <div class="editor-label">
-                @Html.LabelFor(u => u.Password)
+                @Html.LabelFor(u => u.Password) <br>
+                @Html.DescriptionFor(u => u.Password)
             </div>
             <div class="editor-field">
                 @Html.PasswordFor(u => u.Password)
@@ -63,6 +67,7 @@
             <!-- Verify password -->
             <div class="editor-label">
                 @Html.LabelFor(u => u.ConfirmPassword)
+
             </div>
             <div class="editor-field">
                 @Html.PasswordFor(u => u.ConfirmPassword)

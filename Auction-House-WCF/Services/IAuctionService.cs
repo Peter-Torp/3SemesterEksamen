@@ -43,7 +43,7 @@ namespace Auction_House_WCF.Services
         [OperationContract]
         List<BidData> GetBids(int id);
         [OperationContract]
-        int InsertBid(BidData bidData);
+        bool InsertBid(BidData bidData);
         [OperationContract]
         double GetMaxBidOnAuction(int auctionId);
 

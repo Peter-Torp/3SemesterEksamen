@@ -92,7 +92,7 @@ namespace Auction_House_WCF.Services
             return bCtr.GetBids(id);
         }
 
-        public int InsertBid(BidData bidData)
+        public bool InsertBid(BidData bidData)
         {
             BidController bCtr = new BidController();
             return bCtr.InsertBid(bidData);

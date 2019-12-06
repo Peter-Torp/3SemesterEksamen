@@ -28,8 +28,6 @@ namespace Auction_House_WCF.Services
         public UserData CreateLogin(string password, UserData userData)
         {
             return LoginController.HashWithIterate(password, userData);
-
-            
         }
     }
 }

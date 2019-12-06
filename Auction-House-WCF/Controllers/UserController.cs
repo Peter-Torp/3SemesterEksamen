@@ -31,7 +31,9 @@ namespace Auction_House_WCF.Controllers
                 
             };
 
-            LoginController.HashWithIterate(password, userData);    //return userData with changed properties (salt and passwordHash).
+            UserData userSaltAndHash = LoginController.HashWithIterate(password, userData);    //return userData with changed properties (salt and passwordHash).
+            userData.Salt = userSaltAndHash.Salt;
+            userData.PasswordHash = userSaltAndHash.PasswordHash;
 
             return userDB.Create(userData);
         }
