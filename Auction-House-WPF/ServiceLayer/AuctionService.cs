@@ -22,11 +22,33 @@ namespace Auction_House_WPF.ServiceLayer
 
         public bool deleteAuctionById(int id)
         {
-            
+            using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
+            {
+                bool deleted = false;
 
+                proxy.DeleteAuctionById(id);
 
-            throw new NotImplementedException();
+                if (GetAuctionById(id) == null)
+                {
+                    deleted = true;
+                } else
+                {
+                    deleted = false;
+                }
+
+                return deleted;
+            }
+
         }
+
+        public AuctionModel GetAuctionById(int id)
+        {
+            using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
+            {
+                return AuctionUtility.convertAuctionDataToAuctionModel(proxy.GetAuction(id));
+            }
+        }
+
 
         public List<AuctionModel> getAuctionsByUserName(string userName)
         {
