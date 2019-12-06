@@ -103,5 +103,11 @@ namespace Auction_House_WCF.Services
             BidController bCtr = new BidController();
             return bCtr.GetMaxBidOnAuction(auctionId);
         }
+
+        public bool DeleteAuctionById(int id)
+        {
+            AuctionController aCtr = new AuctionController();
+            return aCtr.DeleteAuction(id);
+        }
     }
 }

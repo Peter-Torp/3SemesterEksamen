@@ -559,5 +559,33 @@ namespace Auction_House_WCF.DataAccess
 
 
         }
+        internal bool DeleteAuctionById(int id)
+        {
+            bool deleted = false;
+            string deleteAuction = "DELETE * FROM Auction WHERE id = @Id";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    using (var DBAuctions = new SqlCommand(deleteAuction ,conn))
+                    {
+                        DBAuctions.Parameters.AddWithValue("deleteAuction", deleteAuction);
+
+                        DBAuctions.ExecuteNonQuery();
+
+                        deleted = true;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    throw e;
+                }
+            }
+
+            return deleted;
+        }
     }
 }

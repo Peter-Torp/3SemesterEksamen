@@ -46,6 +46,8 @@ namespace Auction_House_WCF.Services
         bool InsertBid(BidData bidData);
         [OperationContract]
         double GetMaxBidOnAuction(int auctionId);
+        [OperationContract]
+        bool DeleteAuctionById(int id);
 
     }
 }
