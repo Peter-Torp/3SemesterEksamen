@@ -29,6 +29,17 @@ namespace ServiceLayer.Utility
             return auctionModel;
         }
 
+        public static List<AuctionModel> ConvertArrayToList(AuctionData[] auctions)
+        {
+            List<AuctionModel> auctionDatas = new List<AuctionModel>();
+            foreach (AuctionData auctionData in auctions)
+            {
+                auctionDatas.Add(convertAuctionDataToAuctionModel(auctionData));
+            }
+
+            return auctionDatas;
+        }
+
 
 
     }

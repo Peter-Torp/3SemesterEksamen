@@ -47,6 +47,11 @@ namespace Auction_House_WPF.Views
             MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-       
+        private void DeleteAuctionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AuctionDataGrid.SelectedItems.Count == 0) { MessageBox.Show("No auction is selected!"); }
+
+            
+        }
     }
 }

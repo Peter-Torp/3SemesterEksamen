@@ -33,7 +33,7 @@ namespace TestProject
         }
 
         [TestMethod] 
-        public void TestGetUserBuInvalidUserName()
+        public void TestGetUserByInvalidUserName()
         {
             //Arrange
             string input = "AWDSAWDS";
