@@ -13,6 +13,7 @@ using Auction_House_WPF.Repository;
 using ModelLayer;
 using RepositoryLayer;
 using Auction_House_WPF.Views;
+using System.Windows;
 
 namespace Auction_House_WPF.ViewModels
 {
@@ -39,13 +40,14 @@ namespace Auction_House_WPF.ViewModels
             DeleteAuction = new RelayCommand(OnDelete,CanDelete);
         }
 
-        public void OnDelete(string notInUse)
+        public void OnDelete()
         {
-            AuctionShowModels.Remove(SelectedAuction);
+            auctionRepos.deleteAuctionById(SelectedAuction.Id);
+            
         }
         public bool CanDelete()
         {
-            return true;
+            return true;    
         }
 
         //Selet auction and delete.
@@ -91,6 +93,7 @@ namespace Auction_House_WPF.ViewModels
         {
             AuctionShowModel auctionShowModel = new AuctionShowModel
                 {
+                    Id = auctionModel.Id,
                     StartPrice = auctionModel.StartPrice,
                     BuyOutPrice = auctionModel.BuyOutPrice,
                     BidInterval = auctionModel.BidInterval,

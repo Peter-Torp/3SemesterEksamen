@@ -11,6 +11,7 @@ namespace Auction_House_WPF.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public int Id { get; set; }
         public double StartPrice{ get; set; }
         public double BuyOutPrice { get; set; }
         public double BidInterval { get; set; }

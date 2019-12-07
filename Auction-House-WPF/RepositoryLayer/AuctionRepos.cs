@@ -21,7 +21,7 @@ namespace RepositoryLayer
 
         public bool deleteAuctionById(int id)
         {
-            throw new NotImplementedException();
+            return auction.deleteAuctionById(id);
         }
 
         public List<AuctionModel> getAuctionsByUserName(string userName)

@@ -104,6 +104,12 @@ namespace Auction_House_WCF.Controllers
             return dBAuction.GetImages(auctionId);
         }
 
+        public bool DeleteAuction(int id)
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.DeleteAuctionById(id);
+        }
+
 
     }
 }

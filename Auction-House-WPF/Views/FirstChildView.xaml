@@ -54,6 +54,8 @@
 
             <DataGrid.Columns>
 
+                <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}"/>
+
                 <DataGridTextColumn Header="Category" Width="*" Binding="{Binding Path=Category}"/>
 
                 <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Path=Description}"/>

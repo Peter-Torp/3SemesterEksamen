@@ -11,6 +11,7 @@ namespace Auction_House_WPF.ViewModels
     {
         private Action<string> _TargetExecuteMethod;
         private Func<bool> _TargetCanExecuteMethod;
+        private Action _TargetExecuteMethod2;
 
         public RelayCommand(Action<string> executeMethod)
         {
@@ -22,6 +23,13 @@ namespace Auction_House_WPF.ViewModels
             _TargetExecuteMethod = executeMethod;
             _TargetCanExecuteMethod = canExecuteMethod;
         }
+
+        public RelayCommand(Action exucuteMethod2, Func<bool> canExecuteMethod)
+        {
+            _TargetCanExecuteMethod = canExecuteMethod; 
+            _TargetExecuteMethod2 = exucuteMethod2;
+        }
+
 
         public void RaiseCanExecuteChanged()
         {
@@ -47,7 +55,17 @@ namespace Auction_House_WPF.ViewModels
 
         public void Execute(object parameter)   //parameter from textbox is parsed
         {
-            this._TargetExecuteMethod(parameter.ToString());
+            if (parameter != null)
+            {
+                this._TargetExecuteMethod(parameter.ToString());
+
+            }
+            else
+            {
+                this._TargetExecuteMethod2();
+            }
         }
+
+        
     }
 }

@@ -105,6 +105,18 @@
   <wsdl:message name="IAuctionService_InsertBid_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertBidResponse" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_GetMaxBidOnAuction_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxBidOnAuction" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetMaxBidOnAuction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxBidOnAuctionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_DeleteAuctionById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAuctionById" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_DeleteAuctionById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAuctionByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetActiveAuctionsByUsername" message="tns:IAuctionService_GetActiveAuctionsByUsername_InputMessage" />
@@ -161,6 +173,14 @@
     <wsdl:operation name="InsertBid">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/InsertBid" message="tns:IAuctionService_InsertBid_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/InsertBidResponse" message="tns:IAuctionService_InsertBid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxBidOnAuction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction" message="tns:IAuctionService_GetMaxBidOnAuction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse" message="tns:IAuctionService_GetMaxBidOnAuction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAuctionById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/DeleteAuctionById" message="tns:IAuctionService_DeleteAuctionById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse" message="tns:IAuctionService_DeleteAuctionById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -299,6 +319,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMaxBidOnAuction">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAuctionById">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/DeleteAuctionById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IAuctionService_Streaming" type="tns:IAuctionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -429,6 +467,24 @@
     </wsdl:operation>
     <wsdl:operation name="InsertBid">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/InsertBid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxBidOnAuction">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAuctionById">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/DeleteAuctionById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -678,10 +678,22 @@ namespace ServiceLayer.AuctionServiceReference {
         System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.BidData[]> GetBidsAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
-        int InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData);
+        bool InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/InsertBid", ReplyAction="http://tempuri.org/IAuctionService/InsertBidResponse")]
-        System.Threading.Tasks.Task<int> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData);
+        System.Threading.Tasks.Task<bool> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
+        double GetMaxBidOnAuction(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
+        System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
+        bool DeleteAuctionById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -963,12 +975,28 @@ namespace ServiceLayer.AuctionServiceReference {
             return base.Channel.GetBidsAsync(id);
         }
         
-        public int InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData) {
+        public bool InsertBid(ServiceLayer.AuctionServiceReference.BidData bidData) {
             return base.Channel.InsertBid(bidData);
         }
         
-        public System.Threading.Tasks.Task<int> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData) {
+        public System.Threading.Tasks.Task<bool> InsertBidAsync(ServiceLayer.AuctionServiceReference.BidData bidData) {
             return base.Channel.InsertBidAsync(bidData);
+        }
+        
+        public double GetMaxBidOnAuction(int auctionId) {
+            return base.Channel.GetMaxBidOnAuction(auctionId);
+        }
+        
+        public System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId) {
+            return base.Channel.GetMaxBidOnAuctionAsync(auctionId);
+        }
+        
+        public bool DeleteAuctionById(int id) {
+            return base.Channel.DeleteAuctionById(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id) {
+            return base.Channel.DeleteAuctionByIdAsync(id);
         }
     }
 }
