@@ -223,16 +223,16 @@ namespace Auction_House_MVC.Controllers
 
                 successful = bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
 
+                //For messages to the user.
                 if( successful )
                 {
-                    
-                    ModelState.AddModelError("", "Someone was faster than you! Pleas insert new bid.");
+                    TempData["Referer"] = "InsertSuccessful";
+                } else
+                {
+                    TempData["Referer"] = "InsertFailed";
                 }
-            } else
-            {
-                ModelState.AddModelError("", "Incorrect value");
             }
-
+            
             return RedirectToAction("Auction", new { id } );
         }
     }

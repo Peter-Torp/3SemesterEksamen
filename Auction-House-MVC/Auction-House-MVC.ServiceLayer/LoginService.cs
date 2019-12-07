@@ -11,11 +11,9 @@ namespace Auction_House_MVC.ServiceLayer
 
         public bool Login(string password, string userName)
         {
-            ILoginService lClient = new LoginServiceClient();
+            ILoginService lClient = new LoginServiceClient("BasicHttpBinding_ILoginService");
 
             return lClient.Verify(password, userName);
-
-            
         }
 
     }

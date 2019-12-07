@@ -57,8 +57,6 @@ namespace Auction_House_WCF.Controllers
         //Verify password
         internal static bool Verify(string password, string userName)
         {
-
-            DBUser dBUser = new DBUser();
             UserController userController = new UserController();
 
             UserData inputUser = userController.GetUserByUserName(userName);
@@ -77,8 +75,6 @@ namespace Auction_House_WCF.Controllers
                 return false;
             }
             return true;
-
-
         }
 
         //Used for verify method

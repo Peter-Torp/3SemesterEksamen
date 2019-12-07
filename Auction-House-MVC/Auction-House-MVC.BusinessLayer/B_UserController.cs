@@ -19,22 +19,9 @@ namespace Auction_House_MVC.BusinessLayer
 
         public bool Login(string userName, string password)
         {
-            bool authenticated = false;
+            LoginService lS = new LoginService();
 
-            //Get user login information from DB.
-            UserService uS = new UserService();
-            UserLogin userLogin = uS.GetLoginByUsername(userName);
-
-            //Salt and hash password here.
-            string saltedPassword = userLogin.Salt + password;
-            string hashedPassword = password;
-
-            //Compare stored hash with the generated hash.
-            if(userLogin.Hash == hashedPassword)
-            {
-                authenticated = true;
-            }
-            return authenticated;
+            return lS.Login(password, userName);
         }
 
         public bool SignUp(UserSignUp uSU)

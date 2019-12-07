@@ -29,11 +29,10 @@
             <input type="submit" value="Submit" class="btn btn-primary" />
         </fieldset>
     </div>
-}
 
-@if (ViewBag.LoginError != null)
-{
-    <script>
-        $(document).ready(function(){alert('@ViewBag.LoginError');});
-    </script>
+    if (ViewBag.LoginFailed) { 
+    <div class="alert alert-danger">
+        <strong>@Html.ValidationMessage("error_msg")</strong>
+    </div>
+    }
 }

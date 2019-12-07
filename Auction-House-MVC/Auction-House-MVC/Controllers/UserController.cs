@@ -83,8 +83,9 @@ namespace Auction_House_MVC.Controllers
                 }
                 else
                 {
-                    // Send message back to user about failed login attempt.
-                    ViewBag.LoginError = "Wrong credentials";
+                    // Error message - Wrong credentials
+                    ViewBag.LoginFailed = true;
+                    ModelState.AddModelError("error_msg", "Wrong credentials");
                     return View("LogIn");
                 }
                 return RedirectToAction("Index", "Home");
@@ -94,6 +95,7 @@ namespace Auction_House_MVC.Controllers
 
         public ActionResult LogIn()
         {
+            ViewBag.LoginFailed = false;
             return View();
         }
     }

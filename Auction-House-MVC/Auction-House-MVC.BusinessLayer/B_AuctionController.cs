@@ -140,7 +140,14 @@ namespace Auction_House_MVC.BusinessLayer
         {
             AuctionService aS = new AuctionService();
 
-            return aS.GetHighestBidOnAuction(auctionId);
+            double hBid = aS.GetHighestBidOnAuction(auctionId);
+            if(hBid == 0)
+            {
+                Auction auction = aS.GetAuction(auctionId);
+                hBid = auction.StartPrice;
+            }
+
+            return hBid;
         }
     }
 }

@@ -100,14 +100,14 @@ namespace Auction_House_WCF.DataAccess
             };
             return bidData;
         }
-
         public double GetMaxBidOnAuction(int auctionId)
         {
-            string getMaxBid = "SELECT MAX(B.Amount) " +
+            //COALESCE for setting return value 0 if no rows found.
+            string getMaxBid = "SELECT COALESCE(MAX(B.Amount), 0) " +
                 "FROM Bid AS B " +
                 "WHERE B.Auction_Id = @auctionId";
 
-            double maxBid = -1;
+            double maxBid = 0;
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -118,15 +118,7 @@ namespace Auction_House_WCF.DataAccess
                     using (var cmdGMaxBid = new SqlCommand(getMaxBid, conn))
                     {
                         cmdGMaxBid.Parameters.AddWithValue("auctionId", auctionId);
-                        SqlDataReader reader = cmdGMaxBid.ExecuteReader();
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                maxBid = reader.GetDouble(0);
-                            }
-                        }
-                        reader.Close();
+                        maxBid = (double) cmdGMaxBid.ExecuteScalar();
                     }
                     conn.Close();
                 }
@@ -156,12 +148,12 @@ namespace Auction_House_WCF.DataAccess
                 "INSERT INTO Bid (Auction_Id, User_Id, Date,Amount) " +
                 "VALUES(@auctionId, @userId, @date, @amount)";
             string getUser = "SELECT Id FROM Person WHERE UserName = @userName";
-            string getHighestBid = 
-                "SELECT MAX(B.Amount) " +
+            string getHighestBid =
+                "SELECT COALESCE(MAX(B.Amount), 0) " +
                 "FROM Bid AS B " +
                 "WHERE B.Auction_Id = @auctionId";
             string getAuction = 
-                "SELECT BidInterval " +
+                "SELECT BidInterval, StartPrice " +
                 "FROM Auction " +
                 "WHERE Id = @auctionId";
 
@@ -185,6 +177,7 @@ namespace Auction_House_WCF.DataAccess
                             double bidInterval = -1;
                             double validBid = -1;
 
+                            // Get highest bid to determine a starting point.
                             using (var cmdGHighestBid = new SqlCommand(getHighestBid, conn))
                             {
                                 cmdGHighestBid.Parameters.AddWithValue("auctionId", entity.Auction_Id);
@@ -208,11 +201,17 @@ namespace Auction_House_WCF.DataAccess
                                     while (reader.Read())
                                     {
                                         bidInterval = reader.GetDouble(0);
+
+                                        //If no rows in bids are found - Need to get StartPrice of auction.
+                                        if (highestBid == 0)
+                                        {
+                                            highestBid = reader.GetDouble(1);
+                                        }
                                     }
                                 }
                                 reader.Close();
                             }
-                            //Calculate valid bid when considering bid interval.
+                            //Calculate if the bid is valid when considering bid interval.
                             validBid = highestBid + bidInterval;
 
                             if (validBid <= entity.Amount)

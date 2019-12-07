@@ -10,7 +10,7 @@ namespace Auction_House_WCF.DataAccess
 {
     public class ImageHandler
     {
-        private readonly string _appDirectory = @"C:\Users\Martin\source\repos\Auction-House-V2\Auction-House-WCF"; // AppDomain.CurrentDomain.BaseDirectory
+        private readonly string _appDirectory = Path.Combine(Environment.CurrentDirectory, @"..\..\"); // AppDomain.CurrentDomain.BaseDirectory
         private readonly string _baseDirectory = @"Images\Auctions";
 
         public bool InsertPictureToFolder(ImageData image)

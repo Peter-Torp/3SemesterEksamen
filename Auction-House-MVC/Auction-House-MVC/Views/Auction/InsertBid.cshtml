@@ -8,7 +8,7 @@
 
 <h4>Current highest bid: @Model.CurrentHighestBid</h4>
 
-@using (Html.BeginForm("InsertBidDetail", "Auction", new { Model , id = Model.AuctionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("InsertBidDetail", "Auction", new { Model, id = Model.AuctionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div>
         <fieldset>
@@ -17,10 +17,24 @@
                 @Html.LabelFor(iB => iB.Amount)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(iB => iB.Amount, new { type = "number", min = "0", step = "0.50"})
+                @Html.TextBoxFor(iB => iB.Amount, new { type = "number", min = Model.MinimumValidBid, step = "0.50" })
                 <p style="color:red;">@Html.ValidationMessageFor(iB => iB.Amount)</p>
             </div>
             <input type="submit" value="Submit" class="btn btn-primary" />
         </fieldset>
+    </div>
+}
+
+@if ((string)TempData["Referer"] == "InsertSuccessful")
+{
+    <div class="alert alert-success">
+        <strong>Your bid has been registered!</strong>
+    </div>
+}
+
+@if ((string)TempData["Referer"] == "InsertFailed")
+{
+    <div class="alert alert-danger">
+        <strong>Someone was faster than you! Please try a higher bid.</strong>
     </div>
 }
