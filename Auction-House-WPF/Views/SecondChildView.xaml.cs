@@ -48,6 +48,12 @@ namespace Auction_House_WPF.Views
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void UserGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object SelectedUser = e.AddedItems;
+            sCWM.GetUserAuctions(SelectedUser);
+        }
     }
 
   

@@ -8,9 +8,9 @@
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Background="#FF464646" Foreground="White"
-             FontSize="16"
+             FontSize="16" Width="789.707"
              >
-    <Grid>
+    <Grid Height="500">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="auto" />
@@ -42,8 +42,8 @@
         <Button Grid.Row="1" Grid.Column="3" x:Name="ProfileSearchButton" Content="Search" HorizontalAlignment="Left" Width="75" Command="{Binding DisplayUserInfo}" CommandParameter="{Binding ElementName=EnterUsernameTextbox,Path=Text}" Margin="0.2,0,0,7" Click="ProfileSearchButton_Click"/>
 
 
-        <DataGrid x:Name="UserGrid" HorizontalAlignment="Left" Height="378" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="770" Grid.ColumnSpan="8" RenderTransformOrigin="0.37,0.591"
-                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" >
+        <DataGrid x:Name="UserGrid" HorizontalAlignment="Left" Height="134" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="769" Grid.ColumnSpan="9" RenderTransformOrigin="0.37,0.591"
+                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="UserGrid_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=UserName, Mode=OneWay}" Header="Username" Width="*" />
@@ -54,7 +54,30 @@
 
         </DataGrid>
 
+        <Grid Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" RenderTransformOrigin="0.916,5.266" Margin="-5,-80,5,0">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="189*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Name="Auctions" Margin="15,293,-762,-433" ItemsSource="{Binding AuctionShowModel}" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50"/>
+                    <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="StartPrice" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=BuyOutPrice}" Header="BuyOutPrice" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=BidInterval}" Header="BidInterval" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=Description}" Header="Description" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=StartDate}" Header="StartDate" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=EndDate}" Header="EndDate" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=Category}" Header="Category" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Button  Grid.Row="7" Grid.Column="1" x:Name="DeleteAuctionButton" Content="Delete Auction" HorizontalAlignment="Left" Width="125" Grid.ColumnSpan="2" Margin="0,268.6,0,0" Height="25" VerticalAlignment="Top" Command="{Binding DeleteAuction}" />
+        <Label Content="Auctions" Grid.Column="1" HorizontalAlignment="Left" Margin="0,134,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.442,0.059" Grid.RowSpan="6" Foreground="White"/>
 
 
     </Grid>

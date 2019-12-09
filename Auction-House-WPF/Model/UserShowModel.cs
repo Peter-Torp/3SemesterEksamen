@@ -13,6 +13,7 @@ namespace Auction_House_WPF.Model
 
     public class UserShowModel : INotifyPropertyChanged
     {
+        List<AuctionShowModel> Auctions = new List<AuctionShowModel>(); 
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string FirstName { get; set; }
@@ -24,6 +25,10 @@ namespace Auction_House_WPF.Model
         public string ZipCode { get; set; }
         public string DateOfBirth { get; set; }
 
+        public void AddAuctions(AuctionShowModel auction)
+        {
+            Auctions.Add(auction);
+        }
 
         public override string ToString()
         {

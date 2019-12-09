@@ -11,22 +11,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls;
+using RepositoryLayer;
+using ModelLayer;
 
 namespace Auction_House_WPF.ViewModels
 {
     public class SecondChildViewModel : Screen
     {
         UserRepos userRepos = new UserRepos();
-        SecondChildView secondChildView;
+        AuctionRepos auctionRepos = new AuctionRepos();
+        SecondChildView SecondChildView;
+        FirstChildViewModel FirstChildViewModel;
         public RelayCommand DisplayUserInfo { get; private set; }
         public MessageCommand DisplayMessageCommand { get; private set; }
+        public RelayCommand DeleteAuction { get; private set; }
 
         public SecondChildViewModel()
         {
            // DisplayMessageCommand = new MessageCommand(Display);
             DisplayUserInfo = new RelayCommand(SearchUserByUserName);
             UserShowModel = new ObservableCollection<UserShowModel>();
-            
+            AuctionShowModel = new ObservableCollection<AuctionShowModel>();
+            DeleteAuction = new RelayCommand(OnDelete,CanDelete);
         }
         public void Display(string message)
         {
@@ -39,6 +46,39 @@ namespace Auction_House_WPF.ViewModels
             UserShowModel.Add(ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(searchString)));
             
         }
+
+        //Find the associated auctions for a user
+        public void GetUserAuctions(object user)
+        {
+ 
+
+            AuctionShowModel.Clear();
+            foreach (AuctionModel auctionModel in auctionRepos.getAuctionsByUserName(user.UserName))
+            {
+                AuctionShowModel.Add(FirstChildViewModel.ConvertAuctionModelToAuctionShowModel(auctionModel));
+            }
+        }
+
+        //convert object to UserShowModel
+        public UserShowModel ConvertObjectToUserShowModel(object user)
+        {
+
+            return null;
+        }
+
+
+        //Delete the selected auction
+        public void OnDelete()
+        {
+            //delete auction
+        }
+
+        //Can delete. If not. Button is unavailable
+        public bool CanDelete()
+        {
+            return true;
+        }
+
 
         /*
          * Convert UserModel type to UserShowModel type. 
@@ -61,10 +101,17 @@ namespace Auction_House_WPF.ViewModels
             return userShowModel;
         }
 
+
         public ObservableCollection<UserShowModel> UserShowModel
         {
             get;
             set;            
+        }
+
+        public ObservableCollection<AuctionShowModel> AuctionShowModel
+        {
+            get;
+            set;
         }
 
 
