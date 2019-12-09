@@ -21,12 +21,12 @@ namespace RepositoryLayer
 
         public bool deleteAuctionById(int id)
         {
-            return auction.deleteAuctionById(id);
+            return auction.DeleteAuctionById(id);
         }
 
         public List<AuctionModel> getAuctionsByUserName(string userName)
         {
-            return auction.getAuctionsByUserName(userName);
+            return auction.GetAuctionsByUserName(userName);
         }
     }
 }

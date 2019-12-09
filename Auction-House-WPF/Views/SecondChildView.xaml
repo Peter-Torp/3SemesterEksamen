@@ -63,7 +63,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Auctions" Margin="15,293,-762,-433" ItemsSource="{Binding AuctionShowModel}" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid Name="Auctions" Margin="15,293,-762,-433" ItemsSource="{Binding AuctionShowModel}" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="Auctions_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50"/>
                     <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="StartPrice" Width="100"/>
@@ -76,8 +76,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <!--Delete an auction from the list-->
         <Button  Grid.Row="7" Grid.Column="1" x:Name="DeleteAuctionButton" Content="Delete Auction" HorizontalAlignment="Left" Width="125" Grid.ColumnSpan="2" Margin="0,268.6,0,0" Height="25" VerticalAlignment="Top" Command="{Binding DeleteAuction}" />
-        <Label Content="Auctions" Grid.Column="1" HorizontalAlignment="Left" Margin="0,134,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.442,0.059" Grid.RowSpan="6" Foreground="White"/>
+        <Label Content="Auctions:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,134,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.442,0.059" Grid.RowSpan="6" Foreground="White"/>
 
 
     </Grid>

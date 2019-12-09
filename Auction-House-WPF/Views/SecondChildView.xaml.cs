@@ -49,10 +49,38 @@ namespace Auction_House_WPF.Views
             }
         }
 
+        //Select user and get auctions
         private void UserGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            object SelectedUser = e.AddedItems;
-            sCWM.GetUserAuctions(SelectedUser);
+
+            UserShowModel SelectedUser = null;
+            if (e.AddedItems.Count > 0)     //check if the selected row has any data.
+            {
+                SelectedUser = e.AddedItems[0] as UserShowModel;
+                sCWM.GetUserAuctions(SelectedUser);
+            }
+            else
+            {
+                MessageBox.Show("No selected row!");
+            }
+
+        }
+
+        //Select an auction and do something.
+        private void Auctions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AuctionShowModel SelectedAuction = null;
+            if (e.AddedItems.Count > 0)
+            {
+                SelectedAuction = e.AddedItems[0] as AuctionShowModel;
+                sCWM.SelectedAuction = SelectedAuction;
+            }
+            else
+            {
+                MessageBox.Show("No auction was selected!");
+            }
+
+
         }
     }
 

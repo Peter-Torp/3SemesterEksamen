@@ -48,10 +48,8 @@ namespace Auction_House_WPF.ViewModels
         }
 
         //Find the associated auctions for a user
-        public void GetUserAuctions(object user)
+        public void GetUserAuctions(UserShowModel user)
         {
- 
-
             AuctionShowModel.Clear();
             foreach (AuctionModel auctionModel in auctionRepos.getAuctionsByUserName(user.UserName))
             {
@@ -59,24 +57,24 @@ namespace Auction_House_WPF.ViewModels
             }
         }
 
-        //convert object to UserShowModel
-        public UserShowModel ConvertObjectToUserShowModel(object user)
+        //Set the propterties when an auction is selected
+        public AuctionShowModel SelectedAuction
         {
-
-            return null;
+            get;
+            set;
         }
 
 
-        //Delete the selected auction
+        //Delete the selected auction -> SelectedAuction
         public void OnDelete()
         {
-            //delete auction
+            auctionRepos.deleteAuctionById(SelectedAuction.Id);
         }
 
         //Can delete. If not. Button is unavailable
         public bool CanDelete()
         {
-            return true;
+            return true;    //not in use
         }
 
 

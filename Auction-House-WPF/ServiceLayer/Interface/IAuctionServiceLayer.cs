@@ -9,10 +9,8 @@ namespace ServiceLayer.Interface
 {
     public interface IAuctionServiceLayer
     {
-        List<AuctionModel> getAuctionsByUserName(string userName);
-        bool deleteAuctionById(int id);
-
-
-
+        List<AuctionModel> GetAuctionsByUserName(string userName);
+        bool DeleteAuctionById(int id);
+        List<AuctionModel> GetAllAuctions();
     }
 }

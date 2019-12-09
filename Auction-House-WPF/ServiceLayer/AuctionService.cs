@@ -20,7 +20,7 @@ namespace Auction_House_WPF.ServiceLayer
         }
         
 
-        public bool deleteAuctionById(int id)
+        public bool DeleteAuctionById(int id)
         {
             using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
             {
@@ -45,12 +45,12 @@ namespace Auction_House_WPF.ServiceLayer
         {
             using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
             {
-                return AuctionUtility.convertAuctionDataToAuctionModel(proxy.GetAuction(id));
+                return AuctionUtility.ConvertAuctionDataToAuctionModel(proxy.GetAuction(id));
             }
         }
 
 
-        public List<AuctionModel> getAuctionsByUserName(string userName)
+        public List<AuctionModel> GetAuctionsByUserName(string userName)
         {
 
             using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
@@ -58,6 +58,15 @@ namespace Auction_House_WPF.ServiceLayer
                 return AuctionUtility.ConvertArrayToList(proxy.GetUserAuctions(userName));
 
             }
+        }
+
+        public List<AuctionModel> GetAllAuctions()
+        {
+            using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
+            {
+                //return AuctionUtility.ConvertArrayToList(proxy);      create service
+            }
+            return null;
         }
      }
 }
