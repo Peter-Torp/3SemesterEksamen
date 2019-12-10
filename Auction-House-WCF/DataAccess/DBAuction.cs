@@ -591,7 +591,7 @@ namespace Auction_House_WCF.DataAccess
 
         public List<AuctionData> GetAllAuctions()
         {
-            List<AuctionData> auctions = null;
+            List<AuctionData> auctionData = null;
             string getAllAuctionsDB = "SELECT * FROM Auctions";
 
             using (var conn = new SqlConnection(_connectionString))
@@ -608,8 +608,8 @@ namespace Auction_House_WCF.DataAccess
 
                         while (reader.Read())
                         {
-
-                            auctions.Add(ToObject(reader.GetInt32(1),reader.GetString(9),reader.GetString(5),reader.GetString(8),reader.GetDateTime(6)
+                            //Call to object method and convert
+                            auctionData.Add(ToObject(reader.GetInt32(1),reader.GetString(9),reader.GetString(5),reader.GetString(8),reader.GetDateTime(6)
                                 ,reader.GetDateTime(7),reader.GetDouble(2),reader.GetDouble(4),reader.GetDouble(3)));
                         }
                     }
@@ -620,7 +620,7 @@ namespace Auction_House_WCF.DataAccess
                 }
             }
 
-                return auctions;
+                return auctionData;
         }
 
 
