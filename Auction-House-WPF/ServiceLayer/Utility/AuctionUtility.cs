@@ -14,7 +14,7 @@ namespace ServiceLayer.Utility
         {
             //Id,StartPrice,BuyOutPrice,BidInterval,Description,StartDate,EndDate,Category
 
-            AuctionModel auctionModel = new AuctionModel(0, 0, 0, 0, null, null, null, null)
+            AuctionModel auctionModel = new AuctionModel(0, 0, 0, 0, null, null, null, null,null)
             {
                 Id = auction.Id,
                 StartPrice = auction.StartPrice,
@@ -23,7 +23,8 @@ namespace ServiceLayer.Utility
                 Description = auction.Description,
                 StartDate = auction.StartDate.ToString(),
                 EndDate = auction.EndDate.ToString(),
-                Category = auction.Category
+                Category = auction.Category,
+                UserName = auction.UserName
 
             };
             return auctionModel;

@@ -105,7 +105,8 @@ namespace Auction_House_WPF.ViewModels
                     StartDate = auctionModel.StartDate,
                     EndDate = auctionModel.EndDate,
                     Description = auctionModel.Description,
-                    Category = auctionModel.Category
+                    Category = auctionModel.Category,
+                    UserName = auctionModel.UserName
                 };
 
             return auctionShowModel;
