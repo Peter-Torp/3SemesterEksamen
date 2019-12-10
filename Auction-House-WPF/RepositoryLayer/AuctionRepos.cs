@@ -28,5 +28,10 @@ namespace RepositoryLayer
         {
             return auction.GetAuctionsByUserName(userName);
         }
+
+        public List<AuctionModel> GetAllAuctions()
+        {
+            return auction.GetAllAuctions();
+        }
     }
 }
