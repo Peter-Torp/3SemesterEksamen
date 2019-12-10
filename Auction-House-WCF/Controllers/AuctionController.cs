@@ -110,6 +110,11 @@ namespace Auction_House_WCF.Controllers
             return dBAuction.DeleteAuctionById(id);
         }
 
+        public List<AuctionData> GetAllAuctions()
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.GetAllAuctions();
+        }
 
     }
 }
