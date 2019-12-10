@@ -28,7 +28,7 @@ namespace TestProject
             //Act
             auctions = auctionService.GetAllAuctions();
             //Assert
-            Assert.IsNotNull(auctions);
+            Assert.IsNotNull(auctions.Count);
             
         }
 
