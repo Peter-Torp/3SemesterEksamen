@@ -117,6 +117,12 @@
   <wsdl:message name="IAuctionService_DeleteAuctionById_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteAuctionByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAuctionByDesc_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuctionByDesc" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAuctionByDesc_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuctionByDescResponse" />
+  </wsdl:message>
   <wsdl:message name="IAuctionService_GetAllAuctions_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllAuctions" />
   </wsdl:message>
@@ -187,6 +193,10 @@
     <wsdl:operation name="DeleteAuctionById">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/DeleteAuctionById" message="tns:IAuctionService_DeleteAuctionById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse" message="tns:IAuctionService_DeleteAuctionById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctionByDesc">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionByDesc" message="tns:IAuctionService_GetAuctionByDesc_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionByDescResponse" message="tns:IAuctionService_GetAuctionByDesc_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllAuctions">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAllAuctions" message="tns:IAuctionService_GetAllAuctions_InputMessage" />
@@ -340,6 +350,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteAuctionById">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/DeleteAuctionById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctionByDesc">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuctionByDesc" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -504,6 +523,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteAuctionById">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/DeleteAuctionById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuctionByDesc">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuctionByDesc" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

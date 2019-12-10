@@ -51,6 +51,7 @@ namespace Auction_House_WCF.Services
         [OperationContract]
 
         List<AuctionData> GetAuctionByDesc(string auctionDesc);
+        [OperationContract]
         List<AuctionData> GetAllAuctions();
 
     }

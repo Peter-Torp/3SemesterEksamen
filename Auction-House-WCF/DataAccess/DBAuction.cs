@@ -636,7 +636,7 @@ namespace Auction_House_WCF.DataAccess
         internal bool DeleteAuctionById(int id)
         {
             bool deleted = false;
-            string deleteAuction = "DELETE * FROM Auctions WHERE id = @Id";
+            string deleteAuction = "DELETE * FROM Auction WHERE id = @Id";
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -665,8 +665,11 @@ namespace Auction_House_WCF.DataAccess
 
         public List<AuctionData> GetAllAuctions()
         {
-            List<AuctionData> auctionData = null;
-            string getAllAuctionsDB = "SELECT * FROM Auction";
+            List<AuctionData> auctionData = new List<AuctionData>();
+            string getAllAuctionsDB = "SELECT * FROM Auction FULL OUTER JOIN Person ON Auction.User_Id = Person.Id " +
+                                    "FULL OUTER JOIN Category ON Auction.Category_Id = Category.Cat_Id";
+
+            
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -682,27 +685,30 @@ namespace Auction_House_WCF.DataAccess
 
                         while (reader.Read())
                         {
-                            AuctionData auction = new AuctionData
-                            {
-                                Id = reader.GetInt32(1),
-                                StartPrice = reader.GetDouble(2),
-                                BuyOutPrice = reader.GetDouble(3),
-                                BidInterval = reader.GetDouble(4),
-                                Description = reader.GetString(5),
-                                StartDate = reader.GetDateTime(6),
-                                EndDate = reader.GetDateTime(7),
-                                Category = reader.GetString(8), 
-                                UserId = reader.GetInt32(9)
-
-                            };
-
-                            auctionData.Add(auction);
+                            if (!reader.IsDBNull(1)) {
+                                AuctionData auction = new AuctionData
+                                {
+                                    Id = reader.GetInt32(0),
+                                    StartPrice = reader.GetDouble(1),
+                                    BuyOutPrice = reader.GetDouble(2),
+                                    BidInterval = reader.GetDouble(3),
+                                    Description = reader.GetString(4),
+                                    StartDate = reader.GetDateTime(5),
+                                    EndDate = reader.GetDateTime(6),
+                                    UserId = reader.GetInt32(8),
+                                    UserName = reader.GetString(10),
+                                    Category = reader.GetString(14),
+                                };
+                                auctionData.Add(auction);
+                            } 
+                            
                         }
-                        
+                        conn.Close();
                     }
                 }
                 catch (Exception e)
                 {
+                    conn.Close();
                     throw e;
                 }
             }
