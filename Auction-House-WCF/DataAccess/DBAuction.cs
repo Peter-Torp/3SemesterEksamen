@@ -608,10 +608,23 @@ namespace Auction_House_WCF.DataAccess
 
                         while (reader.Read())
                         {
-                            //Call to object method and convert
-                            auctionData.Add(ToObject(reader.GetInt32(1),reader.GetString(9),reader.GetString(5),reader.GetString(8),reader.GetDateTime(6)
-                                ,reader.GetDateTime(7),reader.GetDouble(2),reader.GetDouble(4),reader.GetDouble(3)));
+                            AuctionData auction = new AuctionData
+                            {
+                                Id = reader.GetInt32(1),
+                                StartPrice = reader.GetDouble(2),
+                                BuyOutPrice = reader.GetDouble(3),
+                                BidInterval = reader.GetDouble(4),
+                                Description = reader.GetString(5),
+                                StartDate = reader.GetDateTime(6),
+                                EndDate = reader.GetDateTime(7),
+                                Category = reader.GetString(8), 
+                                UserId = reader.GetInt32(9)
+
+                            };
+
+                            auctionData.Add(auction);
                         }
+                        
                     }
                 }
                 catch (Exception e)
