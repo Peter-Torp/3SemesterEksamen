@@ -14,6 +14,10 @@ using ModelLayer;
 using RepositoryLayer;
 using Auction_House_WPF.Views;
 using System.Windows;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+
 
 namespace Auction_House_WPF.ViewModels
 {
@@ -38,6 +42,7 @@ namespace Auction_House_WPF.ViewModels
             AuctionShowModels = new ObservableCollection<AuctionShowModel>();
             DisplayAuctions = new RelayCommand(SearchAuction);
             DeleteAuction = new RelayCommand(OnDelete,CanDelete);
+            FillDataGrid();
         }
 
         public void OnDelete()
@@ -112,7 +117,16 @@ namespace Auction_House_WPF.ViewModels
             set;
         }
 
-
+        public void FillDataGrid()
+        {
+            AuctionShowModels.Clear();
+            
+            foreach(AuctionModel auctionModel in auctionRepos.GetAllAuctions())
+            {
+                AuctionShowModels.Add(ConvertAuctionModelToAuctionShowModel(auctionModel));
+            }
+   
+        }
 
     }
 }

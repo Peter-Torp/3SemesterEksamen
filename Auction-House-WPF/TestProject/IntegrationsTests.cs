@@ -25,14 +25,14 @@ namespace TestProject
         public void GetUserByUserName()
         {
             //Arrange
-            string testInput = "Magnus";
+            string testInput = "Jørgen";
             //Act
             secondChildViewModel.SearchUserByUserName(testInput);
             //Assert
             Assert.AreEqual(1, secondChildViewModel.UserShowModel.Count);
         }
 
-        [TestMethod]
+        [TestMethod]        //ret så den ikke opretter et objekt uden grund
         public void TryGetUserByUserNameInvalid()
         {
             //Arrange
@@ -40,7 +40,7 @@ namespace TestProject
             //Act
             secondChildViewModel.SearchUserByUserName(testInput);
             //Assert
-            Assert.AreEqual(0, secondChildViewModel.UserShowModel.Count);
+            Assert.AreEqual(0, secondChildViewModel.UserShowModel.Count);   //test should give 1. But object properties are null.
         }
 
         [TestCleanup]

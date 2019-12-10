@@ -30,7 +30,13 @@ namespace Auction_House_WPF.ServiceLayer
                 IUserService _userClientUserName = createServiceClient();
                 user = _userClientUserName.GetUserByUserName(UserName);
 
-                userModel = UserUtility.ConvertUserDataToUserModelData(user);
+                if (user.UserName != null) {
+                    userModel = UserUtility.ConvertUserDataToUserModelData(user);
+                } 
+                else
+                {
+                    return null;
+                }
 
             }
             catch (ServiceAccessException)

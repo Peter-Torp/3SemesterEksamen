@@ -110,10 +110,18 @@ namespace Auction_House_WCF.Services
             return aCtr.DeleteAuction(id);
         }
 
+
         public List<AuctionData> GetAuctionByDesc(string auctionDesc)
         {
             AuctionController aCtr = new AuctionController();
             return aCtr.GetAuctionsByDesc(auctionDesc);
+        }
+        public List<AuctionData> GetAllAuctions()
+        {
+            AuctionController aCtr = new AuctionController();
+
+            return aCtr.GetAllAuctions();
+
         }
     }
 }

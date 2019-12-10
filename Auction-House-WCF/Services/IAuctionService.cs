@@ -49,7 +49,9 @@ namespace Auction_House_WCF.Services
         [OperationContract]
         bool DeleteAuctionById(int id);
         [OperationContract]
+
         List<AuctionData> GetAuctionByDesc(string auctionDesc);
+        List<AuctionData> GetAllAuctions();
 
     }
 }

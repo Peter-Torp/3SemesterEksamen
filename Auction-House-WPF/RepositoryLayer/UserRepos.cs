@@ -31,8 +31,15 @@ namespace Auction_House_WPF.Repository
         {
             UserService uSP = new UserService();
             UserModel user = null;
-            user = uSP.GetUserByUserName(_userName);
+            try {
 
+                user = uSP.GetUserByUserName(_userName);
+            } 
+            catch (NullReferenceException e)
+            {
+                throw e;
+            }
+            
             return user;
         }
 

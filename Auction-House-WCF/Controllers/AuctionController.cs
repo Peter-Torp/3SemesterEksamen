@@ -116,6 +116,13 @@ namespace Auction_House_WCF.Controllers
         {
             DBAuction dBAuction = new DBAuction();
             return dBAuction.GetAuctionsByDescription(auctionDesc);
+
+        }
+
+        public List<AuctionData> GetAllAuctions()
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.GetAllAuctions();
         }
 
     }

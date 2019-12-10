@@ -636,7 +636,7 @@ namespace Auction_House_WCF.DataAccess
         internal bool DeleteAuctionById(int id)
         {
             bool deleted = false;
-            string deleteAuction = "DELETE * FROM Auction WHERE id = @Id";
+            string deleteAuction = "DELETE * FROM Auctions WHERE id = @Id";
 
             using (var conn = new SqlConnection(_connectionString))
             {
@@ -661,5 +661,57 @@ namespace Auction_House_WCF.DataAccess
 
             return deleted;
         }
+
+
+        public List<AuctionData> GetAllAuctions()
+        {
+            List<AuctionData> auctionData = null;
+            string getAllAuctionsDB = "SELECT * FROM Auction";
+
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    using (var DBAuctions = new SqlCommand(getAllAuctionsDB, conn))
+                    {
+                        DBAuctions.Parameters.AddWithValue("getAllAuctions", getAllAuctionsDB);
+
+                        SqlDataReader reader = DBAuctions.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            AuctionData auction = new AuctionData
+                            {
+                                Id = reader.GetInt32(1),
+                                StartPrice = reader.GetDouble(2),
+                                BuyOutPrice = reader.GetDouble(3),
+                                BidInterval = reader.GetDouble(4),
+                                Description = reader.GetString(5),
+                                StartDate = reader.GetDateTime(6),
+                                EndDate = reader.GetDateTime(7),
+                                Category = reader.GetString(8), 
+                                UserId = reader.GetInt32(9)
+
+                            };
+
+                            auctionData.Add(auction);
+                        }
+                        
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+                return auctionData;
+        }
+
+
+
+
     }
 }

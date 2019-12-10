@@ -48,17 +48,73 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuctionServiceTests.cs" />
+    <Compile Include="Connected Services\AuctionServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\UserServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="IntegrationsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTests.cs" />
-    <Compile Include="ServiceTests.cs" />
+    <Compile Include="UserServiceTests.cs" />
     <Compile Include="ViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\AuctionServiceReference\AuctionService.wsdl" />
+    <None Include="Connected Services\AuctionServiceReference\AuctionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\AuctionService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\TestProject.AuctionServiceReference.InsertPictureResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuctionServiceReference\TestProject.AuctionServiceReference.RemoteFileInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserServiceReference\UserService.wsdl" />
+    <None Include="Connected Services\UserServiceReference\UserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceReference\UserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserServiceReference\UserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ServiceLayer.AuctionServiceReference.AuctionData.datasource" />
+    <None Include="Properties\DataSources\ServiceLayer.AuctionServiceReference.BidData.datasource" />
+    <None Include="Properties\DataSources\ServiceLayer.AuctionServiceReference.ImageInfoData.datasource" />
+    <None Include="Properties\DataSources\ServiceLayer.UserServiceReference.UserData.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auction_House_WPF.csproj">
@@ -77,6 +133,37 @@
       <Project>{b35dd663-1640-4440-8628-4141a3a51c33}</Project>
       <Name>ServiceLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AuctionServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\UserServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuctionServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuctionServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuctionServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

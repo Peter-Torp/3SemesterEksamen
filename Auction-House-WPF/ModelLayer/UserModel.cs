@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Auction_House_WPF.ModelLayer
 {
     public class UserModel : INotifyPropertyChanged
     {
+        List<AuctionModel> Auctions = new List<AuctionModel>();
 
         public UserModel(string firstName, string lastName, string userName, string address, string email, string phone, string zipCode, string dateOfBirth)
         {

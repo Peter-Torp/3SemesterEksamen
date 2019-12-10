@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen" Width="868.844"
         >
 
-    <Grid Margin="0,0,1.6,-0.4">
+    <Grid Margin="0,0,1.6,-0.4" RenderTransformOrigin="0.549,0.55">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="auto" />
@@ -43,6 +43,8 @@
         <!-- Row 3 -->
         <ContentControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" 
                         x:Name="ActiveItem" />
+        <Label Content="Label" Grid.Column="5" HorizontalAlignment="Left" Margin="100,156.2,0,0" Grid.Row="6" VerticalAlignment="Top" Height="118" Width="200" FontSize="75"/>
+        
 
         <!-- Row 4 -->
 

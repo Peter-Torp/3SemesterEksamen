@@ -10,7 +10,7 @@ namespace ServiceLayer.Utility
 {
     static class AuctionUtility
     {
-        public static AuctionModel convertAuctionDataToAuctionModel(AuctionData auction)
+        public static AuctionModel ConvertAuctionDataToAuctionModel(AuctionData auction)
         {
             //Id,StartPrice,BuyOutPrice,BidInterval,Description,StartDate,EndDate,Category
 
@@ -34,7 +34,7 @@ namespace ServiceLayer.Utility
             List<AuctionModel> auctionDatas = new List<AuctionModel>();
             foreach (AuctionData auctionData in auctions)
             {
-                auctionDatas.Add(convertAuctionDataToAuctionModel(auctionData));
+                auctionDatas.Add(ConvertAuctionDataToAuctionModel(auctionData));
             }
 
             return auctionDatas;
