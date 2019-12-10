@@ -12,20 +12,23 @@ namespace TestProject
     [TestClass]
     public class ServiceTests
     {
-        UserService userService; 
-        
+        UserService userService;
+        UserModel testUser = null;
+
         [TestInitialize]
         public void SetupBeforeEachTest()
         {
             userService = new UserService();
+            
+            
         }
 
         [TestMethod]
         public void TestGetAUserByUserName()
         {
             //Arrange
-            string input = "Magnus";
-            UserModel testUser = new UserModel(null,null,"Magnus",null,null,null,null,null);
+            string input = "Jørgen";
+            testUser = new UserModel(null,null,"Jørgen",null,null,null,null,null);
             //Act
             UserModel output = userService.GetUserByUserName(input);
             //Assert
@@ -47,6 +50,7 @@ namespace TestProject
         public void Cleanup()
         {
             userService = null;
+            testUser = null;
         }
         
 
