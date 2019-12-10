@@ -128,29 +128,6 @@ namespace Auction_House_WPF.ViewModels
             private set;
         }
 
-        public UserShowModel SelectedValue
-        {
-            get 
-            { 
-                return UserShowModel; 
-            }
-
-            set
-            {
-                if (_selectedValue == value) return;
-                _selectedValue = value;
-                PopulateAuctionGrid();
-            }
-        }
-
-        private void PopulateAuctionGrid()
-        {
-            AuctionShowModel.Clear();
-            //Gets your other data from DB here
-
-            AuctionShowModel.Add(SelectedValue);
-            
-        }
     }
 
 
