@@ -28,6 +28,7 @@ namespace Auction_House_WPF.ViewModels
         public MessageCommand DisplayMessageCommand { get; private set; }
         public RelayCommand DeleteAuction { get; private set; }
 
+
         public SecondChildViewModel()
         {
            // DisplayMessageCommand = new MessageCommand(Display);
@@ -118,15 +119,14 @@ namespace Auction_House_WPF.ViewModels
         public ObservableCollection<UserShowModel> UserShowModel
         {
             get;
-            set;            
+            private set;            
         }
 
         public ObservableCollection<AuctionShowModel> AuctionShowModel
         {
             get;
-            set;
+            private set;
         }
-
 
     }
 

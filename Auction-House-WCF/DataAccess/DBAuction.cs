@@ -664,7 +664,7 @@ namespace Auction_House_WCF.DataAccess
                         deleted = true;
                     }
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     throw e;
                 }

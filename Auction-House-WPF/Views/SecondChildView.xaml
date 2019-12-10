@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="Auction_House_WPF.Views.SecondChildView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Auction_House_WPF"
              mc:Ignorable="d"
              VerticalAlignment="Stretch"
@@ -43,7 +43,7 @@
 
 
         <DataGrid x:Name="UserGrid" HorizontalAlignment="Left" Height="134" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="769" Grid.ColumnSpan="9" RenderTransformOrigin="0.37,0.591"
-                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="UserGrid_SelectionChanged">
+                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="UserGrid_SelectionChanged" SelectedValue="{Binding Path=SelectedValue}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=UserName, Mode=OneWay}" Header="Username" Width="*" />
@@ -54,31 +54,23 @@
 
         </DataGrid>
 
-        <Grid Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" RenderTransformOrigin="0.916,5.266" Margin="-5,-80,5,0">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="189*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <DataGrid Name="Auctions" Margin="1,46,10,25" ItemsSource="{Binding AuctionShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="Auctions_SelectionChanged" Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="7">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50"/>
+                <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="StartPrice" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=BuyOutPrice}" Header="BuyOutPrice" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=BidInterval}" Header="BidInterval" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=Description}" Header="Description" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=StartDate}" Header="StartDate" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=EndDate}" Header="EndDate" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Path=Category}" Header="Category" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-            <DataGrid Name="Auctions" Margin="15,293,-762,-433" ItemsSource="{Binding AuctionShowModel}" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="Auctions_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50"/>
-                    <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="StartPrice" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=BuyOutPrice}" Header="BuyOutPrice" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=BidInterval}" Header="BidInterval" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=Description}" Header="Description" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=StartDate}" Header="StartDate" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=EndDate}" Header="EndDate" Width="100"/>
-                    <DataGridTextColumn Binding="{Binding Path=Category}" Header="Category" Width="100"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
         <!--Delete an auction from the list-->
         <Button  Grid.Row="7" Grid.Column="1" x:Name="DeleteAuctionButton" Content="Delete Auction" HorizontalAlignment="Left" Width="125" Grid.ColumnSpan="2" Margin="0,268.6,0,0" Height="25" VerticalAlignment="Top" Command="{Binding DeleteAuction}" />
-        <Label Content="Auctions:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,134,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.442,0.059" Grid.RowSpan="6" Foreground="White"/>
+        <Label Content="Auctions:" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="7" VerticalAlignment="Top" RenderTransformOrigin="-0.442,0.059" Foreground="White" Grid.Column="1"/>
 
 
     </Grid>

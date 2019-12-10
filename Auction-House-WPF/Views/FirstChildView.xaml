@@ -10,7 +10,7 @@
              HorizontalAlignment="Stretch"
              FontSize="16" 
              >
-    <Grid>
+    <Grid Width="799">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="auto" />
@@ -67,6 +67,8 @@
                 <DataGridTextColumn Header="Bid Interval" Binding="{Binding Path=BidInterval}" ElementStyle="{StaticResource RightAlignStyle}" Width="*"/>
 
                 <DataGridTextColumn Header="Buy Out Price" Binding="{Binding Path=BuyOutPrice}" ElementStyle="{StaticResource RightAlignStyle}"  Width="*"/>
+
+                <DataGridTextColumn Header="UserName" Binding="{Binding Path=UserName}"/>
             </DataGrid.Columns>
 
         </DataGrid>

@@ -82,6 +82,8 @@ namespace Auction_House_WPF.Views
 
 
         }
+
+
     }
 
   
