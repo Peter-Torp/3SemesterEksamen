@@ -9,10 +9,12 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Region" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="StartPrice" type="xs:double" />
       <xs:element minOccurs="0" name="UserId" type="xs:int" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AuctionData" nillable="true" type="tns:AuctionData" />

@@ -239,4 +239,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllAuctions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAuctionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetAllAuctionsResult" nillable="true" type="q16:ArrayOfAuctionData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -41,6 +41,9 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RegionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime StartDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -51,6 +54,9 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ZipCodeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -141,6 +147,19 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Region {
+            get {
+                return this.RegionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RegionField, value) != true)) {
+                    this.RegionField = value;
+                    this.RaisePropertyChanged("Region");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.DateTime StartDate {
             get {
                 return this.StartDateField;
@@ -188,6 +207,19 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
                 if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
                     this.UserNameField = value;
                     this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZipCode {
+            get {
+                return this.ZipCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ZipCodeField, value) != true)) {
+                    this.ZipCodeField = value;
+                    this.RaisePropertyChanged("ZipCode");
                 }
             }
         }
@@ -700,6 +732,12 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctionByDesc", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionByDescResponse")]
         System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAllAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAllAuctionsResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAllAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAllAuctionsResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAllAuctionsAsync();
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1011,6 +1049,14 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc) {
             return base.Channel.GetAuctionByDescAsync(auctionDesc);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions() {
+            return base.Channel.GetAllAuctions();
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAllAuctionsAsync() {
+            return base.Channel.GetAllAuctionsAsync();
         }
     }
 }

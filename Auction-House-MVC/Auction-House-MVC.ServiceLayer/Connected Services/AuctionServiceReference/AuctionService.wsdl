@@ -123,6 +123,12 @@
   <wsdl:message name="IAuctionService_GetAuctionByDesc_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAuctionByDescResponse" />
   </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAllAuctions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAuctions" />
+  </wsdl:message>
+  <wsdl:message name="IAuctionService_GetAllAuctions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAuctionsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAuctionService">
     <wsdl:operation name="GetActiveAuctionsByUsername">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetActiveAuctionsByUsername" message="tns:IAuctionService_GetActiveAuctionsByUsername_InputMessage" />
@@ -191,6 +197,10 @@
     <wsdl:operation name="GetAuctionByDesc">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionByDesc" message="tns:IAuctionService_GetAuctionByDesc_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetAuctionByDescResponse" message="tns:IAuctionService_GetAuctionByDesc_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAuctions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAuctionService/GetAllAuctions" message="tns:IAuctionService_GetAllAuctions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAuctionService/GetAllAuctionsResponse" message="tns:IAuctionService_GetAllAuctions_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuctionService" type="tns:IAuctionService">
@@ -356,6 +366,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAllAuctions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IAuctionService_Streaming" type="tns:IAuctionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -513,6 +532,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAuctionByDesc">
       <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAuctionByDesc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAuctions">
+      <soap:operation soapAction="http://tempuri.org/IAuctionService/GetAllAuctions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

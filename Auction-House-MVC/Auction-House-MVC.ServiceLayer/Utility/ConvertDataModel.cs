@@ -22,7 +22,7 @@ namespace Auction_House_MVC.ServiceLayer.Utility
                 BidInterval = createAuction.BidInterval,
                 Description = createAuction.Description,
                 EndDate = createAuction.EndDate,
-                Category = createAuction.Category
+                Category = createAuction.Category,
             };
             return aD;
         }
@@ -123,6 +123,8 @@ namespace Auction_House_MVC.ServiceLayer.Utility
                     aD.EndDate,
                     aD.Category);
                 auction.UserName = aD.UserName;
+                auction.ZipCode = aD.ZipCode;
+                auction.Region = aD.Region;
                 return auction;
             } else
             {

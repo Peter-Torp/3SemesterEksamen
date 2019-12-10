@@ -111,7 +111,8 @@ namespace Auction_House_MVC.Utility
                     EndDate = auction.EndDate,
                     Category = auction.Category,
                     UserName = auction.UserName,
-                    Id = auction.Id
+                    Id = auction.Id,
+                    UserLocation = auction.ZipCode + " - " + auction.Region
                 };
 
                 return auctionModel;
