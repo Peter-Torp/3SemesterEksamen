@@ -54,7 +54,7 @@
 
         </DataGrid>
 
-        <Grid Height="100" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" RenderTransformOrigin="0.916,5.266" Margin="-5,-80,5,0" >
+        <Grid>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="189*"/>
@@ -63,7 +63,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Auctions" Margin="15,293,-762,-433" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="Auctions_SelectionChanged" ItemsSource="{Binding AuctionShowModel}">
+            <DataGrid Name="Auctions" Margin="15,214,-762,-433" Grid.ColumnSpan="4" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="Auctions_SelectionChanged" ItemsSource="{Binding AuctionShowModel}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" Width="50"/>
                     <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="StartPrice" Width="100"/>
