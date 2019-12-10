@@ -592,7 +592,7 @@ namespace Auction_House_WCF.DataAccess
         public List<AuctionData> GetAllAuctions()
         {
             List<AuctionData> auctionData = null;
-            string getAllAuctionsDB = "SELECT * FROM Auctions";
+            string getAllAuctionsDB = "SELECT * FROM Auction";
 
             using (var conn = new SqlConnection(_connectionString))
             {
