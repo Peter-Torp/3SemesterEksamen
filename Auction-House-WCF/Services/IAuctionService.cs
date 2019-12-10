@@ -48,6 +48,8 @@ namespace Auction_House_WCF.Services
         double GetMaxBidOnAuction(int auctionId);
         [OperationContract]
         bool DeleteAuctionById(int id);
+        [OperationContract]
+        List<AuctionData> GetAuctionByDesc(string auctionDesc);
 
     }
 }

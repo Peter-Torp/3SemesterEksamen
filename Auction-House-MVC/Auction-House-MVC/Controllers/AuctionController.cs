@@ -25,12 +25,23 @@ namespace Auction_House_MVC.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult CreateAuction()
         {
             B_AuctionController bACtr = new B_AuctionController();
             AuctionSetUp aSU = new AuctionSetUp();
 
-            //Get categories from DB.
+            //Get categories from database.
+            List<SelectListItem> selectList = GetCategoriesAndConvertToSelectListItem();
+
+            aSU.Categories = new SelectList(selectList, "Value", "Text");
+
+            return View(aSU);
+        }
+
+        private List<SelectListItem> GetCategoriesAndConvertToSelectListItem()
+        {
+            B_AuctionController bACtr = new B_AuctionController();
             List<string> categories = bACtr.GetCategories();
 
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -38,9 +49,7 @@ namespace Auction_House_MVC.Controllers
             {
                 selectList.Add(new SelectListItem { Value = category, Text = category });
             }
-            aSU.Categories = new SelectList(selectList, "Value", "Text");
-
-            return View(aSU);
+            return selectList;
         }
 
         public ActionResult AddPictures(int id)
@@ -51,6 +60,9 @@ namespace Auction_House_MVC.Controllers
             return View(auctionPicture);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult CreateAuctionDetails(Models.AuctionSetUp auctionDetails)
         {
             if (ModelState.IsValid)
@@ -63,18 +75,21 @@ namespace Auction_House_MVC.Controllers
 
                 if (successful)
                 {
+                    TempData["Referer"] = "AuctionSuccessful";
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    //Return message to user here if insertion failed.
+                    TempData["Referer"] = "AuctionFailed";
+                    return RedirectToAction("Index", "Home");
                 }
-            }
-            else
+            } else
             {
-                return View("CreateAuction");
+                List<SelectListItem> selectList = GetCategoriesAndConvertToSelectListItem();
+
+                auctionDetails.Categories = new SelectList(selectList, "Value", "Text");
             }
-            return View("CreateAuction");
+            return View("CreateAuction", auctionDetails);
         }
 
 
@@ -85,33 +100,7 @@ namespace Auction_House_MVC.Controllers
 
         public PartialViewResult AddAuctionPartial()
         {
-            //var vm = new AuctionSetUp();
-
-            //vm.Categories = new SelectList ( new List<SelectListItem>
-            //{
-            //                new SelectListItem {Value= vm.SelectedCategory , Text = "Elektronik"},
-            //                new SelectListItem {Value = vm.SelectedCategory , Text = "Biler"},
-            //                new SelectListItem {Value = vm.SelectedCategory, Text = "Have"}
-            //}, "Value", "Text");
-
-            return PartialView("AddAuctionPartial"/*, vm*/);
-        }
-
-        public ActionResult InsertPictureDetail(AuctionPicture pictureDetail)
-        {
-            if (ModelState.IsValid)
-            {
-                B_AuctionController bACtr = new B_AuctionController();
-
-                ConvertViewModel converter = new ConvertViewModel();
-
-                
-            }
-            else
-            {
-                return View("AddPictures");
-            }
-            return View("AddPictures");
+            return PartialView("AddAuctionPartial");
         }
 
         public ActionResult Auction(int id)
@@ -122,6 +111,11 @@ namespace Auction_House_MVC.Controllers
 
             //Auction details from database.
             AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
+
+            if(auctionInfoModel == null)
+            {
+                return View("NotFound");
+            }
 
             //Get Images info from database.
             List<ShowAuctionPictureModel> sAPM = converter.ConvertFromImagesToShowAuctionPictureModels(bACtr.GetImages(id));
@@ -138,7 +132,8 @@ namespace Auction_House_MVC.Controllers
             return View(new AuctionModel(){ AuctionInfoModel = auctionInfoModel,ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel});
         }
 
-        public ActionResult AddPictureToMemory(AuctionPicture picture,int id)
+        [Authorize]
+        public ActionResult AddPictureDetails(AuctionPicture picture,int id)
         {
             B_AuctionController bACtr = new B_AuctionController();
 
@@ -148,10 +143,10 @@ namespace Auction_House_MVC.Controllers
                 ConvertViewModel converter = new ConvertViewModel();
 
                 bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
-            }
 
+                TempData["Referer"] = "PictureSuccessful";
+            }
             return RedirectToAction("AddPictures", new { id });
-            //return View("AddPictures", new { id = id });
         }
 
         //public ActionResult ShowAuctions()
@@ -187,6 +182,24 @@ namespace Auction_House_MVC.Controllers
             return View("AuctionsPartial", auctionModels);
         }
 
+        public ActionResult SearchAuctionsResult(SearchModel searchModel)
+        {
+            return View(searchModel);
+        }
+
+        public ActionResult SearchAuctionsPartial()
+        {
+            return View();
+        }
+
+        public ActionResult SearchAuctionsDetails(SearchModel searchDetails)
+        {
+            B_AuctionController bACtr = new B_AuctionController();
+            ConvertViewModel converter = new ConvertViewModel();
+
+            List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(bACtr.GetAuctionsByDesc(searchDetails.SearchString));
+            return View("AuctionsPartial", auctionModels);
+        }
 
         public FileStreamResult AuctionShowImage(int id, string fileName, string userName)
         {
@@ -194,7 +207,9 @@ namespace Auction_House_MVC.Controllers
 
             Image image = bActr.GetPicture(userName, id, fileName);
 
-            var fileStreamResult = new FileStreamResult(image.FileStream, "image/"+Path.GetExtension(fileName));
+            string imageType = "image/" + Path.GetExtension(fileName).Replace(".", "");
+
+            var fileStreamResult = new FileStreamResult(image.FileStream, imageType);
             fileStreamResult.FileDownloadName = image.FileName;
             
             return fileStreamResult;
@@ -205,6 +220,7 @@ namespace Auction_House_MVC.Controllers
             return View("ShowBids",showBids);
         }
 
+        [Authorize]
         public ActionResult InsertBid(InsertBidModel insertBidModel, int id)
         {
             insertBidModel.AuctionId = id;
@@ -212,6 +228,8 @@ namespace Auction_House_MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult InsertBidDetail(InsertBidModel insertBid, int id)
         {
             bool successful = false;

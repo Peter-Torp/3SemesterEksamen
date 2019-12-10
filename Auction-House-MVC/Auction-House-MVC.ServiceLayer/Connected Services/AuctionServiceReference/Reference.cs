@@ -688,6 +688,18 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetMaxBidOnAuction", ReplyAction="http://tempuri.org/IAuctionService/GetMaxBidOnAuctionResponse")]
         System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
+        bool DeleteAuctionById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctionByDesc", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionByDescResponse")]
+        Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctionByDesc(string auctionDesc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctionByDesc", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionByDescResponse")]
+        System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -983,6 +995,22 @@ namespace Auction_House_MVC.ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<double> GetMaxBidOnAuctionAsync(int auctionId) {
             return base.Channel.GetMaxBidOnAuctionAsync(auctionId);
+        }
+        
+        public bool DeleteAuctionById(int id) {
+            return base.Channel.DeleteAuctionById(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id) {
+            return base.Channel.DeleteAuctionByIdAsync(id);
+        }
+        
+        public Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctionByDesc(string auctionDesc) {
+            return base.Channel.GetAuctionByDesc(auctionDesc);
+        }
+        
+        public System.Threading.Tasks.Task<Auction_House_MVC.ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc) {
+            return base.Channel.GetAuctionByDescAsync(auctionDesc);
         }
     }
 }

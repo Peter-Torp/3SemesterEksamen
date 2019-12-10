@@ -99,20 +99,27 @@ namespace Auction_House_MVC.Utility
 
         public AuctionInfoModel ConvertFromAuctionToAuctionModel(Auction auction)
         {
-            AuctionInfoModel auctionModel = new AuctionInfoModel
+            if (auction != null)
             {
-                StartPrice = auction.StartPrice,
-                BuyOutPrice = auction.BuyOutPrice,
-                BidInterval = auction.BidInterval,
-                Description = auction.Description,
-                StartDate = auction.StartDate,
-                EndDate = auction.EndDate,
-                Category = auction.Category,
-                UserName = auction.UserName,
-                Id = auction.Id
-            };
+                AuctionInfoModel auctionModel = new AuctionInfoModel
+                {
+                    StartPrice = auction.StartPrice,
+                    BuyOutPrice = auction.BuyOutPrice,
+                    BidInterval = auction.BidInterval,
+                    Description = auction.Description,
+                    StartDate = auction.StartDate,
+                    EndDate = auction.EndDate,
+                    Category = auction.Category,
+                    UserName = auction.UserName,
+                    Id = auction.Id
+                };
 
-            return auctionModel;
+                return auctionModel;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public ShowAuctionPictureModel ConvertFromImageToShowAuctionPictureModel(Image image)

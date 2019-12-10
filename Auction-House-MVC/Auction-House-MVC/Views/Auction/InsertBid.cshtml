@@ -7,9 +7,11 @@
 <h2>Bid here</h2>
 
 <h4>Current highest bid: @Model.CurrentHighestBid</h4>
+<h3>Lowest possible bid: @Model.MinimumValidBid </h3>
 
 @using (Html.BeginForm("InsertBidDetail", "Auction", new { Model, id = Model.AuctionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
     <div>
         <fieldset>
             <!-- Bid amount -->

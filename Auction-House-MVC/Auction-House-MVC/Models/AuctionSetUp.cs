@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Auction_House_MVC.Utility;
 
 namespace Auction_House_MVC.Models
 {
@@ -21,12 +22,14 @@ namespace Auction_House_MVC.Models
         public double BidInterval { get; set; }
         [DisplayName("Description")]
         [Required]
+        [MaxLength(100)]
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         [Required]
         [DisplayName("End date")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [CheckDateTime(ErrorMessage = "Date has to be after current time.")]
         public DateTime EndDate { get; set; }
         [DisplayName("Category")]
         [Required(ErrorMessage = "Please choose category")]

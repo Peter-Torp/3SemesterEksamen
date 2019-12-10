@@ -3,8 +3,7 @@
     ViewBag.Title = "AddPictures";
 }
 
-<!-- TODO: PASS AUCTION ID TO HERE AT ID HARDCODED 5 MVC DOES NOT KNOW HOW TO MVC-->
-@using (Html.BeginForm("AddPictureToMemory", "Auction", new { id = Html.DisplayFor(m => m.Id) } ,FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddPictureDetails", "Auction", new { id = Html.DisplayFor(m => m.Id) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <fieldset>
         <legend> Upload Image </legend>
@@ -30,4 +29,11 @@
         <br />
         <input type="submit" value="Upload" class="btn btn-primary" />
     </fieldset>
+}
+
+@if ((string)TempData["Referer"] == "PictureSuccessful")
+{
+    <div class="alert alert-success">
+        <strong>Your picture has been registered!</strong>
+    </div>
 }
