@@ -118,21 +118,11 @@ namespace Auction_House_WPF.ViewModels
 
         public void FillDataGrid()
         {
-           //string connectionString = new ConfigurationManager.ConnectionString["connectionString"].connectionString;
-           // string CmdString = string.Empty;
-           // using(SqlConnection con = new SqlConnection(connectionString))
-           // {
-           //     CmdString = "SELECT StartPrice, BuyOutPrice, BidInterval, Description, StartDate, EndDate FROM Auction";
-           //     SqlCommand cmd = new SqlCommand(CmdString, con);
-           //     SqlDataAdapter sda = new SqlDataAdapter(cmd);
-
-           //     DataTable dt = new DataTable("Auctions");
-           //     sda.Fill(dt);
-           //     AuctionDataGrid.ItemSource = dt.DefaultView;
-
-
-
+            foreach(AuctionModel auctionModel in auctionRepos.GetAllAuctions())
+            {
+                AuctionShowModels.Add(ConvertAuctionModelToAuctionShowModel(auctionModel));
             }
+   
         }
 
     }
