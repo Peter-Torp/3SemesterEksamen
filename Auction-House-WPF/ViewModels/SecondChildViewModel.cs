@@ -35,6 +35,7 @@ namespace Auction_House_WPF.ViewModels
             UserShowModel = new ObservableCollection<UserShowModel>();
             AuctionShowModel = new ObservableCollection<AuctionShowModel>();
             DeleteAuction = new RelayCommand(OnDelete,CanDelete);
+            
         }
         public void Display(string message)
         {
@@ -62,6 +63,11 @@ namespace Auction_House_WPF.ViewModels
             AuctionShowModel.Clear();
             foreach (AuctionModel auctionModel in auctionRepos.getAuctionsByUserName(user.UserName))
             {
+                if (FirstChildViewModel == null)
+                {
+                    FirstChildViewModel = new FirstChildViewModel();
+                }
+
                 AuctionShowModel.Add(FirstChildViewModel.ConvertAuctionModelToAuctionShowModel(auctionModel));
             }
         }
