@@ -2,12 +2,26 @@
     ViewBag.Title = "Home Page";
 }
 
-    <div class="jumbotron">
-        <h1>Online Auction House</h1>
-        <p class="lead">Be your own auctioneer, or get a good deal.</p>
-        <input class="btn btn-primary btn-lg" type="button" value="Learn more" onclick="location.href='@Url.Action("Information", "Home")'" />
-         
+@if ((string)TempData["Referer"] == "AuctionSuccessful")
+{
+    <div class="alert alert-success">
+        <strong>Your auction has been registered! Go to the auction to add pictures!</strong>
     </div>
+}
+
+@if ((string)TempData["Referer"] == "AuctionFailed")
+{
+    <div class="alert alert-danger">
+        <strong>Your auction has not been registered! Please try again.</strong>
+    </div>
+}
+
+<div class="jumbotron">
+    <h1>Online Auction House</h1>
+    <p class="lead">Be your own auctioneer, or get a good deal.</p>
+    <input class="btn btn-primary btn-lg" type="button" value="Learn more" onclick="location.href='@Url.Action("Information", "Home")'" />
+
+</div>
 
 <div class="row">
     <div class="col-md-4">

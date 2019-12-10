@@ -143,5 +143,14 @@ namespace Auction_House_MVC.ServiceLayer
             return aSClient.GetMaxBidOnAuction(auctionId);
         }
 
+        public List<Auction> GetAuctionsByDesc(string auctionDesc)
+        {
+            IAuctionService aSClient = new AuctionServiceClient("BasicHttpBinding_IAuctionService");
+
+            ConvertDataModel converter = new ConvertDataModel();
+
+            return converter.ConvertFromAuctionDataToAuctions(aSClient.GetAuctionByDesc(auctionDesc));
+        }
+
     }
 }

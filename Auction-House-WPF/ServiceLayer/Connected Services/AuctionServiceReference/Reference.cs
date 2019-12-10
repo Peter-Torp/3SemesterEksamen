@@ -695,6 +695,12 @@ namespace ServiceLayer.AuctionServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
         System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctionByDesc", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionByDescResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctionByDesc(string auctionDesc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAuctionByDesc", ReplyAction="http://tempuri.org/IAuctionService/GetAuctionByDescResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAllAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAllAuctionsResponse")]
         ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions();
         
@@ -1003,6 +1009,14 @@ namespace ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id) {
             return base.Channel.DeleteAuctionByIdAsync(id);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData[] GetAuctionByDesc(string auctionDesc) {
+            return base.Channel.GetAuctionByDesc(auctionDesc);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAuctionByDescAsync(string auctionDesc) {
+            return base.Channel.GetAuctionByDescAsync(auctionDesc);
         }
         
         public ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions() {

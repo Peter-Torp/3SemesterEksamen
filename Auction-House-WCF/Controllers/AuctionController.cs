@@ -46,7 +46,9 @@ namespace Auction_House_WCF.Controllers
         {
             DBAuction dBAuction = new DBAuction();
 
-            return dBAuction.Get(auctionId);
+            AuctionData auctionData = dBAuction.Get(auctionId);
+
+            return auctionData;
         }
 
         public List<string> GetCategories() 
@@ -108,6 +110,13 @@ namespace Auction_House_WCF.Controllers
         {
             DBAuction dBAuction = new DBAuction();
             return dBAuction.DeleteAuctionById(id);
+        }
+
+        public List<AuctionData> GetAuctionsByDesc(string auctionDesc)
+        {
+            DBAuction dBAuction = new DBAuction();
+            return dBAuction.GetAuctionsByDescription(auctionDesc);
+
         }
 
         public List<AuctionData> GetAllAuctions()

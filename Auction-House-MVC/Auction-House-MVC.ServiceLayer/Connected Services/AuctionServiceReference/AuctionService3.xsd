@@ -211,4 +211,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="DeleteAuctionById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAuctionByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteAuctionByIdResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuctionByDesc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="auctionDesc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuctionByDescResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Auction_House_WCF.Models" minOccurs="0" name="GetAuctionByDescResult" nillable="true" type="q15:ArrayOfAuctionData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

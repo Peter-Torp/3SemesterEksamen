@@ -42,7 +42,7 @@ namespace Auction_House_WPF.ViewModels
             AuctionShowModels = new ObservableCollection<AuctionShowModel>();
             DisplayAuctions = new RelayCommand(SearchAuction);
             DeleteAuction = new RelayCommand(OnDelete,CanDelete);
-            FillDataGrid();
+            FillDataGrid(); //fill datagrid with all auction when initialized
         }
 
         public void OnDelete()

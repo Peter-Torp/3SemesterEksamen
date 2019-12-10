@@ -1,0 +1,5 @@
+﻿@model Auction_House_MVC.Models.SearchModel
+
+<h2>Auctions search for: @Model.SearchString</h2>
+
+@{ Html.RenderAction("SearchAuctionsDetails", "Auction", Model);}

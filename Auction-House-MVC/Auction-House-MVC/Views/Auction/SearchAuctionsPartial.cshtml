@@ -1,0 +1,21 @@
+﻿@model Auction_House_MVC.Models.SearchModel
+@{
+    ViewBag.Title = "SearchAuctions";
+    Layout = null;
+}
+
+@using (Html.BeginForm("SearchAuctionsResult", "Auction"))
+{
+    <form class="form-inline">
+        <div>
+            <fieldset>
+                @Html.LabelFor(iB => iB.SearchString)
+
+                @Html.TextBoxFor(iB => iB.SearchString)
+                <p style="color:red;">@Html.ValidationMessageFor(iB => iB.SearchString)</p>
+
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </fieldset>
+        </div>
+    </form>
+}

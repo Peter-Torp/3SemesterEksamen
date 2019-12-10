@@ -111,17 +111,24 @@ namespace Auction_House_MVC.ServiceLayer.Utility
 
         public Auction ConvertFromAuctionDataToAuction(AuctionData aD)
         {
-            Auction auction = new Auction(
-                aD.Id,
-                aD.StartPrice,
-                aD.BuyOutPrice,
-                aD.BidInterval,
-                aD.Description,
-                aD.StartDate,
-                aD.EndDate,
-                aD.Category);
-            auction.UserName = aD.UserName;
-            return auction;
+            if (aD != null)
+            {
+                Auction auction = new Auction(
+                    aD.Id,
+                    aD.StartPrice,
+                    aD.BuyOutPrice,
+                    aD.BidInterval,
+                    aD.Description,
+                    aD.StartDate,
+                    aD.EndDate,
+                    aD.Category);
+                auction.UserName = aD.UserName;
+                return auction;
+            } else
+            {
+                return null;
+            }
+
         }
 
         //Convert from system.array to generic list.

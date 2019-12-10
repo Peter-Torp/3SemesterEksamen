@@ -149,5 +149,11 @@ namespace Auction_House_MVC.BusinessLayer
 
             return hBid;
         }
+
+        public List<Auction> GetAuctionsByDesc(string auctionDesc)
+        {
+            AuctionService aS = new AuctionService();
+            return aS.GetAuctionsByDesc(auctionDesc);
+        }
     }
 }
