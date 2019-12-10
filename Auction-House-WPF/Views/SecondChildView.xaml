@@ -43,7 +43,7 @@
 
 
         <DataGrid x:Name="UserGrid" HorizontalAlignment="Left" Height="134" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="769" Grid.ColumnSpan="9" RenderTransformOrigin="0.37,0.591"
-                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="UserGrid_SelectionChanged">
+                  ItemsSource="{Binding UserShowModel}" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="UserGrid_SelectionChanged" SelectedValue="{Binding Path=SelectedValue}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=UserName, Mode=OneWay}" Header="Username" Width="*" />
