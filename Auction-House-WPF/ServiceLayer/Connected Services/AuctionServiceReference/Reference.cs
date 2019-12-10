@@ -694,6 +694,12 @@ namespace ServiceLayer.AuctionServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/DeleteAuctionById", ReplyAction="http://tempuri.org/IAuctionService/DeleteAuctionByIdResponse")]
         System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAllAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAllAuctionsResponse")]
+        ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuctionService/GetAllAuctions", ReplyAction="http://tempuri.org/IAuctionService/GetAllAuctionsResponse")]
+        System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAllAuctionsAsync();
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -997,6 +1003,14 @@ namespace ServiceLayer.AuctionServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteAuctionByIdAsync(int id) {
             return base.Channel.DeleteAuctionByIdAsync(id);
+        }
+        
+        public ServiceLayer.AuctionServiceReference.AuctionData[] GetAllAuctions() {
+            return base.Channel.GetAllAuctions();
+        }
+        
+        public System.Threading.Tasks.Task<ServiceLayer.AuctionServiceReference.AuctionData[]> GetAllAuctionsAsync() {
+            return base.Channel.GetAllAuctionsAsync();
         }
     }
 }

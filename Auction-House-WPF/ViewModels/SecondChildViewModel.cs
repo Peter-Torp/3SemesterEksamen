@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using RepositoryLayer;
 using ModelLayer;
+using System;
 
 namespace Auction_House_WPF.ViewModels
 {
@@ -39,11 +40,19 @@ namespace Auction_House_WPF.ViewModels
         {
             MessageBox.Show(message);
         }
-        
+
         //Search the user in the database and convert it to a UserShowModel and return the user.
         public void SearchUserByUserName(string searchString)
         {
-            UserShowModel.Add(ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(searchString)));
+            try
+            {
+
+                UserShowModel.Add(ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(searchString)));
+            } 
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("No user was found!");
+            }
             
         }
 

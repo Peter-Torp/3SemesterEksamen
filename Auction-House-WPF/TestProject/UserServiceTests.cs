@@ -10,7 +10,7 @@ using Auction_House_WPF.ModelLayer;
 namespace TestProject
 {
     [TestClass]
-    public class ServiceTests
+    public class UserServiceTests
     {
         UserService userService;
         UserModel testUser = null;

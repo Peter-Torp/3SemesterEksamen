@@ -64,9 +64,9 @@ namespace Auction_House_WPF.ServiceLayer
         {
             using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
             {
-                //return AuctionUtility.ConvertArrayToList(proxy);      create service
+                return AuctionUtility.ConvertArrayToList(proxy.GetAllAuctions());
             }
-            return null;
+            
         }
      }
 }
