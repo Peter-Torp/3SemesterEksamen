@@ -14,6 +14,10 @@ using ModelLayer;
 using RepositoryLayer;
 using Auction_House_WPF.Views;
 using System.Windows;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+
 
 namespace Auction_House_WPF.ViewModels
 {
@@ -112,7 +116,24 @@ namespace Auction_House_WPF.ViewModels
             set;
         }
 
+        public void FillDataGrid()
+        {
+           //string connectionString = new ConfigurationManager.ConnectionString["connectionString"].connectionString;
+           // string CmdString = string.Empty;
+           // using(SqlConnection con = new SqlConnection(connectionString))
+           // {
+           //     CmdString = "SELECT StartPrice, BuyOutPrice, BidInterval, Description, StartDate, EndDate FROM Auction";
+           //     SqlCommand cmd = new SqlCommand(CmdString, con);
+           //     SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
+           //     DataTable dt = new DataTable("Auctions");
+           //     sda.Fill(dt);
+           //     AuctionDataGrid.ItemSource = dt.DefaultView;
+
+
+
+            }
+        }
 
     }
 }
