@@ -83,7 +83,8 @@ namespace Auction_House_MVC.Controllers
                     TempData["Referer"] = "AuctionFailed";
                     return RedirectToAction("Index", "Home");
                 }
-            } else
+            }
+            else
             {
                 List<SelectListItem> selectList = GetCategoriesAndConvertToSelectListItem();
 
@@ -112,7 +113,7 @@ namespace Auction_House_MVC.Controllers
             //Auction details from database.
             AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
 
-            if(auctionInfoModel == null)
+            if (auctionInfoModel == null)
             {
                 return View("NotFound");
             }
@@ -129,22 +130,39 @@ namespace Auction_House_MVC.Controllers
             insertBidModel.MinimumValidBid = insertBidModel.CurrentHighestBid + auctionInfoModel.BidInterval;
 
             //Return the AuctionModel
-            return View(new AuctionModel(){ AuctionInfoModel = auctionInfoModel,ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel});
+            return View(new AuctionModel() { AuctionInfoModel = auctionInfoModel, ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel });
         }
 
         [Authorize]
-        public ActionResult AddPictureDetails(AuctionPicture picture,int id)
+        public ActionResult AddPictureDetails(AuctionPicture picture, int id)
         {
             B_AuctionController bACtr = new B_AuctionController();
 
             //GET ALL PICTURES FROM AUCTION
             if (ModelState.IsValid)
             {
-                ConvertViewModel converter = new ConvertViewModel();
+                string extension = Path.GetExtension(picture.FileStream.FileName);
 
-                bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
+                // Check file type and length - Getting pictures is limited to 40kb for some reason, so upload is limited.
+                if (picture.FileStream.ContentLength < 40000)
+                {
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".jfif")
+                    {
+                        ConvertViewModel converter = new ConvertViewModel();
 
-                TempData["Referer"] = "PictureSuccessful";
+                        bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
+
+                        TempData["Referer"] = "PictureSuccessful";
+                    }
+                    else
+                    {
+                        TempData["Referer"] = "PictureFailed";
+                    }
+                }
+                else
+                {
+                    TempData["Referer"] = "PictureFailed";
+                }
             }
             return RedirectToAction("AddPictures", new { id });
         }
@@ -211,20 +229,20 @@ namespace Auction_House_MVC.Controllers
 
             var fileStreamResult = new FileStreamResult(image.FileStream, imageType);
             fileStreamResult.FileDownloadName = image.FileName;
-            
+
             return fileStreamResult;
         }
 
         public ActionResult ShowBids(List<ShowBid> showBids)
         {
-            return View("ShowBids",showBids);
+            return View("ShowBids", showBids);
         }
 
         [Authorize]
         public ActionResult InsertBid(InsertBidModel insertBidModel, int id)
         {
             insertBidModel.AuctionId = id;
-            return View("InsertBid", insertBidModel );
+            return View("InsertBid", insertBidModel);
         }
 
         [HttpPost]
@@ -242,16 +260,17 @@ namespace Auction_House_MVC.Controllers
                 successful = bACtr.InsertBid(converter.ConvertFromBidInsertModelToBid(insertBid, User.Identity.Name, id));
 
                 //For messages to the user.
-                if( successful )
+                if (successful)
                 {
                     TempData["Referer"] = "InsertSuccessful";
-                } else
+                }
+                else
                 {
                     TempData["Referer"] = "InsertFailed";
                 }
             }
-            
-            return RedirectToAction("Auction", new { id } );
+
+            return RedirectToAction("Auction", new { id });
         }
     }
 }

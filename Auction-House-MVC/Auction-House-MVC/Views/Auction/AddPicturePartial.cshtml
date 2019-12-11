@@ -26,7 +26,7 @@
 
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(m => m.FileStream, new { type = "file" })
+        @Html.TextBoxFor(m => m.FileStream, new { type = "file", accept = "image/*" })
         <p style="color:red;">@Html.ValidationMessageFor(m => m.FileStream)</p>
     </div>
     <br />

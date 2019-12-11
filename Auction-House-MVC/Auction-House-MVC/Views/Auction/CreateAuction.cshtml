@@ -37,7 +37,7 @@
                             @Html.LabelFor(aS => aS.BidInterval)
                         </div>
                         <div class="editor-field">
-                            @Html.TextBoxFor(aS => aS.BidInterval, new { type = "number", min = "0", step = "0.01" })
+                            @Html.TextBoxFor(aS => aS.BidInterval, new { type = "number", min = "0.50", step = "0.01" })
                             <p style="color:red;">@Html.ValidationMessageFor(aS => aS.BidInterval)</p>
                         </div>
 
