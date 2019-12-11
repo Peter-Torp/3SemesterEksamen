@@ -16,5 +16,7 @@ namespace Auction_House_MVC.Models
         public string Category { get; set; }
         public string UserName { get; set; }
         public int Id { get; set; }
+        public double Bid { get; set; }
+        public string UserLocation { get; set; }
     }
 }

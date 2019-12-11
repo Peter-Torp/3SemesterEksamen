@@ -31,6 +31,9 @@ namespace Auction_House_WCF.Models
         public string UserName { get; set; }        //9
         [DataMember]
         public int UserId { get; set; }     //10
-
+        [DataMember]
+        public string ZipCode { get; set; }
+        [DataMember]
+        public string Region { get; set; }
     }
 }

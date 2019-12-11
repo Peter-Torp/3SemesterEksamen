@@ -191,10 +191,12 @@ namespace Auction_House_WCF.DataAccess
             };
 
             // SQL query
-            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, A.Id " +
+            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, U.ZipCode, R.Region " +
                 "FROM Auction AS A " +
                 "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
                 "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "INNER JOIN Users AS U ON A.User_Id = U.User_Id " +
+                "INNER JOIN Region AS R ON U.ZipCode = R.ZipCode " +
                 "WHERE A.Id = @auctionId";
 
             //Create return Object
@@ -220,7 +222,7 @@ namespace Auction_House_WCF.DataAccess
                                 {
                                     auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
                                        reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
-                                       reader.GetDouble(4), reader.GetDouble(3));
+                                       reader.GetDouble(4), reader.GetDouble(3), reader.GetString(9), reader.GetString(10));
                                 }
                             } else
                             {
@@ -312,10 +314,12 @@ namespace Auction_House_WCF.DataAccess
             };
 
             // SQL query
-            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name " +
+            string getAuctions = "SELECT A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, U.ZipCode, R.Region " +
                 "FROM Auction AS A " +
                 "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
                 "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "INNER JOIN Users AS U ON A.User_Id = U.User_Id " +
+                "INNER JOIN Region AS R ON U.ZipCode = R.ZipCode " +
                 "WHERE UserName = @userName";
 
             //Create auctions list to return.
@@ -340,7 +344,7 @@ namespace Auction_House_WCF.DataAccess
                                 {
                                     AuctionData auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
                                        reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
-                                       reader.GetDouble(4), reader.GetDouble(3));
+                                       reader.GetDouble(4), reader.GetDouble(3),reader.GetString(9), reader.GetString(10));
                                     auctions.Add(auctionData);
                                 }
                             }
@@ -364,7 +368,8 @@ namespace Auction_House_WCF.DataAccess
         }
 
         private AuctionData ToObject(int auctionId, string userName, string description, string category,
-            DateTime startDate, DateTime endDate, double startPrice, double bidInterval, double buyOutPrice)
+            DateTime startDate, DateTime endDate, double startPrice, double bidInterval, double buyOutPrice, 
+            string zipCode, string region)
         {
             AuctionData auction = new AuctionData
             {
@@ -376,7 +381,9 @@ namespace Auction_House_WCF.DataAccess
                 EndDate = endDate,
                 StartPrice = startPrice,
                 BidInterval = bidInterval,
-                BuyOutPrice = buyOutPrice
+                BuyOutPrice = buyOutPrice,
+                ZipCode = zipCode,
+                Region = region
             };
             return auction;
         }
@@ -460,10 +467,12 @@ namespace Auction_House_WCF.DataAccess
 
             // SQL query
             string getLatestAuctions = "SELECT TOP 10 " +
-                "A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name " +
+                "A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, U.ZipCode, R.Region " +
                 "FROM Auction AS A " +
                 "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
                 "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "INNER JOIN Users AS U ON A.User_Id = U.User_Id " +
+                "INNER JOIN Region AS R ON U.ZipCode = R.ZipCode " +
                 "ORDER BY A.StartDate DESC";
 
             //Create auctions list to return.
@@ -487,7 +496,7 @@ namespace Auction_House_WCF.DataAccess
                                 {
                                     AuctionData auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
                                        reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
-                                       reader.GetDouble(4), reader.GetDouble(3));
+                                       reader.GetDouble(4), reader.GetDouble(3), reader.GetString(9), reader.GetString(10));
                                     auctions.Add(auctionData);
                                 }
                             }
@@ -521,10 +530,12 @@ namespace Auction_House_WCF.DataAccess
 
             // SQL query
             string getLatestAuctions = "SELECT " +
-                "A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name " +
+                "A.Id, P.UserName, A.StartPrice, A.BuyOutPrice, A.BidInterval, A.Description, A.StartDate, A.EndDate, C.Name, U.ZipCode, R.Region " +
                 "FROM Auction AS A " +
                 "INNER JOIN Category AS C ON A.Category_Id = C.Cat_Id " +
                 "INNER JOIN Person AS P ON A.User_Id = P.Id " +
+                "INNER JOIN Users AS U ON A.User_Id = U.User_Id " +
+                "INNER JOIN Region AS R ON U.ZipCode = R.ZipCode " +
                 "WHERE A.Description LIKE @auctionDesc " +
                 "ORDER BY A.StartDate DESC";
 
@@ -551,7 +562,7 @@ namespace Auction_House_WCF.DataAccess
                                 {
                                     AuctionData auctionData = ToObject(reader.GetInt32(0), reader.GetString(1), reader.GetString(5),
                                        reader.GetString(8), reader.GetDateTime(6), reader.GetDateTime(7), reader.GetDouble(2),
-                                       reader.GetDouble(4), reader.GetDouble(3));
+                                       reader.GetDouble(4), reader.GetDouble(3),reader.GetString(9), reader.GetString(10));
                                     auctions.Add(auctionData);
                                 }
                             }

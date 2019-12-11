@@ -10,7 +10,10 @@
             <th scope="col">#</th>
             <th scope="col">Description</th>
             <th scope="col">Category</th>
+            <th scope="col">Place</th>
             <th scope="col">Start Price</th>
+            <th scope="col">Bid Interval</th>
+            <th scope="col">Buy Out Price</th>
         </tr>
     </thead>
 
@@ -21,7 +24,10 @@
                 <th scope="row">1</th>
                 <td>@item.Description</td>
                 <td>@item.Category</td>
+                <td>@item.UserLocation</td>
                 <td>@item.StartPrice</td>
+                <td>@item.BidInterval</td>
+                <td>@item.BuyOutPrice</td>
                 <td>@Html.ActionLink("See auction", "Auction", "Auction", new { item.Id }, new { @class = "btn btn-info" })</td>
             </tr>
         }

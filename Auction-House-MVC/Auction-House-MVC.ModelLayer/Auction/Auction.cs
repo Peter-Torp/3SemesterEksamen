@@ -30,5 +30,7 @@ namespace Auction_House_MVC.ModelLayer.Auction
         public DateTime EndDate { get; set; }
         public string Category { get; set; }
         public string UserName { get; set; }
+        public string ZipCode { get; set; }
+        public string Region { get; set; }
     }
 }
