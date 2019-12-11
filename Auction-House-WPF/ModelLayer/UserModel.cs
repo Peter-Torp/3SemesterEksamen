@@ -22,6 +22,7 @@ namespace Auction_House_WPF.ModelLayer
             this.Phone = phone;
             this.Zipcode = zipCode;
             this.DateofBirth = dateOfBirth;
+            
 
         }
 
@@ -40,6 +41,7 @@ namespace Auction_House_WPF.ModelLayer
         public string Zipcode { get; set; }
 
         public string DateofBirth { get; set; }
+        public int User_Id { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -93,6 +93,32 @@ namespace Auction_House_WCF.DataAccess
                 throw exp;
             }
         }
+
+        //Delete directory auction with auction id and find the specific auction with user_id
+        public bool DeleteAuctionFolder(int Auction_id, int user_id)
+        {
+            string userDirectory = Path.Combine(_appDirectory, _baseDirectory, user_id.ToString());
+            string auctionDirectory = Path.Combine(userDirectory, Auction_id.ToString());
+
+            if (!Directory.Exists(userDirectory))
+            {
+                return false;
+            }
+            if (!Directory.Exists(auctionDirectory))
+            {
+                return false;
+            }
+            System.IO.Directory.Delete(auctionDirectory,true);      //deletes directory and subdirectories(true)
+
+            return true;
+        }
+
+        //find aucion id
+        //user_id
+        //path -> user_id -> auction_id
+        //File delete auction folder.
+
+
     }
 
 

@@ -633,33 +633,84 @@ namespace Auction_House_WCF.DataAccess
 
 
         }
+
+        //Delete an auction
         internal bool DeleteAuctionById(int id)
         {
-            bool deleted = false;
-            string deleteAuction = "DELETE * FROM Auction WHERE id = @Id";
-
-            using (var conn = new SqlConnection(_connectionString))
+            bool successful = false;
+            var options = new TransactionOptions
             {
-                try
+               IsolationLevel = IsolationLevel.RepeatableRead
+            };
+
+            ImageHandler imageHandler = new ImageHandler();
+
+            bool deleted = false;
+            //queries statements
+            string deleteAuction = "DELETE FROM Auction WHERE id = @Id";
+            string deleteImage = "DELETE FROM Image WHERE Auction_Id = @Id";
+            string deleteBid = "DELETE FROM Bid WHERE Auction_Id = @Id";
+            string getUser = "SELECT User_id FROM Auction WHERE id = @Id"; 
+
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, options)) {
+
+                using (var conn = new SqlConnection(_connectionString))
                 {
-                    conn.Open();
-
-                    using (var DBAuctions = new SqlCommand(deleteAuction ,conn))
+                    try
                     {
-                        DBAuctions.Parameters.AddWithValue("deleteAuction", deleteAuction);
+                        conn.Open();
+                        using (var scopeGetAndCalc = new TransactionScope(TransactionScopeOption.Required, options)) 
+                        {
+                            using (var DBAuction = new SqlCommand(getUser,conn))
+                            {
+                                int user_id = 0;
+                                DBAuction.Parameters.AddWithValue("@Id", id);
+                                SqlDataReader reader = DBAuction.ExecuteReader();
 
-                        DBAuctions.ExecuteNonQuery();
+                                while (reader.Read())
+                                {
+                                    user_id = reader.GetInt32(0);
+                                }
+                                reader.Close();
+                                imageHandler.DeleteAuctionFolder(id,user_id);   //delete auctionfolder with images
+                            }
 
-                        deleted = true;
+                            using (var DBAuction = new SqlCommand(deleteImage, conn))
+                            {
+                                DBAuction.Parameters.AddWithValue("@Id", id);
+                                DBAuction.ExecuteNonQuery();
+                            }
+
+                            using (var DBAuction = new SqlCommand(deleteBid, conn))
+                            {
+                                DBAuction.Parameters.AddWithValue("@Id", id);
+                                DBAuction.ExecuteNonQuery();
+                            }
+                            using (var DBAuctions = new SqlCommand(deleteAuction, conn))
+                            {   //add the @Id and the id value from the parameters
+                                DBAuctions.Parameters.AddWithValue("@Id", id);
+
+                                DBAuctions.ExecuteNonQuery();
+  
+                            }
+
+                            scopeGetAndCalc.Complete(); //close nested transaction
+                            successful = true;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                    finally
+                    {
+                        conn.Close();
                     }
                 }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+                scope.Complete();//close whole transaction
             }
 
-            return deleted;
+            return successful;
         }
 
 
