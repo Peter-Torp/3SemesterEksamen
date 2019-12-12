@@ -20,5 +20,7 @@ namespace Auction_House_WPF.Model
         public string EndDate { get; set; }
         public string Category { get; set; }
         public string UserName { get; set; }
+
+        public int User_Id { get; set; }
     }
 }
