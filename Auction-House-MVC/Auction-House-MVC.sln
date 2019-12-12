@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction-House-MVC.ModelLaye
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction-House-MVC.ServiceLayer", "Auction-House-MVC.ServiceLayer\Auction-House-MVC.ServiceLayer.csproj", "{ADA4425B-5A63-4E1D-843C-B5597B3F290C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction-House-MVC.Test", "Auction-House-MVC.Test\Auction-House-MVC.Test.csproj", "{8A4E8528-A693-4078-A182-0260145F1DFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{ADA4425B-5A63-4E1D-843C-B5597B3F290C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA4425B-5A63-4E1D-843C-B5597B3F290C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA4425B-5A63-4E1D-843C-B5597B3F290C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4E8528-A693-4078-A182-0260145F1DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4E8528-A693-4078-A182-0260145F1DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4E8528-A693-4078-A182-0260145F1DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4E8528-A693-4078-A182-0260145F1DFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

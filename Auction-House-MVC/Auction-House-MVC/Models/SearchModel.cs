@@ -11,6 +11,7 @@ namespace Auction_House_MVC.Models
     {
         [Required(ErrorMessage = "Please enter search parameter")]
         [DisplayName("Search auctions")]
+        [MinLength(1)]
         public string SearchString { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Auction_House_MVC.Controllers
         {
             ViewBag.Message = "Information";
 
-            return View();
+            return View("Information");
         }
     }
 }
