@@ -48,7 +48,7 @@ namespace Auction_House_WPF.ViewModels
         public void OnDelete()
         {
             auctionRepos.deleteAuctionById(SelectedAuction.Id);
-            FillDataGrid();
+            FillDataGrid();//Update the datagrid after delete
             
         }
         public bool CanDelete()
