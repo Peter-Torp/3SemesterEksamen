@@ -48,6 +48,7 @@ namespace Auction_House_WPF.ViewModels
         public void OnDelete()
         {
             auctionRepos.deleteAuctionById(SelectedAuction.Id);
+            FillDataGrid();
             
         }
         public bool CanDelete()
@@ -76,10 +77,9 @@ namespace Auction_House_WPF.ViewModels
             foreach (AuctionModel auctionModel in auctionRepos.getAuctionsByUserName(searchString)) 
             {
                 AuctionShowModels.Add(ConvertAuctionModelToAuctionShowModel(auctionModel));
+                
             }
 
-
-            
         }
 
 

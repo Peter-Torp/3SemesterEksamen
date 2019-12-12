@@ -52,6 +52,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\LoginServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\UserServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,6 +65,7 @@
     <Compile Include="ExceptionMessages.cs" />
     <Compile Include="Interface\IAuctionServiceLayer.cs" />
     <Compile Include="Interface\IUserService.cs" />
+    <Compile Include="LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessException.cs" />
     <Compile Include="UserService.cs" />
@@ -114,6 +120,19 @@
     <None Include="Connected Services\AuctionServiceReference\ServiceLayer.AuctionServiceReference.RemoteFileInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\LoginServiceReference\LoginService.wsdl" />
+    <None Include="Connected Services\LoginServiceReference\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginServiceReference\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginServiceReference\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginServiceReference\ServiceLayer.LoginServiceReference.UserData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\UserServiceReference\ServiceLayer.UserServiceReference.UserData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -130,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AuctionServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\LoginServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\UserServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +172,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\AuctionServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

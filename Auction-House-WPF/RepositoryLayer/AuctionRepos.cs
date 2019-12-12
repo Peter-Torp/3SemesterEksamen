@@ -19,9 +19,9 @@ namespace RepositoryLayer
             auction = new AuctionService();
         }
 
-        public bool deleteAuctionById(int id)
+        public void deleteAuctionById(int id)
         {
-            return auction.DeleteAuctionById(id);
+             auction.DeleteAuctionById(id);
         }
 
         public List<AuctionModel> getAuctionsByUserName(string userName)

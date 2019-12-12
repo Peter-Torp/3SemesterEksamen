@@ -15,6 +15,20 @@ namespace Auction_House_WPF.Model
     {
         List<AuctionShowModel> Auctions = new List<AuctionShowModel>(); 
 
+        public UserShowModel(string userName, string address, string email, string phone, string zipCode)
+        {
+            this.UserName = userName;
+            this.Address = address;
+            this.Email = email;
+            this.Phone = phone;
+            this.ZipCode = zipCode;
+        }
+
+        public UserShowModel()//2nd constructor
+        {
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public string FirstName { get; set; }
         public string LastName { get; set; }
