@@ -148,17 +148,5 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\tonni.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\maxresdefault.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\tonnibonde2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\racoon.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
