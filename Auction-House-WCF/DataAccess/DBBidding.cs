@@ -27,6 +27,11 @@ namespace Auction_House_WCF.DataAccess
             }
         }
 
+        /// <summary>
+        /// Get bids from an auction id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<BidData> GetBids(int id)
         {
             //Set isolation level
@@ -100,6 +105,12 @@ namespace Auction_House_WCF.DataAccess
             };
             return bidData;
         }
+
+        /// <summary>
+        /// Get the bid that is highest on an auction.
+        /// </summary>
+        /// <param name="auctionId"></param>
+        /// <returns></returns>
         public double GetMaxBidOnAuction(int auctionId)
         {
             //COALESCE for setting return value 0 if no rows found.

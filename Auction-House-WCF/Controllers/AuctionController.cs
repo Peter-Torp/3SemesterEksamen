@@ -94,12 +94,6 @@ namespace Auction_House_WCF.Controllers
             return iHandler.GetPicture(request);
         }
 
-        internal List<AuctionData> GetAuctions(string auctionName)
-        {
-            DBAuction dBAuction = new DBAuction();
-            return dBAuction.GetAuctions(auctionName);
-        }
-
         public List<ImageInfoData> GetImages(int auctionId)
         {
             DBAuction dBAuction = new DBAuction();

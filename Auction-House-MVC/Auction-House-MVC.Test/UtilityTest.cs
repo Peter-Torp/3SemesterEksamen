@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Auction_House_MVC.Utility;
 using System.Web;
+using Auction_House_MVC.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Auction_House_MVC.Test
 {
@@ -58,6 +60,37 @@ namespace Auction_House_MVC.Test
         //    //Assert
         //    Assert.IsFalse(valid);
         //}
+
+        //    [TestMethod]
+        //public void CreateAuctionFailTest()
+        //{
+        //    //Arrange
+        //    AuctionSetUp auctionSetUp = new AuctionSetUp();
+        //    auctionSetUp.BidInterval = 20;
+        //    auctionSetUp.StartPrice = 500;
+        //    auctionSetUp.BuyOutPrice = 550;
+        //    auctionSetUp.SelectedCategory = "Bil";
+        //    auctionSetUp.EndDate = DateTime.Now;
+        //    //auctionSetUp.Description = "Flot bil";
+
+
+        //    //Act
+
+
+        //    //Assert
+        //    Assert.IsTrue(ValidateModel(auctionSetUp).Any(
+        //        v => v.MemberNames.Contains("Description") && 
+        //        v.ErrorMessage.Contains("required")));
+
+        //}
+        //private IList<ValidationResult> ValidateModel(object model)
+        //{
+        //    var validationResults = new List<ValidationResult>();
+        //    var ctx = new ValidationContext(model, null, null);
+        //    Validator.TryValidateObject(model, ctx, validationResults, true);
+        //    return validationResults;
+        //}
+
 
     }
 }

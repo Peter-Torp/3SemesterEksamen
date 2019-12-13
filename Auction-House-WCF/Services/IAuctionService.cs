@@ -27,9 +27,6 @@ namespace Auction_House_WCF.Services
 
         [OperationContract]
         bool InsertPictures(List<ImageData> images);
-
-        [OperationContract]
-        List<AuctionData> GetAuctions(string auctionName);
         [OperationContract]
         List<AuctionData> GetUserAuctions(string userName);
         [OperationContract]

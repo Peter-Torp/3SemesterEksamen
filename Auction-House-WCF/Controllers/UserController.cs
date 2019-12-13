@@ -49,5 +49,12 @@ namespace Auction_House_WCF.Controllers
             DBUser userDB = new DBUser();
             return userDB.GetByUserName(userName);
         }
+
+        public bool TestConnectionToDB(int userId)
+        {
+            DBUser userDB = new DBUser();
+            Boolean connection = userDB.testConnection(userId);
+            return connection;
+        }
     }
 }

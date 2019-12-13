@@ -9,33 +9,66 @@ using System.Threading.Tasks;
 
 namespace Auction_House_WCF.Test
 {
-    class ImageTest
+    [TestClass]
+    public class ImageTest
     {
-        [TestClass]
-        public class DBTest
+            //[TestMethod]
+            //public void TestInsertPicture()
+            //{
+            //    AuctionController aCtr = new AuctionController();
+            //    DownloadRequest downloadRequest = new DownloadRequest();
+
+            //    downloadRequest.FileName = "image_1.jpg";
+            //    downloadRequest.UserId = 400;
+            //    downloadRequest.AuctionNumber = 1;
+
+            //    ImageData imageData = new ImageData();
+            //    RemoteFileInfo rFI = new RemoteFileInfo();
+
+            //    rFI = aCtr.GetPicture(downloadRequest);
+
+            //    imageData.FileStream = rFI.FileByteStream;
+            //    imageData.FileName = downloadRequest.FileName;
+            //    imageData.UserId = 401;
+            //    imageData.AuctionId = 4;
+
+            //    Assert.IsTrue(aCtr.InsertPicture(imageData));
+            //}
+
+        [TestMethod]
+        public void GetImageFailTest()
         {
-            [TestMethod]
-            public void TestInsertPicture()
-            {
-                AuctionController aCtr = new AuctionController();
-                DownloadRequest downloadRequest = new DownloadRequest();
+            //Arrange
+            AuctionController aCtr = new AuctionController();
 
-                downloadRequest.FileName = "image_1.jpg";
-                downloadRequest.UserId = 400;
-                downloadRequest.AuctionNumber = 1;
+            DownloadRequest downloadRequest = new DownloadRequest();
+            downloadRequest.FileName = "dummydata";
+            downloadRequest.AuctionNumber = 0;
+            downloadRequest.UserId = 0;
 
-                ImageData imageData = new ImageData();
-                RemoteFileInfo rFI = new RemoteFileInfo();
+            //Act
+            RemoteFileInfo rFI = aCtr.GetPicture(downloadRequest);
 
-                rFI = aCtr.GetPicture(downloadRequest);
+            //Assert
+            Assert.AreEqual("projekt-notfound.jpg", rFI.FileName);
+        }
 
-                imageData.FileStream = rFI.FileByteStream;
-                imageData.FileName = downloadRequest.FileName;
-                imageData.UserId = 401;
-                imageData.AuctionId = 4;
+        [TestMethod]
+        public void GetImageSuccessTest()
+        {
+            //Arrange
+            AuctionController aCtr = new AuctionController();
 
-                Assert.IsTrue(aCtr.InsertPicture(imageData));
-            }
+            DownloadRequest downloadRequest = new DownloadRequest();
+            downloadRequest.FileName = "image_1.jpg";
+            downloadRequest.AuctionNumber = 0;
+            downloadRequest.UserId = 0;
+
+            //Act
+            RemoteFileInfo rFI = aCtr.GetPicture(downloadRequest);
+
+            //Assert
+            Assert.AreEqual("image_1.jpg", rFI.FileName);
         }
     }
 }

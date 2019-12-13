@@ -133,6 +133,7 @@
     <Compile Include="Models\UserShowModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\CheckBuyOutIsHigherThanStartPrice.cs" />
     <Compile Include="Utility\CheckDateTime.cs" />
     <Compile Include="Utility\CheckImageFile.cs" />
     <Compile Include="Utility\ConvertViewModel.cs" />

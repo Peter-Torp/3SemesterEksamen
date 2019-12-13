@@ -12,12 +12,16 @@ namespace Auction_House_MVC.Models
     public class AuctionSetUp
     {
         [DisplayName("Start price")]
+        [Range(0.0, Double.MaxValue)]
         [Required]
         public double StartPrice { get; set; }
         [DisplayName("Buy out price")]
+        [Range(0.0, Double.MaxValue)]
         [Required]
+        [CheckBuyOutIsHigherThanStartPrice("StartPrice")] // Custome made data annotation - In Utility
         public double BuyOutPrice { get; set; }
         [DisplayName("Bid interval")]
+        [Range(0.0, Double.MaxValue)]
         [Required]
         public double BidInterval { get; set; }
         [DisplayName("Description")]
@@ -29,7 +33,7 @@ namespace Auction_House_MVC.Models
         [DisplayName("End date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [CheckDateTime(ErrorMessage = "Date has to be after current time.")]
+        [CheckDateTime(ErrorMessage = "Date has to be after current time.")] // Custome made data annotation - In Utility
         public DateTime EndDate { get; set; }
         [DisplayName("Category")]
         [Required(ErrorMessage = "Please choose category")]

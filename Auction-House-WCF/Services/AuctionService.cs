@@ -49,12 +49,6 @@ namespace Auction_House_WCF.Services
             return aCtr.InsertPictures(images);
         }
 
-        public List<AuctionData> GetAuctions(string auctionName)
-        {
-            AuctionController aCtr = new AuctionController();
-            return aCtr.GetAuctions(auctionName);
-        }
-
         public List<AuctionData> GetUserAuctions(string userName)
         {
             AuctionController aCtr = new AuctionController();

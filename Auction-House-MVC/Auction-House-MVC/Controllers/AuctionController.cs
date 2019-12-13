@@ -25,6 +25,10 @@ namespace Auction_House_MVC.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Shows the create auction view, and adds categories to dropdownlist.
+        /// </summary>
+        /// <returns>View(AuctionSetUp</returns>
         [Authorize]
         public ActionResult CreateAuction()
         {
@@ -38,6 +42,10 @@ namespace Auction_House_MVC.Controllers
             return View(aSU);
         }
 
+        /// <summary>
+        /// Gets categories from DB and converts them to list of selectlistitems.
+        /// </summary>
+        /// <returns></returns>
         private List<SelectListItem> GetCategoriesAndConvertToSelectListItem()
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -59,6 +67,12 @@ namespace Auction_House_MVC.Controllers
             return View(auctionPicture);
         }
 
+        /// <summary>
+        /// Checks if inserted auction details are valid. If so, 
+        /// inserts auction to DB.
+        /// </summary>
+        /// <param name="auctionDetails"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -74,17 +88,20 @@ namespace Auction_House_MVC.Controllers
 
                 if (successful)
                 {
+                    //Sends message to user about auction was created.
                     TempData["Referer"] = "AuctionSuccessful";
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    //Sends message to user about auction was not created.
                     TempData["Referer"] = "AuctionFailed";
                     return RedirectToAction("Index", "Home");
                 }
             }
             else
             {
+                //If modelstate invalid get categories again, so it can be passed down to View again.
                 List<SelectListItem> selectList = GetCategoriesAndConvertToSelectListItem();
 
                 auctionDetails.Categories = new SelectList(selectList, "Value", "Text");
@@ -103,6 +120,13 @@ namespace Auction_House_MVC.Controllers
             return PartialView("AddAuctionPartial");
         }
 
+        /// <summary>
+        /// Shows the auction view,
+        /// where ViewModel of AuctionModel is used as container for 4 different models.
+        /// Shows all the models in one view. 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Auction(int id)
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -133,6 +157,12 @@ namespace Auction_House_MVC.Controllers
             return View(new AuctionModel() { AuctionInfoModel = auctionInfoModel, ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel });
         }
 
+        /// <summary>
+        /// Adds picture details to database and folder.
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         public ActionResult AddPictureDetails(AuctionPicture picture, int id)
         {
@@ -141,8 +171,6 @@ namespace Auction_House_MVC.Controllers
             //GET ALL PICTURES FROM AUCTION
             if (ModelState.IsValid)
             {
-                string extension = Path.GetExtension(picture.FileStream.FileName);
-
                 ConvertViewModel converter = new ConvertViewModel();
 
                 bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
@@ -157,13 +185,10 @@ namespace Auction_House_MVC.Controllers
             return RedirectToAction("AddPictures", new { id });
         }
 
-        //public ActionResult ShowAuctions()
-        //{
-        //    B_AuctionController bActr = new B_AuctionController();
-
-        //    return View();
-        //}
-
+        /// <summary>
+        /// Shows a partial view of auctions for logged in user.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult MyAuctionsPartial()
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -177,6 +202,10 @@ namespace Auction_House_MVC.Controllers
             return View("AuctionsPartial", auctionModels);
         }
 
+        /// <summary>
+        /// Shows a partial view of latest created auctions.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LatestAuctionsPartial()
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -190,6 +219,11 @@ namespace Auction_House_MVC.Controllers
             return PartialView("AuctionsPartial", auctionModels);
         }
 
+        /// <summary>
+        /// Parent view for SearchAuctionDetails(), which shows auctions.
+        /// </summary>
+        /// <param name="searchModel"></param>
+        /// <returns></returns>
         public ActionResult SearchAuctionsResult(SearchModel searchModel)
         {
             if (ModelState.IsValid)
@@ -204,6 +238,11 @@ namespace Auction_House_MVC.Controllers
             return PartialView("SearchAuctionsPartial");
         }
 
+        /// <summary>
+        /// Shows view of auctions that was searched for.
+        /// </summary>
+        /// <param name="searchDetails"></param>
+        /// <returns></returns>
         public ActionResult SearchAuctionsDetails(SearchModel searchDetails)
         {
             B_AuctionController bACtr = new B_AuctionController();
@@ -213,6 +252,13 @@ namespace Auction_House_MVC.Controllers
             return View("AuctionsPartial", auctionModels);
         }
 
+        /// <summary>
+        /// Shows an image.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fileName"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public FileStreamResult AuctionShowImage(int id, string fileName, string userName)
         {
             B_AuctionController bActr = new B_AuctionController();
@@ -227,11 +273,22 @@ namespace Auction_House_MVC.Controllers
             return fileStreamResult;
         }
 
+        /// <summary>
+        /// Shows view of showbids from List.
+        /// </summary>
+        /// <param name="showBids"></param>
+        /// <returns></returns>
         public ActionResult ShowBids(List<ShowBid> showBids)
         {
             return View("ShowBids", showBids);
         }
 
+        /// <summary>
+        /// Show view for insert bid.
+        /// </summary>
+        /// <param name="insertBidModel"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         public ActionResult InsertBid(InsertBidModel insertBidModel, int id)
         {
@@ -239,6 +296,14 @@ namespace Auction_House_MVC.Controllers
             return View("InsertBid", insertBidModel);
         }
 
+        /// <summary>
+        /// Check if bid is valid clientside. Insert it into database. 
+        /// If another user was faster, serverside, will return message that bid failed.
+        /// If bid was inserted successfully, will return message bid was registered.
+        /// </summary>
+        /// <param name="insertBid"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]

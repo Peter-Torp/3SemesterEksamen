@@ -10,7 +10,7 @@ namespace Auction_House_WCF.DataAccess
 {
     public class ImageHandler
     {
-        private readonly string _appDirectory = Path.Combine(Environment.CurrentDirectory, @"..\..\"); // AppDomain.CurrentDomain.BaseDirectory
+        private readonly string _appDirectory = Path.Combine(Environment.CurrentDirectory, @"..\..\..\Auction-House-WCF"); // AppDomain.CurrentDomain.BaseDirectory
         private readonly string _baseDirectory = @"Images\Auctions";
 
         public bool InsertPictureToFolder(ImageData image)
@@ -77,12 +77,15 @@ namespace Auction_House_WCF.DataAccess
                 if (fileExist)
                 {
                     FileStream imgFile = File.OpenRead(fullDirectory);
+                    rFI.FileName = Path.GetFileName(imgFile.Name);
                     rFI.FileByteStream = imgFile;
                     return rFI;
                 }
                 else
                 {
-                    FileStream imgFile = File.OpenRead(Path.Combine(_appDirectory, _baseDirectory, "projekt-notfound.jpg"));
+                    string notFoundFileName = "projekt-notfound.jpg";
+                    FileStream imgFile = File.OpenRead(Path.Combine(_appDirectory, _baseDirectory, notFoundFileName));
+                    rFI.FileName = notFoundFileName;
                     rFI.FileByteStream = imgFile;
                     return rFI;
                     //throw new FileNotFoundException("File not found at: " + fullDirectory, request.FileName);

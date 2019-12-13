@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Transactions;
-using IsolationLevel = System.Transactions.IsolationLevel;
+
 
 namespace Auction_House_WCF.DataAccess
 {
@@ -42,7 +41,7 @@ namespace Auction_House_WCF.DataAccess
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted
             };
 
             //SQL statements
@@ -160,7 +159,7 @@ namespace Auction_House_WCF.DataAccess
 
             var transaction = new CommittableTransaction( new TransactionOptions 
             {
-                IsolationLevel = IsolationLevel.RepeatableRead
+                IsolationLevel = System.Transactions.IsolationLevel.RepeatableRead
             });
 
             string insertPersonQuery = "INSERT INTO Person (UserName,Email,Phone) VALUES (@userName, @email, @phone); SELECT SCOPE_IDENTITY()";

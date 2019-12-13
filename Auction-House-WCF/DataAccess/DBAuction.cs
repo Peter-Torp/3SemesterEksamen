@@ -27,6 +27,11 @@ namespace Auction_House_WCF.DataAccess
             }
         }
 
+        /// <summary>
+        /// Creates an auction in database.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public int Create(AuctionData entity)
         {
             // Set return value
@@ -35,7 +40,7 @@ namespace Auction_House_WCF.DataAccess
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
             //SQL statements
@@ -119,6 +124,11 @@ namespace Auction_House_WCF.DataAccess
             return entity.Id;
         }
 
+        /// <summary>
+        /// Inserts pictures into database and folders. 
+        /// </summary>
+        /// <param name="images"></param>
+        /// <returns></returns>
         public bool InsertPictures(List<ImageData> images)
         {
             bool successful = false;
@@ -182,12 +192,17 @@ namespace Auction_House_WCF.DataAccess
             return successful;
         }
 
+        /// <summary>
+        /// Gets an auction by Id
+        /// </summary>
+        /// <param name="auctionId"></param>
+        /// <returns></returns>
         public AuctionData Get(int auctionId)
         {
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
             // SQL query
@@ -253,6 +268,10 @@ namespace Auction_House_WCF.DataAccess
             }
         }
 
+        /// <summary>
+        /// Gets categories.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetCategory()
         {
             //Set isolation level
@@ -305,12 +324,17 @@ namespace Auction_House_WCF.DataAccess
             return categories;
         }
 
+        /// <summary>
+        /// Get user auctions by user name.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public List<AuctionData> GetUserAuctions(string userName)
         {
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
             // SQL query
@@ -367,6 +391,10 @@ namespace Auction_House_WCF.DataAccess
             return auctions;
         }
 
+        /// <summary>
+        /// Makes an object of AuctionData from parameters.
+        /// </summary>
+        /// <returns>AuctionData</returns>
         private AuctionData ToObject(int auctionId, string userName, string description, string category,
             DateTime startDate, DateTime endDate, double startPrice, double bidInterval, double buyOutPrice, 
             string zipCode, string region)
@@ -388,6 +416,10 @@ namespace Auction_House_WCF.DataAccess
             return auction;
         }
 
+        /// <summary>
+        /// Makes an object of ImageInfoData.
+        /// </summary>
+        /// <returns>ImageInfoData</returns>
         private ImageInfoData ToImageInfoObject(int auctionId, string imgUrl, DateTime dateAdded,
             string description, string fileName)
         {
@@ -402,6 +434,11 @@ namespace Auction_House_WCF.DataAccess
             return imageInfoData;
         }
 
+        /// <summary>
+        /// Get images from database.
+        /// </summary>
+        /// <param name="auctionId"></param>
+        /// <returns></returns>
         public List<ImageInfoData> GetImages(int auctionId)
         {
             //Set isolation level
@@ -457,12 +494,16 @@ namespace Auction_House_WCF.DataAccess
             return images;
         }
 
+        /// <summary>
+        /// Gets the 10 latest auctions.
+        /// </summary>
+        /// <returns>List<AuctionData></returns>
         public List<AuctionData> GetLastestAuctions()
         {
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.Serializable
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
             // SQL query
@@ -519,13 +560,17 @@ namespace Auction_House_WCF.DataAccess
             return auctions;
         }
 
-
+        /// <summary>
+        /// Get auctions by description. Used for searching auctions.
+        /// </summary>
+        /// <param name="auctionDesc"></param>
+        /// <returns></returns>
         public List<AuctionData> GetAuctionsByDescription(string auctionDesc)
         {
             //Set isolation level
             var options = new TransactionOptions
             {
-                IsolationLevel = IsolationLevel.ReadUncommitted
+                IsolationLevel = IsolationLevel.ReadCommitted
             };
 
             // SQL query
@@ -583,66 +628,6 @@ namespace Auction_House_WCF.DataAccess
                 }
             }
             return auctions;
-        }
-
-        /*
-         * Return a list of auction selected from the database.
-         * */
-        internal List<AuctionData> GetAuctions(string auctionName)
-        {
-            List<AuctionData> auctionDatas = new List<AuctionData>();
-            string getAuctions = "SELECT * FROM Auction WHERE something something = ?";//ret
-
-            using (var conn = new SqlConnection(_connectionString))
-            {
-                try
-                {
-                    conn.Open();
-
-                    using (var DBAuctions = new SqlCommand(getAuctions, conn))
-                    {
-
-                        DBAuctions.Parameters.AddWithValue("auctionName", auctionName);
-
-
-                        SqlDataReader reader = DBAuctions.ExecuteReader();
-
-                        while (reader.Read())
-                        {
-                            AuctionData auction = new AuctionData
-                            {
-                                Id = reader.GetInt32(1),
-                                StartPrice = reader.GetDouble(2),
-                                BuyOutPrice = reader.GetDouble(3),
-                                BidInterval = reader.GetDouble(4),
-                                Description = reader.GetString(5),
-                                StartDate = reader.GetDateTime(6),
-                                EndDate = reader.GetDateTime(7),
-                                Category = reader.GetString(8), //category id (SQL)
-                                UserId = reader.GetInt32(9)
-
-                            };
-                            auctionDatas.Add(auction);
-                        }
-
-                    }
-                }
-
-                catch (SqlException e)
-                {
-                    throw e;
-                }
-                finally
-                {
-                    if (conn != null)
-                    {
-                        conn.Close();
-                    }
-                }
-                return auctionDatas;
-            }
-
-
         }
 
         //Delete an auction
