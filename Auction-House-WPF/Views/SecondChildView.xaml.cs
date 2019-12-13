@@ -64,7 +64,7 @@ namespace Auction_House_WPF.Views
             {
                 MessageBox.Show("No selected row!");
             }
-
+            Auctions.Items.Refresh();
         }
 
         //Select an auction and do something.
