@@ -44,14 +44,8 @@
         <!-- Row 3 -->
         <ContentControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" 
                         x:Name="ActiveItem" Margin="0,0,19.8,433.6" Grid.RowSpan="4" />
-<<<<<<< HEAD
         <Image Source="/Images/hammer.png" Grid.Column="6" HorizontalAlignment="Left" Height="111" Margin="425,0,0,0" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2" Grid.RowSpan="7"/>
         <Label Content="Tonnis Auktion" Grid.Column="6" HorizontalAlignment="Left" Margin="174,2,0,0" VerticalAlignment="Top" Height="52" Grid.RowSpan="7" Width="246" FontSize="36" Foreground="Red"/>
-=======
-        <Image Source="/Images/tonnibonde2.jpg" Grid.Column="2" HorizontalAlignment="Left" Height="310" Margin="38,47,0,0" Grid.Row="6" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="5" Name="Tonni"/>
-        <Label Content="Tonnis Auktion" Grid.Column="6" HorizontalAlignment="Left" Margin="218.224,0,0,0" VerticalAlignment="Top" Height="52" Grid.RowSpan="3" Width="246" FontSize="36" Foreground="Red"/>
-        <Label Content="100.000KM er det samme som kørt til" Grid.Column="2" HorizontalAlignment="Left" Margin="0,371,-60.2,0" VerticalAlignment="Top" Height="52" Width="801" FontSize="36" Foreground="Red" Grid.ColumnSpan="6" Grid.Row="6"/>
->>>>>>> 0a9cea1b346d91e2e4c17240c05d068be96ada6b
 
 
         <!-- Row 4 -->
