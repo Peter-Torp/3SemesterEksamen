@@ -31,6 +31,7 @@ namespace Auction_House_WPF.Views
 
             sCWM = new SecondChildViewModel();
             DataContext = sCWM; 
+            
         }
 
         private void ProfileSearchButton_Click(object sender, RoutedEventArgs e)
