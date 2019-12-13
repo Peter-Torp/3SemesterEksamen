@@ -71,7 +71,6 @@ namespace Auction_House_WPF.ViewModels
 
                 AuctionShowModel.Add(FirstChildViewModel.ConvertAuctionModelToAuctionShowModel(auctionModel));
             }
-            
         }
 
         //Set the propterties when an auction is selected
