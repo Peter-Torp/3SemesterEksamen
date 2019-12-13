@@ -28,7 +28,6 @@ namespace Auction_House_MVC.Controllers
         [Authorize]
         public ActionResult CreateAuction()
         {
-            B_AuctionController bACtr = new B_AuctionController();
             AuctionSetUp aSU = new AuctionSetUp();
 
             //Get categories from database.
@@ -113,6 +112,7 @@ namespace Auction_House_MVC.Controllers
             //Auction details from database.
             AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
 
+            //If auction is not in database - For handling if users put in illegal auction id in url.
             if (auctionInfoModel == null)
             {
                 return View("NotFound");
@@ -143,26 +143,16 @@ namespace Auction_House_MVC.Controllers
             {
                 string extension = Path.GetExtension(picture.FileStream.FileName);
 
-                // Check file type and length - Getting pictures is limited to 40kb for some reason, so upload is limited.
-                if (picture.FileStream.ContentLength < 40000)
-                {
-                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".jfif")
-                    {
-                        ConvertViewModel converter = new ConvertViewModel();
+                ConvertViewModel converter = new ConvertViewModel();
 
-                        bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
+                bACtr.InsertPicture(converter.ConvertFromAuctionPictureToImage(picture), User.Identity.Name, id);
 
-                        TempData["Referer"] = "PictureSuccessful";
-                    }
-                    else
-                    {
-                        TempData["Referer"] = "PictureFailed";
-                    }
-                }
-                else
-                {
-                    TempData["Referer"] = "PictureFailed";
-                }
+                TempData["Referer"] = "PictureSuccessful";
+
+            }
+            else
+            {
+                TempData["Referer"] = "PictureFailed";
             }
             return RedirectToAction("AddPictures", new { id });
         }
@@ -174,7 +164,7 @@ namespace Auction_House_MVC.Controllers
         //    return View();
         //}
 
-        public ActionResult AuctionsPartial()
+        public ActionResult MyAuctionsPartial()
         {
             B_AuctionController bACtr = new B_AuctionController();
 
@@ -184,7 +174,7 @@ namespace Auction_House_MVC.Controllers
 
             List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
 
-            return View(auctionModels);
+            return View("AuctionsPartial", auctionModels);
         }
 
         public ActionResult LatestAuctionsPartial()
@@ -197,17 +187,21 @@ namespace Auction_House_MVC.Controllers
 
             List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
 
-            return View("AuctionsPartial", auctionModels);
+            return PartialView("AuctionsPartial", auctionModels);
         }
 
         public ActionResult SearchAuctionsResult(SearchModel searchModel)
         {
-            return View(searchModel);
+            if (ModelState.IsValid)
+            {
+                return View(searchModel);
+            }
+            return View("Index");
         }
 
         public ActionResult SearchAuctionsPartial()
         {
-            return View();
+            return PartialView("SearchAuctionsPartial");
         }
 
         public ActionResult SearchAuctionsDetails(SearchModel searchDetails)
@@ -250,7 +244,7 @@ namespace Auction_House_MVC.Controllers
         [Authorize]
         public ActionResult InsertBidDetail(InsertBidModel insertBid, int id)
         {
-            bool successful = false;
+            bool successful;
             if (ModelState.IsValid)
             {
                 B_AuctionController bACtr = new B_AuctionController();

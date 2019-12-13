@@ -28,20 +28,20 @@ namespace Auction_House_WPF.ViewModels
         public MessageCommand DisplayMessageCommand { get; private set; }
         public RelayCommand DeleteAuction { get; private set; }
 
-
         public SecondChildViewModel()
         {
-           // DisplayMessageCommand = new MessageCommand(Display);
+            // DisplayMessageCommand = new MessageCommand(Display);
             DisplayUserInfo = new RelayCommand(SearchUserByUserName);
             UserShowModel = new ObservableCollection<UserShowModel>();
             AuctionShowModel = new ObservableCollection<AuctionShowModel>();
-            DeleteAuction = new RelayCommand(OnDelete,CanDelete);
-            
+            DeleteAuction = new RelayCommand(OnDelete, CanDelete);
+
         }
         public void Display(string message)
         {
             MessageBox.Show(message);
         }
+
 
         //Search the user in the database and convert it to a UserShowModel and return the user.
         public void SearchUserByUserName(string searchString)
@@ -50,12 +50,12 @@ namespace Auction_House_WPF.ViewModels
             {
 
                 UserShowModel.Add(ConvertUserModelToUserShowModel(userRepos.GetUserByUserName(searchString)));
-            } 
+            }
             catch (NullReferenceException)
             {
                 MessageBox.Show("No user was found!");
             }
-            
+
         }
 
         //Find the associated auctions for a user
@@ -95,7 +95,7 @@ namespace Auction_House_WPF.ViewModels
 
 
         /*
-         * Convert UserModel type to UserShowModel type. 
+         * Convert UserModel type to UserShowModel type.
          * */
         public UserShowModel ConvertUserModelToUserShowModel(UserModel user)
         {
@@ -108,8 +108,8 @@ namespace Auction_House_WPF.ViewModels
                 Email = user.Email,
                 Phone = user.Phone,
                 ZipCode = user.Zipcode,
-                DateOfBirth = user.DateofBirth
-                
+               
+
             };
 
             return userShowModel;
@@ -119,7 +119,7 @@ namespace Auction_House_WPF.ViewModels
         public ObservableCollection<UserShowModel> UserShowModel
         {
             get;
-            private set;            
+            private set;
         }
 
         public ObservableCollection<AuctionShowModel> AuctionShowModel

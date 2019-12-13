@@ -48,6 +48,7 @@ namespace Auction_House_WPF.ViewModels
         public void OnDelete()
         {
             auctionRepos.deleteAuctionById(SelectedAuction.Id);
+            FillDataGrid();//Update the datagrid after delete
             
         }
         public bool CanDelete()
@@ -76,10 +77,9 @@ namespace Auction_House_WPF.ViewModels
             foreach (AuctionModel auctionModel in auctionRepos.getAuctionsByUserName(searchString)) 
             {
                 AuctionShowModels.Add(ConvertAuctionModelToAuctionShowModel(auctionModel));
+                
             }
 
-
-            
         }
 
 
@@ -97,20 +97,22 @@ namespace Auction_House_WPF.ViewModels
         public AuctionShowModel ConvertAuctionModelToAuctionShowModel(AuctionModel auctionModel)
         {
             AuctionShowModel auctionShowModel = new AuctionShowModel
-                {
-                    Id = auctionModel.Id,
-                    StartPrice = auctionModel.StartPrice,
-                    BuyOutPrice = auctionModel.BuyOutPrice,
-                    BidInterval = auctionModel.BidInterval,
-                    StartDate = auctionModel.StartDate,
-                    EndDate = auctionModel.EndDate,
-                    Description = auctionModel.Description,
-                    Category = auctionModel.Category,
-                    UserName = auctionModel.UserName
-                };
+            {
+                Id = auctionModel.Id,
+                StartPrice = auctionModel.StartPrice,
+                BuyOutPrice = auctionModel.BuyOutPrice,
+                BidInterval = auctionModel.BidInterval,
+                StartDate = auctionModel.StartDate,
+                EndDate = auctionModel.EndDate,
+                Description = auctionModel.Description,
+                Category = auctionModel.Category,
+                UserName = auctionModel.UserName,
+                
+            };
 
             return auctionShowModel;
         }
+
 
         public ObservableCollection<AuctionShowModel> AuctionShowModels
         {

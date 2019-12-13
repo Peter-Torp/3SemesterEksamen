@@ -28,6 +28,27 @@ namespace Auction_House_WPF.ServiceLayer.Utility
             return userModel;
         }
 
+        internal static UserData ConvertUserModelToUserData(UserModel userModel)
+        {
+            UserData userData = new UserData
+            {
+                Id = userModel.User_Id,
+                UserName = userModel.Username,
+                Email = userModel.Email,
+                Phone = userModel.Phone,
+                ZipCode = userModel.Zipcode,
+                Region = null,
+                PasswordHash = null,
+                Salt = null
+            };
 
+            return userData;
+        }
+
+        
+
+        
+            
+           
     }
 }

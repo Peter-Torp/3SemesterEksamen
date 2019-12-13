@@ -15,6 +15,20 @@ namespace Auction_House_WPF.Model
     {
         List<AuctionShowModel> Auctions = new List<AuctionShowModel>(); 
 
+        public UserShowModel(string userName, string address, string email, string phone, string zipCode)
+        {
+            this.UserName = userName;
+            this.Address = address;
+            this.Email = email;
+            this.Phone = phone;
+            this.ZipCode = zipCode;
+        }
+
+        public UserShowModel()//2nd constructor
+        {
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,7 +37,6 @@ namespace Auction_House_WPF.Model
         public string Email { get; set; }
         public string Phone { get; set; }
         public string ZipCode { get; set; }
-        public string DateOfBirth { get; set; }
 
         public void AddAuctions(AuctionShowModel auction)
         {
@@ -32,7 +45,7 @@ namespace Auction_House_WPF.Model
 
         public override string ToString()
         {
-            return FirstName + LastName + UserName + Address + Email + Phone + ZipCode + DateOfBirth;
+            return FirstName + LastName + UserName + Address + Email + Phone + ZipCode;
              
         }
 

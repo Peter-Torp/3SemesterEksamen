@@ -8,6 +8,7 @@ using ServiceLayer.AuctionServiceReference;
 using Auction_House_WPF.ServiceAccessExceptions;
 using ServiceLayer.Interface;
 using ServiceLayer.Utility;
+using Auction_House_WPF.ModelLayer;
 
 namespace Auction_House_WPF.ServiceLayer
 {
@@ -20,23 +21,13 @@ namespace Auction_House_WPF.ServiceLayer
         }
         
 
-        public bool DeleteAuctionById(int id)
+        public void DeleteAuctionById(int id)
         {
             using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
             {
-                bool deleted = false;
 
                 proxy.DeleteAuctionById(id);
 
-                if (GetAuctionById(id) == null)
-                {
-                    deleted = true;
-                } else
-                {
-                    deleted = false;
-                }
-
-                return deleted;
             }
 
         }
@@ -68,5 +59,18 @@ namespace Auction_House_WPF.ServiceLayer
             }
             
         }
+
+        //for test purposes for now.
+        public void CreateAuction(AuctionModel auctionModel, UserModel userModel)
+        {
+
+            using (AuctionServiceClient proxy = new AuctionServiceClient("BasicHttpBinding_IAuctionService"))
+
+                proxy.InsertAuction(AuctionUtility.ConvertAuctionModelToAuctionData(auctionModel, userModel));
+
+            
+        }
+
+
      }
 }
