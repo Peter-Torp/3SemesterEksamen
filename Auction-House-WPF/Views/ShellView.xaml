@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Auction_House_WPF.Views"
         mc:Ignorable="d"
-        Title="ShellView"
+        Title="Tonnis Auktioner"
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
         Background="#FF464646" Foreground="White"
@@ -20,7 +20,8 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="116*" />
+            <ColumnDefinition Width="505*"/>
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -34,17 +35,19 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
-       
+
 
         <!-- Row 2 -->
-        <Button x:Name="LoadPageOne" Width="100" Grid.Row="2" Grid.Column="1">Find Auctions</Button>
-        <Button x:Name="LoadPageTwo" Width="100" Grid.Row="2" Grid.Column="2">Find Users</Button>
+        <Button x:Name="LoadPageOne" Width="100" Grid.Column="1" Margin="0,27,0,0" Grid.RowSpan="3">Find Auctions</Button>
+        <Button x:Name="LoadPageTwo" Width="100" Grid.Column="2" Margin="0,27,0,0" Grid.RowSpan="3">Find Users</Button>
 
         <!-- Row 3 -->
-        <ContentControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" 
-                        x:Name="ActiveItem" />
-        <Label Content="Label" Grid.Column="5" HorizontalAlignment="Left" Margin="100,156.2,0,0" Grid.Row="6" VerticalAlignment="Top" Height="118" Width="200" FontSize="75"/>
-        
+        <ContentControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" 
+                        x:Name="ActiveItem" Margin="0,0,19.8,433.6" Grid.RowSpan="4" />
+        <Image Source="/Images/tonnibonde2.jpg" Grid.Column="2" HorizontalAlignment="Left" Height="310" Margin="38,47,0,0" Grid.Row="6" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="5"/>
+        <Label Content="Tonnis Auktion" Grid.Column="6" HorizontalAlignment="Left" Margin="218.224,0,0,0" VerticalAlignment="Top" Height="52" Grid.RowSpan="3" Width="246" FontSize="36" Foreground="Red"/>
+        <Label Content="100.000KM er det samme som kørt til" Grid.Column="2" HorizontalAlignment="Left" Margin="0,371,-60.2,0" VerticalAlignment="Top" Height="52" Width="801" FontSize="36" Foreground="Red" Grid.ColumnSpan="6" Grid.Row="6"/>
+
 
         <!-- Row 4 -->
 
