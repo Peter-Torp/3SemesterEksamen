@@ -1,4 +1,5 @@
-﻿using ModelLayer;
+﻿using Auction_House_WPF.ModelLayer;
+using ModelLayer;
 using ServiceLayer.AuctionServiceReference;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,15 @@ namespace ServiceLayer.Utility
         {
             //Id,StartPrice,BuyOutPrice,BidInterval,Description,StartDate,EndDate,Category
 
-            AuctionModel auctionModel = new AuctionModel(0, 0, 0, 0, null, null, null, null,null)
+            AuctionModel auctionModel = new AuctionModel()
             {
                 Id = auction.Id,
                 StartPrice = auction.StartPrice,
                 BuyOutPrice = auction.BuyOutPrice,
                 BidInterval = auction.BidInterval,
                 Description = auction.Description,
-                StartDate = auction.StartDate.ToString(),
-                EndDate = auction.EndDate.ToString(),
+                StartDate = auction.StartDate,
+                EndDate = auction.EndDate,
                 Category = auction.Category,
                 UserName = auction.UserName
 
@@ -39,6 +40,26 @@ namespace ServiceLayer.Utility
             }
 
             return auctionDatas;
+        }
+
+        //Convert auctionModel to AuctionData. For creating a auction.
+        internal static AuctionData ConvertAuctionModelToAuctionData(AuctionModel auctionModel, UserModel userModel)
+        {
+            AuctionData auctionData = new AuctionData
+            {
+                Id = auctionModel.Id,
+                StartPrice = auctionModel.StartPrice,
+                BuyOutPrice = auctionModel.BuyOutPrice,
+                BidInterval = auctionModel.BidInterval,
+                Description = auctionModel.Description,
+                StartDate = auctionModel.StartDate,
+                EndDate = auctionModel.EndDate,
+                Category = auctionModel.Category,
+                UserName = auctionModel.UserName,
+                UserId = userModel.User_Id
+            };
+
+            return auctionData;
         }
 
 

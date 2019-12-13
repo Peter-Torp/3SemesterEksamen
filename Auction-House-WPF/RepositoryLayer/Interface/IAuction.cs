@@ -10,7 +10,7 @@ namespace RepositoryLayer.Interface
     interface IAuction
     {
         List<AuctionModel> getAuctionsByUserName(string userName);
-        bool deleteAuctionById(int id);
+        void deleteAuctionById(int id);
 
 
     }

@@ -8,6 +8,7 @@ using Auction_House_WPF.ServiceLayer.Utility;
 using Auction_House_WPF.ServiceAccessExceptions;
 using ServiceLayer.UserServiceReference;
 using IUserService = ServiceLayer.UserServiceReference.IUserService;
+using ServiceLayer;
 
 namespace Auction_House_WPF.ServiceLayer
 {
@@ -94,7 +95,16 @@ namespace Auction_House_WPF.ServiceLayer
             return _userService;
         }
 
-
+        //for test
+        public void CreateUser(UserModel userModel)//add string pass parameter
+        {
+            using (UserServiceClient proxy = new UserServiceClient())
+            {
+                LoginService loginService = new LoginService();
+                UserData userData = loginService.CreateLogin("1234", userModel);   //test input
+                proxy.InsertUser(userData.UserName, userData.Email,userData.Phone,userData.ZipCode,userData.Region,userData.PasswordHash);
+            }
+        }
 
 
 
