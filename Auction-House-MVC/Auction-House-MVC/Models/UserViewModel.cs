@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Auction_House_MVC.Models
 {
-    public class UserShowModel
+    public class UserViewModel
     {
         public string UserName { get; set; }
 

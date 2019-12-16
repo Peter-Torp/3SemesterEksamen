@@ -30,9 +30,9 @@ namespace Auction_House_MVC.Utility
             return uSU;
         }
 
-        public UserShowModel ConvertFromUserToUserShowModel(User user)
+        public UserViewModel ConvertFromUserToUserShowModel(User user)
         {
-            UserShowModel uSM = new UserShowModel
+            UserViewModel uSM = new UserViewModel
             {
                 UserName = user.UserName,
                 Email = user.Email,
@@ -43,7 +43,7 @@ namespace Auction_House_MVC.Utility
             return uSM;
         }
 
-        public CreateAuction ConvertFromAuctionSetUpToCreateAuction(AuctionSetUp aSU, string userName)
+        public CreateAuction ConvertFromAuctionSetUpToCreateAuction(AuctionSetUpModel aSU, string userName)
         {
             CreateAuction cA = new CreateAuction
             {
@@ -58,10 +58,10 @@ namespace Auction_House_MVC.Utility
             return cA;
         }
 
-        public List<Image> ConvertFromAuctionPicturesToImages(List<AuctionPicture> auctionPictures)
+        public List<Image> ConvertFromAuctionPicturesToImages(List<InsertPictureModel> auctionPictures)
         {
             List<Image> images = new List<Image>();
-            foreach (AuctionPicture aPic in auctionPictures)
+            foreach (InsertPictureModel aPic in auctionPictures)
             {
                 Image image = new Image
                 {
@@ -74,7 +74,7 @@ namespace Auction_House_MVC.Utility
             return images;
         }
 
-        public Image ConvertFromAuctionPictureToImage(AuctionPicture aPic)
+        public Image ConvertFromAuctionPictureToImage(InsertPictureModel aPic)
         {
 
             Image image = new Image
@@ -86,22 +86,22 @@ namespace Auction_House_MVC.Utility
             return image;
         }
 
-        public List<AuctionInfoModel> ConvertFromAuctionsToAuctionModels(List<Auction> auctions)
+        public List<AuctionInfoViewModel> ConvertFromAuctionsToAuctionModels(List<Auction> auctions)
         {
-            List<AuctionInfoModel> auctionModels = new List<AuctionInfoModel>();
+            List<AuctionInfoViewModel> auctionModels = new List<AuctionInfoViewModel>();
             foreach (Auction auction in auctions)
             {
-                AuctionInfoModel auctionModel = ConvertFromAuctionToAuctionModel(auction);
+                AuctionInfoViewModel auctionModel = ConvertFromAuctionToAuctionModel(auction);
                 auctionModels.Add(auctionModel);
             }
             return auctionModels;
         }
 
-        public AuctionInfoModel ConvertFromAuctionToAuctionModel(Auction auction)
+        public AuctionInfoViewModel ConvertFromAuctionToAuctionModel(Auction auction)
         {
             if (auction != null)
             {
-                AuctionInfoModel auctionModel = new AuctionInfoModel
+                AuctionInfoViewModel auctionModel = new AuctionInfoViewModel
                 {
                     StartPrice = auction.StartPrice,
                     BuyOutPrice = auction.BuyOutPrice,
@@ -123,9 +123,9 @@ namespace Auction_House_MVC.Utility
             }
         }
 
-        public ShowAuctionPictureModel ConvertFromImageToShowAuctionPictureModel(Image image)
+        public PictureViewModel ConvertFromImageToShowAuctionPictureModel(Image image)
         {
-            ShowAuctionPictureModel sAPM = new ShowAuctionPictureModel()
+            PictureViewModel sAPM = new PictureViewModel()
             {
                 FileName = image.FileName,
                 Description = image.Description
@@ -133,9 +133,9 @@ namespace Auction_House_MVC.Utility
             return sAPM;
         }
 
-        public List<ShowAuctionPictureModel> ConvertFromImagesToShowAuctionPictureModels(List<Image> images)
+        public List<PictureViewModel> ConvertFromImagesToShowAuctionPictureModels(List<Image> images)
         {
-            List<ShowAuctionPictureModel> lSAPM = new List<ShowAuctionPictureModel>();
+            List<PictureViewModel> lSAPM = new List<PictureViewModel>();
             foreach (Image image in images)
             {
                 lSAPM.Add(ConvertFromImageToShowAuctionPictureModel(image));
@@ -143,9 +143,9 @@ namespace Auction_House_MVC.Utility
             return lSAPM;
         }
 
-        public ShowBid ConvertFromBidToShowBid(Bid bid)
+        public BidViewModel ConvertFromBidToShowBid(Bid bid)
         {
-            ShowBid showBid = new ShowBid
+            BidViewModel showBid = new BidViewModel
             {
                 Amount = bid.Amount,
                 Date = bid.Date,
@@ -153,9 +153,9 @@ namespace Auction_House_MVC.Utility
             };
             return showBid;
         }
-        public List<ShowBid> ConvertFromBidsToShowBids(List<Bid> bids)
+        public List<BidViewModel> ConvertFromBidsToShowBids(List<Bid> bids)
         {
-            List<ShowBid> showBids = new List<ShowBid>();
+            List<BidViewModel> showBids = new List<BidViewModel>();
             foreach (Bid bid in bids)
             {
                 showBids.Add(ConvertFromBidToShowBid(bid));

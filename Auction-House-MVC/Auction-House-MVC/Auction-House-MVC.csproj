@@ -121,16 +121,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuctionInfoModel.cs" />
-    <Compile Include="Models\AuctionModel.cs" />
-    <Compile Include="Models\AuctionPicture.cs" />
-    <Compile Include="Models\AuctionSetUp.cs" />
+    <Compile Include="Models\AuctionInfoViewModel.cs" />
+    <Compile Include="Models\AuctionViewModel.cs" />
+    <Compile Include="Models\InsertPictureModel.cs" />
+    <Compile Include="Models\AuctionSetUpModel.cs" />
     <Compile Include="Models\InsertBidModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
-    <Compile Include="Models\ShowAuctionPictureModel.cs" />
-    <Compile Include="Models\ShowBid.cs" />
-    <Compile Include="Models\UserShowModel.cs" />
+    <Compile Include="Models\PictureViewModel.cs" />
+    <Compile Include="Models\BidViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\UserSignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\CheckBuyOutIsHigherThanStartPrice.cs" />
@@ -179,16 +179,12 @@
     <Content Include="Views\Auction\CreateAuction.cshtml" />
     <Content Include="Views\Auction\Index.cshtml" />
     <Content Include="Views\Auction\SearchAuctionsResult.cshtml" />
-    <Content Include="Views\Auction\AddPicturePartial.cshtml" />
-    <Content Include="Views\Auction\AddAuctionPartial.cshtml" />
     <Content Include="Views\Auction\AddPictures.cshtml" />
     <Content Include="Views\User\MyAccount.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\User\LogIn.cshtml" />
     <Content Include="Views\Auction\AuctionsPartial.cshtml" />
     <Content Include="Views\User\UserInfoPartial.cshtml" />
-    <Content Include="Views\Auction\ViewAuctionPartial.cshtml" />
-    <Content Include="Views\Auction\LatestAuctionsPartial.cshtml" />
     <Content Include="Views\Auction\ShowBids.cshtml" />
     <Content Include="Views\Auction\InsertBid.cshtml" />
     <Content Include="Views\Auction\SearchAuctionsPartial.cshtml" />

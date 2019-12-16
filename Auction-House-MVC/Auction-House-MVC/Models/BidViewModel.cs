@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Auction_House_MVC.Models
 {
-    public class ShowBid
+    public class BidViewModel
     {
         public DateTime Date { get; set; }
         public double Amount { get; set; }

@@ -1,8 +1,7 @@
-﻿@model Auction_House_MVC.Models.AuctionPicture
+﻿@model Auction_House_MVC.Models.InsertPictureModel
 @{
     ViewBag.Title = "AddPictures";
 }
-
 @using (Html.BeginForm("AddPictureDetails", "Auction", new { id = Html.DisplayFor(m => m.Id) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <fieldset>

@@ -4,6 +4,7 @@ using Auction_House_MVC.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -52,7 +53,7 @@ namespace Auction_House_MVC.Controllers
             return View();
         }
 
-        public ActionResult UserInfoPartial(Models.UserShowModel userDetails)
+        public ActionResult UserInfoPartial(Models.UserViewModel userDetails)
         {
             B_UserController bUCtr = new B_UserController();
             User user = bUCtr.GetUserByUserName(User.Identity.Name);
@@ -71,8 +72,11 @@ namespace Auction_House_MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
         public ActionResult LogInDetails(Models.LogInModel loginDetails)
         {
+            ViewBag.LoginFailed = false;
+
             if (ModelState.IsValid)
             {
                 B_UserController bUCtr = new B_UserController();

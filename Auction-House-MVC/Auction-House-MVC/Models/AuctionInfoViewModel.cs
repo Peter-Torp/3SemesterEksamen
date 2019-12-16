@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Auction_House_MVC.Models
 {
-    public class AuctionInfoModel
+    public class AuctionInfoViewModel
     {
         public double StartPrice { get; set; }
         public double BuyOutPrice { get; set; }

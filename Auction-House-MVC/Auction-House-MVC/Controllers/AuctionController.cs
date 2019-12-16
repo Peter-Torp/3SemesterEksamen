@@ -32,7 +32,7 @@ namespace Auction_House_MVC.Controllers
         [Authorize]
         public ActionResult CreateAuction()
         {
-            AuctionSetUp aSU = new AuctionSetUp();
+            AuctionSetUpModel aSU = new AuctionSetUpModel();
 
             //Get categories from database.
             List<SelectListItem> selectList = GetCategoriesAndConvertToSelectListItem();
@@ -59,12 +59,19 @@ namespace Auction_House_MVC.Controllers
             return selectList;
         }
 
-        public ActionResult AddPictures(int id)
+        [Authorize]
+        public ActionResult AddPictures(int id, string userName)
         {
-            AuctionPicture auctionPicture = new AuctionPicture();
-            auctionPicture.Id = id;
+            // If user is not the same as the owner of the auction.
+            if (User.Identity.Name.Equals(userName)) {
+                InsertPictureModel auctionPicture = new InsertPictureModel();
+                auctionPicture.Id = id;
 
-            return View(auctionPicture);
+                return View(auctionPicture);
+            } else
+            {
+                return View("NotFound");
+            }
         }
 
         /// <summary>
@@ -76,7 +83,7 @@ namespace Auction_House_MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult CreateAuctionDetails(Models.AuctionSetUp auctionDetails)
+        public ActionResult CreateAuctionDetails(Models.AuctionSetUpModel auctionDetails)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +141,7 @@ namespace Auction_House_MVC.Controllers
             ConvertViewModel converter = new ConvertViewModel();
 
             //Auction details from database.
-            AuctionInfoModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
+            AuctionInfoViewModel auctionInfoModel = converter.ConvertFromAuctionToAuctionModel(bACtr.GetAuction(id));
 
             //If auction is not in database - For handling if users put in illegal auction id in url.
             if (auctionInfoModel == null)
@@ -143,10 +150,10 @@ namespace Auction_House_MVC.Controllers
             }
 
             //Get Images info from database.
-            List<ShowAuctionPictureModel> sAPM = converter.ConvertFromImagesToShowAuctionPictureModels(bACtr.GetImages(id));
+            List<PictureViewModel> sAPM = converter.ConvertFromImagesToShowAuctionPictureModels(bACtr.GetImages(id));
 
             //Get bids on the auction from database.
-            List<ShowBid> showBids = converter.ConvertFromBidsToShowBids(bACtr.GetBids(id));
+            List<BidViewModel> showBids = converter.ConvertFromBidsToShowBids(bACtr.GetBids(id));
 
             //Get highest bid from database - Create insert bids model
             InsertBidModel insertBidModel = new InsertBidModel();
@@ -154,7 +161,7 @@ namespace Auction_House_MVC.Controllers
             insertBidModel.MinimumValidBid = insertBidModel.CurrentHighestBid + auctionInfoModel.BidInterval;
 
             //Return the AuctionModel
-            return View(new AuctionModel() { AuctionInfoModel = auctionInfoModel, ShowAuctionPictureModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel });
+            return View(new AuctionViewModel() { AuctionInfoModel = auctionInfoModel, PictureViewModels = sAPM, ShowBids = showBids, InsertBidModel = insertBidModel });
         }
 
         /// <summary>
@@ -164,7 +171,7 @@ namespace Auction_House_MVC.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Authorize]
-        public ActionResult AddPictureDetails(AuctionPicture picture, int id)
+        public ActionResult AddPictureDetails(InsertPictureModel picture, int id)
         {
             B_AuctionController bACtr = new B_AuctionController();
 
@@ -197,7 +204,7 @@ namespace Auction_House_MVC.Controllers
 
             List<Auction> auctions = bACtr.GetUserAuctions(User.Identity.Name);
 
-            List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
+            List<AuctionInfoViewModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
 
             return View("AuctionsPartial", auctionModels);
         }
@@ -214,7 +221,7 @@ namespace Auction_House_MVC.Controllers
 
             List<Auction> auctions = bACtr.GetLatestAuctions();
 
-            List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
+            List<AuctionInfoViewModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(auctions);
 
             return PartialView("AuctionsPartial", auctionModels);
         }
@@ -248,7 +255,7 @@ namespace Auction_House_MVC.Controllers
             B_AuctionController bACtr = new B_AuctionController();
             ConvertViewModel converter = new ConvertViewModel();
 
-            List<AuctionInfoModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(bACtr.GetAuctionsByDesc(searchDetails.SearchString));
+            List<AuctionInfoViewModel> auctionModels = converter.ConvertFromAuctionsToAuctionModels(bACtr.GetAuctionsByDesc(searchDetails.SearchString));
             return View("AuctionsPartial", auctionModels);
         }
 
@@ -278,7 +285,7 @@ namespace Auction_House_MVC.Controllers
         /// </summary>
         /// <param name="showBids"></param>
         /// <returns></returns>
-        public ActionResult ShowBids(List<ShowBid> showBids)
+        public ActionResult ShowBids(List<BidViewModel> showBids)
         {
             return View("ShowBids", showBids);
         }

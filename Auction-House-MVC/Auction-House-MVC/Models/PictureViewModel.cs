@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Auction_House_MVC.Models
 {
-    public class ShowAuctionPictureModel
+    public class PictureViewModel
     {
         public DateTime Date { get; set; }
         public string Description { get; set; }

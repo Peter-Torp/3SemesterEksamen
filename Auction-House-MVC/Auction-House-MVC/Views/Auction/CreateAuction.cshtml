@@ -1,4 +1,4 @@
-﻿@model Auction_House_MVC.Models.AuctionSetUp
+﻿@model Auction_House_MVC.Models.AuctionSetUpModel
 @{
     ViewBag.Title = "Create Auction";
 }
@@ -63,7 +63,6 @@
                         <div class="editor-label">
                             @Html.LabelFor(aS => aS.SelectedCategory)
                         </div>
-                        <!--https://forums.asp.net/t/1649193.aspx?MVC+3+dropdownlist+validation+not+working+for+complex+view+model -> Microsoft gg-->
                         <div class="editor-field">
                             @Html.DropDownListFor(aS => aS.SelectedCategory, new SelectList(Model.Categories, "Value", "Text"), "Select")
                             <p style="color:red;">@Html.ValidationMessageFor(aS => aS.SelectedCategory)</p>

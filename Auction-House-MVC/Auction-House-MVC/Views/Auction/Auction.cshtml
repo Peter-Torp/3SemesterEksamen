@@ -1,4 +1,4 @@
-﻿@model Auction_House_MVC.Models.AuctionModel
+﻿@model Auction_House_MVC.Models.AuctionViewModel
 @{
     ViewBag.Title = "Auction";
 }
@@ -45,14 +45,14 @@
     @if (User.Identity.IsAuthenticated && User.Identity.Name.Equals(Model.AuctionInfoModel.UserName))
     {
         <div class="row marginTop">
-            @Html.ActionLink("Add Picture", "AddPictures", "Auction", new { id = Model.AuctionInfoModel.Id }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Add Picture", "AddPictures", "Auction", new { id = Model.AuctionInfoModel.Id, userName = Model.AuctionInfoModel.UserName }, new { @class = "btn btn-info" })
         </div>
     }
     <div class="row marginBot">
-        @for (int i = 0; i < Model.ShowAuctionPictureModels.Count; i++)
+        @for (int i = 0; i < Model.PictureViewModels.Count; i++)
         {
             <div class="col-sm-3">
-                <img src="@Url.Action("AuctionShowImage", new { id = Model.AuctionInfoModel.Id, fileName = Model.ShowAuctionPictureModels.ElementAt(i).FileName , Model.AuctionInfoModel.UserName })"
+                <img src="@Url.Action("AuctionShowImage", new { id = Model.AuctionInfoModel.Id, fileName = Model.PictureViewModels.ElementAt(i).FileName , Model.AuctionInfoModel.UserName })"
                      class="imageSize" />
             </div>
         }

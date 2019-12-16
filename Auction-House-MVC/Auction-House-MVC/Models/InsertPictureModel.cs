@@ -9,7 +9,7 @@ using Auction_House_MVC.Utility;
 
 namespace Auction_House_MVC.Models
 {
-    public class AuctionPicture
+    public class InsertPictureModel
     {
         public DateTime Date { get; set; }
         [Required]

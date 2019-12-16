@@ -9,7 +9,7 @@ using Auction_House_MVC.Utility;
 
 namespace Auction_House_MVC.Models
 {
-    public class AuctionSetUp
+    public class AuctionSetUpModel
     {
         [DisplayName("Start price")]
         [Range(0.0, Double.MaxValue)]
@@ -40,6 +40,6 @@ namespace Auction_House_MVC.Models
         public string SelectedCategory { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
 
-        public IEnumerable<AuctionPicture> Pictures { get; set; }
+        public IEnumerable<InsertPictureModel> Pictures { get; set; }
     }
 }

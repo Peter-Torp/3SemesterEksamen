@@ -16,9 +16,9 @@ namespace Auction_House_MVC.Test
         {
             //Arrange
             var aCtr = new AuctionController();
-            List<ShowBid> showBids = new List<ShowBid>();
+            List<BidViewModel> showBids = new List<BidViewModel>();
 
-            ShowBid bid = new ShowBid
+            BidViewModel bid = new BidViewModel
             {
                 Amount = 200,
                 Date = DateTime.Now,

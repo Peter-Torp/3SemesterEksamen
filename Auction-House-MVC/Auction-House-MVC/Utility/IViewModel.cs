@@ -11,7 +11,7 @@ namespace Auction_House_MVC.Utility
     interface IViewModel
     {
         UserSignUp ConvertFromUserSignUpModelToSignUp(UserSignUpModel uSUModel);
-        UserShowModel ConvertFromUserToUserShowModel(User user);
-        CreateAuction ConvertFromAuctionSetUpToCreateAuction(AuctionSetUp aSU, string userName);
+        UserViewModel ConvertFromUserToUserShowModel(User user);
+        CreateAuction ConvertFromAuctionSetUpToCreateAuction(AuctionSetUpModel aSU, string userName);
     }
 }
